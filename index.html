@@ -51,10 +51,9 @@
     body { box-sizing: border-box; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    /* SCROLL FLUIDE */
     html {
         scroll-behavior: smooth;
-        scroll-padding-top: 100px; /* Marge pour le menu fixe */
+        scroll-padding-top: 100px;
         height: 100%;
     }
     
@@ -533,9 +532,9 @@
     </button>
 
     <ul class="nav-menu">
-        <li><a href="#Expérience" id="navAccueil" onclick="closeMenu()">Expérience</a></li>
         <li><a href="#pourquoi-moi" id="navServices" onclick="closeMenu()">Mon Profil</a></li>
-        <li><a href="#selections" id="navSelections" onclick="closeMenu()">Sélections</a></li>
+        <li><a href="#Expérience" id="navAccueil" onclick="closeMenu()">Expérience</a></li>
+        <li><a href="#selections" id="navSelections" onclick="closeMenu()">Projet informatique</a></li>
         <li><a href="#contact-info" id="navFormulaire" onclick="closeMenu()">Contact</a></li>
         <li><button class="theme-toggle" onclick="toggleTheme()" title="Changer le thème">🌗</button></li>
         <li>
@@ -558,33 +557,6 @@
 <main class="main-content">
     <section class="intro-section">
         <p class="intro-text reveal-on-scroll" id="introText">Ce format numérique interactif (site) permet une exploration rapide de mes réalisations, tandis que la version téléchargeable (PDF) garantit une documentation structurée pour toute étude approfondie.</p>
-    </section>
-
-    <section class="services-section" id="Expérience">
-        <h2 class="section-title reveal-on-scroll">Expérience</h2>
-        <div class="services-grid">
-            <div class="service-card En informatique art reveal-on-scroll">
-                <h3 class="service-title">Mes Stage En informatique</h3>
-                <p class="service-description" id="serviceArt">
-                  **Janvier 2022** <br> Stage de découverte d'une semaine au service informatique <br>du garage Louis Grasser à Haguenau.
-                </p>
-            </div>
-            <div class="service-card immo reveal-on-scroll" style="transition-delay: 0.2s;">
-                <h3 class="service-title">Mes Stage En Gestion Administration</h3>
-                <p class="service-description" id="serviceImmo">
-                  **Janvier 2025** :<br>3 semaines au E.Leclerc de Soultz-Sous-Forêts<br>Diverses **tâches** administratives et comptables.
-                  <br><br>**Octobre 2024** :<br>3 semaines chez WOLFF Automobiles à Soultz-Sous-Forêts<br>Mises à jour dossier client, saisie des factures, classement.
-                  <br><br>**Mars 2024** :<br>1 mois chez TMG (Terres et Maisons Gestion, Agence Immobilière et syndic) à Wissembourg<br>Mise à jour du site internet, saisie des factures, gestion des **impayés**.
-                  <br><br>**Décembre 2023** :<br>1 mois chez l'huissier de justice Da Costa à Soultz-Sous-Forêts<br>Classement, gestion des **impayés**, diverses **tâches** administratives.
-                  <br><br>**Juin 2023** :<br>1 mois au Collège Albert-Camus à Soufflenheim<br>Saisie des dossiers d'inscription pour la rentrée, accueil des parents. 
-                  <br><br>**Janvier 2023**:<br>2 semaines chez HEIBY à Soultz-Sous-Forêts<br>Accueil, archivage, classement et mise à jour des dossiers.
-                </p>
-            </div>
-            <div class="service-card affaires reveal-on-scroll" style="transition-delay: 0.4s;">
-                <h3 class="service-title">Mes diplomes</h3>
-                <p class="service-description" id="serviceAffaires">Bac Pro AGOrA <br>:Assisance à la Gestion des Organisations<br><br>Brevet des collàges<br> avec Mention Assez Bien</p>
-            </div>
-        </div>
     </section>
 
     <section class="manifesto-section reveal-on-scroll">
@@ -616,21 +588,50 @@
         <div class="services-grid">
             <div class="service-card reveal-on-scroll">
                 <h3 class="service-title">Sur Téléphone</h3>
-                <p class="service-description">
-                    Maîtrise complète des environnements iOS et Android. Gestion efficace des communications, configuration de boîtes mails professionnelles synchronisées et utilisation d'applications de productivité mobile.
+                <p class="service-description"> Maîtrise complète des environnements iOS. <br><br>Création et mise en place de Bot discord <br><br>Maitrise de Création de raccourcis via l'application raccourcis d'ios.
                 </p>
             </div>
             <div class="service-card reveal-on-scroll" style="transition-delay: 0.2s;">
                 <h3 class="service-title">Sur Ordinateur</h3>
                 <p class="service-description">
-                    Aisance sur Windows et MacOS. Maîtrise avancée du Pack Office (Word, Excel, PowerPoint) pour la gestion documentaire et administrative. Navigation web sécurisée et gestion de fichiers organisée.
+                    Aisance sur Windows ainsi que sur les machines virtuelles. <br><br>
+                    Maîtrise avancée du Pack Office (Word, Excel, PowerPoint) pour la gestion documentaire et administrative.<br><br> 
+                    Navigation web sécurisée et gestion de fichiers organisée.<br><br>
+                    Maîtrise avancée des applications suivantes :<br>Scratch<br> SketchUp Make<br>Fl Studio<br>
                 </p>
             </div>
             <div class="service-card reveal-on-scroll" style="transition-delay: 0.4s;">
                 <h3 class="service-title">Autres</h3>
-                <p class="service-description">
+                <p class="service-description"
                     Configuration et utilisation de périphériques (imprimantes, scanners, réseaux). Capacité à effectuer une maintenance de premier niveau et à s'adapter rapidement aux nouveaux logiciels métiers.
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="Expérience">
+        <h2 class="section-title reveal-on-scroll">Expérience</h2>
+        <div class="services-grid">
+            <div class="service-card En informatique art reveal-on-scroll">
+                <h3 class="service-title">Mes Stage En informatique</h3>
+                <p class="service-description" id="serviceArt">
+                  **Janvier 2022** <br> Stage de découverte d'une semaine au service informatique <br>du garage Louis Grasser à Haguenau.
+                </p>
+            </div>
+            <div class="service-card immo reveal-on-scroll" style="transition-delay: 0.2s;">
+                <h3 class="service-title">Mes Stage En Gestion Administration</h3>
+                <p class="service-description" id="serviceImmo">
+                  **Janvier 2025** :<br>3 semaines au E.Leclerc de Soultz-Sous-Forêts<br>Diverses **tâches** administratives et comptables.
+                  <br><br>**Octobre 2024** :<br>3 semaines chez WOLFF Automobiles à Soultz-Sous-Forêts<br>Mises à jour dossier client, saisie des factures, classement.
+                  <br><br>**Mars 2024** :<br>1 mois chez TMG (Terres et Maisons Gestion, Agence Immobilière et syndic) à Wissembourg<br>Mise à jour du site internet, saisie des factures, gestion des **impayés**.
+                  <br><br>**Décembre 2023** :<br>1 mois chez l'huissier de justice Da Costa à Soultz-Sous-Forêts<br>Classement, gestion des **impayés**, diverses **tâches** administratives.
+                  <br><br>**Juin 2023** :<br>1 mois au Collège Albert-Camus à Soufflenheim<br>Saisie des dossiers d'inscription pour la rentrée, accueil des parents. 
+                  <br><br>**Janvier 2023**:<br>2 semaines chez HEIBY à Soultz-Sous-Forêts<br>Accueil, archivage, classement et mise à jour des dossiers.
+                </p>
+            </div>
+            <div class="service-card affaires reveal-on-scroll" style="transition-delay: 0.4s;">
+                <h3 class="service-title">Mes diplomes</h3>
+                <p class="service-description" id="serviceAffaires">Bac Pro AGOrA <br>:Assistance à la gestion des organisations et de leurs activités<br><br>Brevet des collàges<br> avec Mention Assez Bien<br><br>Certification PIX niveau Terminales (Informatique)</p>
             </div>
         </div>
     </section>
@@ -653,7 +654,7 @@
             <div class="service-card reveal-on-scroll">
                 <h3 class="service-title">Téléphone</h3>
                 <p class="service-description">
-                    06 00 00 00 00 </p>
+                    07 67 99 34 33 </p>
             </div>
             <div class="service-card reveal-on-scroll" style="transition-delay: 0.2s;">
                 <h3 class="service-title">Email</h3>
