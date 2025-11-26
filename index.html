@@ -17,6 +17,7 @@
       --text-main: #1a1a1a;
       --text-secondary: #4a4a4a;
       --nav-bg: rgba(255, 255, 255, 0.95);
+      --mobile-menu-bg: #ffffff; /* Fond du menu mobile */
       
       --card-bg: rgba(255, 255, 255, 0.7);
       --card-border: rgba(0, 0, 0, 0.04);
@@ -34,6 +35,7 @@
       --text-main: #ffffff;
       --text-secondary: #d1d1d1;
       --nav-bg: #121212;
+      --mobile-menu-bg: #1E1E1E;
       
       --card-bg: #1E1E1E; 
       --card-border: #333333; 
@@ -49,10 +51,9 @@
     body { box-sizing: border-box; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    /* --- SCROLL FLUIDE --- */
     html {
         scroll-behavior: smooth;
-        scroll-padding-top: 100px; /* Marge pour le menu fixe */
+        scroll-padding-top: 100px;
         height: 100%;
     }
     
@@ -110,8 +111,41 @@
       letter-spacing: 5px;
       color: var(--text-main);
       text-transform: uppercase;
+      z-index: 1001; /* Toujours au-dessus */
     }
 
+    /* --- MENU BURGER (3 TRAITS) --- */
+    .hamburger {
+        display: none; /* Caché sur PC */
+        cursor: pointer;
+        background: none;
+        border: none;
+        flex-direction: column;
+        gap: 6px;
+        z-index: 1002; /* Au-dessus du menu */
+        padding: 10px;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background-color: var(--text-main);
+        transition: all 0.3s ease;
+    }
+
+    /* Animation Burger en Croix (X) */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+    }
+
+    /* Menu Standard (Desktop) */
     .nav-menu {
       display: flex;
       gap: 35px;
@@ -479,11 +513,50 @@
       margin-bottom: 10px;
     }
 
-    /* --- RESPONSIVE --- */
+    /* --- RESPONSIVE (MODIFIÉ POUR MENU BURGER) --- */
     @media (max-width: 768px) {
-      .nav-container { flex-direction: column; gap: 20px; padding: 20px 24px; }
-      .nav-menu { flex-wrap: wrap; justify-content: center; gap: 20px; }
-      .hero-banner { height: 500px; margin-top: 120px; }
+      .nav-container {
+        padding: 15px 24px;
+        /* On garde la ligne horizontale (Logo - Burger) */
+        flex-direction: row; 
+      }
+
+      /* Affiche le burger */
+      .hamburger {
+        display: flex;
+      }
+
+      /* Le menu devient un panneau mobile caché */
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Caché à droite */
+        width: 100%;
+        height: 100vh;
+        background: var(--mobile-menu-bg);
+        flex-direction: column;
+        justify-content: center;
+        transition: right 0.4s ease;
+        z-index: 1000; /* Sous le logo et burger */
+        padding: 60px;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      }
+
+      /* Quand le menu est actif */
+      .nav-menu.active {
+        right: 0; /* Il glisse à l'écran */
+      }
+
+      .nav-menu li {
+        margin: 15px 0;
+      }
+
+      .nav-menu a {
+        font-size: 20px; /* Plus gros sur mobile */
+      }
+
+      /* Reste du responsive */
+      .hero-banner { height: 500px; margin-top: 80px; }
       .hero-title { font-size: 36px; }
       .main-content { padding: 0 24px; }
       .services-grid, .why-grid, .selection-grid { grid-template-columns: 1fr; }
@@ -502,11 +575,18 @@
 <nav class="navigation">
 <div class="nav-container">
     <div class="nav-logo" id="navLogo">MATHEO ANGST</div>
+    
+    <button class="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
     <ul class="nav-menu">
-        <li><a href="#Expérience" id="navAccueil">Expérience</a></li>
-        <li><a href="#pourquoi-moi" id="navServices">Mon Profil</a></li>
-        <li><a href="#selections" id="navSelections">Sélections</a></li>
-        <li><a href="#formulaire" id="navFormulaire">Contact</a></li>
+        <li><a href="#Expérience" id="navAccueil" onclick="closeMenu()">Expérience</a></li>
+        <li><a href="#pourquoi-moi" id="navServices" onclick="closeMenu()">Mon Profil</a></li>
+        <li><a href="#selections" id="navSelections" onclick="closeMenu()">Sélections</a></li>
+        <li><a href="#formulaire" id="navFormulaire" onclick="closeMenu()">Contact</a></li>
         <li><button class="theme-toggle" onclick="toggleTheme()" title="Changer le thème">🌗</button></li>
         <li>
             <button class="nav-cta" onclick="window.open('mon_cv.pdf', '_blank')" id="navCta">
@@ -644,6 +724,24 @@
 <script>
     function toggleTheme() {
         document.body.classList.toggle('dark-mode');
+    }
+</script>
+
+<script>
+    // Sélection des éléments
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    // Fonction pour ouvrir/fermer
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Fonction pour fermer quand on clique sur un lien
+    function closeMenu() {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
     }
 </script>
 
