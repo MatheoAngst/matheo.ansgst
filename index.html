@@ -1,1472 +1,711 @@
 <!doctype html>
-
 <html lang="fr">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Mathéo ANGST • CV</title>
 
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
-
-
 <style>
-
-    /* --- VARIABLES DE COULEURS --- */
-
     :root {
-
-      /* --- MODE CLAIR --- */
-
       --bg-body: linear-gradient(180deg, #ffffff 0%, #fef5fb 60%, #f8f9fe 70%, #ffffff 100%);
-
       --text-main: #1a1a1a;
-
       --text-secondary: #4a4a4a;
-
       --nav-bg: rgba(255, 255, 255, 0.95);
-
       --mobile-menu-bg: #ffffff;
-
-     
-
+      
       --card-bg: rgba(255, 255, 255, 0.7);
-
       --card-border: rgba(0, 0, 0, 0.04);
-
-     
-
+      
       --cta-bg: #000000;
-
       --cta-text: #ffffff;
-
       --cta-hover-bg: #ffffff;
-
       --cta-hover-text: #000000;
-
       --section-title: #5a5a5a;
-
     }
-
-
-
-    /* --- MODE SOMBRE --- */
 
     body.dark-mode {
-
       --bg-body: #121212;
-
       --text-main: #ffffff;
-
       --text-secondary: #d1d1d1;
-
       --nav-bg: #121212;
-
       --mobile-menu-bg: #1E1E1E;
-
-     
-
+      
       --card-bg: #1E1E1E;
-
       --card-border: #333333;
-
-     
-
+      
       --cta-bg: #ffffff;
-
       --cta-text: #000000;
-
       --cta-hover-bg: #333333;
-
       --cta-hover-text: #ffffff;
-
       --section-title: #bbbbbb;
-
     }
-
-
-
-    /* --- RESET & BASE --- */
 
     body { box-sizing: border-box; }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-   
-
+    
     html {
-
         scroll-behavior: smooth;
-
         scroll-padding-top: 100px;
-
         height: 100%;
-
     }
-
-   
-
+    
     body, button, input, textarea, select {
-
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-
     }
-
-
 
     body {
-
       background: var(--bg-body);
-
       background-attachment: fixed;
-
       background-size: cover;
-
       color: var(--text-main);
-
       line-height: 1.7;
-
       width: 100%;
-
       -webkit-font-smoothing: antialiased;
-
       transition: background 0.3s ease, color 0.3s ease;
-
       overflow-x: hidden;
-
     }
-
-
-
-    /* --- EFFET APPLE (REVEAL ON SCROLL) --- */
 
     .reveal-on-scroll {
-
       opacity: 0;
-
       transform: translateY(30px);
-
       transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-
       will-change: opacity, transform;
-
     }
-
-
 
     .reveal-on-scroll.is-visible {
-
       opacity: 1;
-
       transform: translateY(0);
-
     }
-
-
-
-    /* --- NAVIGATION --- */
 
     .navigation {
-
       position: fixed;
-
       top: 0; left: 0; right: 0;
-
       z-index: 1000;
-
       background: var(--nav-bg);
-
       border-bottom: 1px solid var(--card-border);
-
       transition: background 0.3s ease, border 0.3s ease;
-
     }
-
-
 
     .nav-container {
-
       max-width: 1400px;
-
       margin: 0 auto;
-
       padding: 20px 60px;
-
       display: flex;
-
       justify-content: space-between;
-
       align-items: center;
-
     }
-
-
 
     .nav-logo {
-
       font-size: 16px;
-
       font-weight: 400;
-
       letter-spacing: 5px;
-
       color: var(--text-main);
-
       text-transform: uppercase;
-
       z-index: 1001;
-
     }
-
-
-
-    /* --- MENU BURGER --- */
 
     .hamburger {
-
         display: none;
-
         cursor: pointer;
-
         background: none;
-
         border: none;
-
         flex-direction: column;
-
         gap: 6px;
-
         z-index: 1002;
-
         padding: 10px;
-
     }
-
-
 
     .hamburger span {
-
         display: block;
-
         width: 25px;
-
         height: 2px;
-
         background-color: var(--text-main);
-
         transition: all 0.3s ease;
-
     }
-
-
 
     .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
-
     .hamburger.active span:nth-child(2) { opacity: 0; }
-
     .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 
-
-
     .nav-menu {
-
       display: flex;
-
       gap: 35px;
-
       list-style: none;
-
       align-items: center;
-
     }
-
-
 
     .nav-menu a {
-
       font-size: 13px;
-
       font-weight: 300;
-
       letter-spacing: 0.5px;
-
       color: var(--text-secondary);
-
       text-decoration: none;
-
       transition: color 0.3s ease;
-
     }
-
-
 
     .nav-menu a:hover { color: #c89bd4; }
 
-
-
     .theme-toggle {
-
       background: none;
-
       border: 1px solid var(--text-secondary);
-
       color: var(--text-main);
-
       padding: 8px 12px;
-
       border-radius: 20px;
-
       cursor: pointer;
-
       font-size: 14px;
-
       transition: all 0.3s ease;
-
     }
-
     .theme-toggle:hover {
-
       background: var(--text-secondary);
-
       color: var(--bg-body);
-
     }
-
-
 
     .nav-cta {
-
       padding: 12px 28px;
-
       background: var(--cta-bg);
-
       color: var(--cta-text);
-
       border-radius: 4px;
-
       font-size: 12px;
-
       font-weight: 500;
-
       letter-spacing: 1px;
-
       text-transform: uppercase;
-
       border: 1px solid var(--cta-bg);
-
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
       cursor: pointer;
-
     }
-
-
 
     .nav-cta:hover {
-
       background: var(--cta-hover-bg);
-
       color: var(--cta-hover-text);
-
       transform: translateY(-2px);
-
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-
       border-color: var(--cta-hover-bg);
-
     }
-
-
-
-    /* --- HERO --- */
 
     .hero-banner {
-
       margin-top: 70px;
-
       height: 600px;
-
       position: relative;
-
       overflow: hidden;
-
       background: linear-gradient(180deg, #ebebeb 0%, #f7f7f7 100%);
-
       border-bottom: 1px solid var(--card-border);
-
     }
-
-   
-
+    
     body.dark-mode .hero-banner {
-
         background: linear-gradient(180deg, #1a1a1a 0%, #121212 100%);
-
     }
-
-
 
     .hero-content {
-
       position: relative;
-
       z-index: 10;
-
       height: 100%;
-
       display: flex;
-
       flex-direction: column;
-
       justify-content: center;
-
       align-items: center;
-
       text-align: center;
-
       padding: 0 60px;
-
     }
-
-
 
     .hero-title {
-
       font-size: 56px;
-
       font-weight: 200;
-
       letter-spacing: 2px;
-
       color: var(--text-main);
-
       margin-bottom: 20px;
-
       line-height: 1.3;
-
     }
-
-
 
     .hero-subtitle {
-
       font-size: 18px;
-
       font-weight: 300;
-
       letter-spacing: 1px;
-
       color: var(--text-secondary);
-
     }
-
-
-
-    /* --- CONTENU --- */
 
     .main-content {
-
       width: 100%;
-
       max-width: 1400px;
-
       margin: 0 auto;
-
       padding: 0 60px;
-
     }
-
-
 
     .intro-section {
-
       text-align: center;
-
       padding: 100px 0;
-
       max-width: 800px;
-
       margin: 0 auto;
-
     }
-
-
 
     .intro-text {
-
       font-size: 24px;
-
       font-weight: 300;
-
       line-height: 1.8;
-
       color: var(--text-secondary);
-
     }
 
-/* --- TITRES DE SECTION --- */
-.section-title {
-    text-align: center;
-    font-size: 24px;
-    font-weight: 500;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--section-title);
-    
-    /* MODIFICATIONS CI-DESSOUS */
-    margin-bottom: 60px;
-    position: relative; /* Point de référence pour la ligne ::after */
-    padding-bottom: 10px; /* Espace entre le texte et la future ligne */
-    /* SUPPRIMEZ: text-decoration: underline; et display: inline-block; */
-}
+    .section-title {
+      text-align: center;
+      font-size: 24px; 
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--section-title);
+      margin-bottom: 100px;
+      position: relative; 
+      padding-bottom: 10px; 
+    }
 
-/* AJOUT : Ligne décorative centrée sous le titre */
-.section-title::after {
-    content: '';
-    display: block;
-    width: 80px; /* Largeur de la ligne (ajustez ce chiffre si vous la voulez plus longue/courte) */
-    height: 2px;
-    background: var(--text-secondary); /* Couleur de la ligne (gris clair/foncé) */
-    margin: 10px auto 0; /* Centre la ligne et la décale */
-}
-
-
-    /* --- SERVICES / COMPETENCES --- */
+    .section-title::after {
+        content: '';
+        display: block;
+        width: 80px; 
+        height: 2px;
+        background: var(--text-secondary); 
+        margin: 10px auto 0; 
+    }
 
     .services-section { padding: 80px 0 120px; }
 
-
-
     .services-grid {
-
       display: grid;
-
       grid-template-columns: repeat(3, 1fr);
-
       gap: 40px;
-
       align-items: stretch;
-
       max-width: 1200px;
-
       margin: 0 auto;
-
     }
-
-
 
     .service-card {
-
       background: var(--card-bg);
-
       border: 1px solid var(--card-border);
-
       border-radius: 16px;
-
       padding: 50px 40px;
-
       text-align: center;
-
       transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-
     }
-
-
 
     .service-card:hover {
-
       transform: translateY(-5px);
-
       border-color: var(--text-secondary);
-
     }
-
-
 
     .service-title {
-
       font-size: 22px;
-
       font-weight: 400;
-
       letter-spacing: 2px;
-
       margin-bottom: 24px;
-
       color: var(--text-main);
-
     }
-
-
 
     .service-description {
-
       font-size: 15px;
-
       font-weight: 300;
-
       line-height: 1.9;
-
       color: var(--text-secondary);
-
     }
-
-
-
-    /* --- CONTACT GRID --- */
 
     .contact-grid {
-
       display: grid;
-
       grid-template-columns: repeat(2, 1fr);
-
       gap: 40px;
-
       align-items: stretch;
-
       max-width: 900px;
-
       margin: 0 auto;
-
     }
-
-
-
-    /* --- MANIFESTO --- */
 
     .manifesto-section {
-
       text-align: center;
-
       padding: 100px 60px;
-
       max-width: 800px;
-
       margin: 0 auto;
-
       background: var(--card-bg);
-
       border: 1px solid var(--card-border);
-
       border-radius: 16px;
-
       margin-bottom: 120px;
-
     }
-
-
 
     .manifesto-text {
-
       font-size: 26px;
-
       font-weight: 300;
-
       line-height: 2;
-
       color: var(--text-main);
-
       font-style: italic;
-
     }
-
-
-
-    /* --- WHY SECTION --- */
 
     .why-section { padding: 80px 0 120px; }
 
-
-
     .why-grid {
-
       display: grid;
-
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-
       gap: 60px;
-
       max-width: 1000px;
-
       margin: 0 auto;
-
     }
-
-
 
     .why-item {
-
       text-align: center;
-
       padding: 40px 30px;
-
       border-radius: 12px;
-
       transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-
       border: 1px solid transparent;
-
     }
-
-
 
     .why-item:hover {
-
       background: #000000;
-
       border-color: #000000;
-
       transform: translateY(-8px);
-
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-
     }
-
-
 
     .why-item:hover .why-title { color: #ffffff; }
-
     .why-item:hover .why-description { color: rgba(255, 255, 255, 0.8); }
 
-
-
     body.dark-mode .why-item:hover {
-
       background: #ffffff;
-
       border-color: #ffffff;
-
     }
-
     body.dark-mode .why-item:hover .why-title { color: #000000; }
-
     body.dark-mode .why-item:hover .why-description { color: rgba(0, 0, 0, 0.8); }
-
-   
-
+    
     .why-title {
-
       font-size: 24px;
-
       font-weight: 400;
-
       letter-spacing: 1px;
-
       margin-bottom: 16px;
-
       color: var(--text-main);
-
       transition: color 0.3s ease;
-
     }
-
-
 
     .why-description {
-
       font-size: 15px;
-
       font-weight: 300;
-
       line-height: 1.8;
-
       color: var(--text-secondary);
-
       transition: color 0.3s ease;
-
     }
-
-   
-
-    /* --- PROCESS --- */
-
+    
     .process-steps { display: flex; flex-direction: column; gap: 50px; }
-
     .process-step { display: flex; gap: 40px; align-items: flex-start; }
 
-
-
     .step-number {
-
       font-size: 48px;
-
       font-weight: 100;
-
       color: #d4b5e8;
-
       min-width: 80px;
-
     }
-
-
 
     .step-content { flex: 1; padding-top: 8px; }
-
     .step-text {
-
       font-size: 15px;
-
       font-weight: 300;
-
       line-height: 1.8;
-
       color: var(--text-secondary);
-
     }
 
-
-
-    /* --- SELECTIONS --- */
-
-    .selection-section { padding: 80px 0 120px; }
-
-    .selection-grid {
-
+    .projets-section { padding: 80px 0 120px; }
+    .projets-grid {
       display: grid;
-
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-
       gap: 30px;
-
       max-width: 1200px;
-
       margin: 0 auto;
-
     }
 
-
-
-    .selection-item {
-
+    .projets-item {
       aspect-ratio: 3/4;
-
       border-radius: 12px;
-
       overflow: hidden;
-
       position: relative;
-
       transition: transform 0.4s ease;
-
       background: var(--card-bg);
-
       border: 1px solid var(--card-border);
-
     }
-
-    .selection-item:hover { transform: scale(1.03); }
-
-
-
-    /* --- CTA BOTTOM --- */
+    .projets-item:hover { transform: scale(1.03); }
 
     .cta-section {
-
       text-align: center;
-
       padding: 120px 60px;
-
       max-width: 800px;
-
       margin: 0 auto;
-
     }
-
-
 
     .cta-title {
-
       font-size: 32px;
-
       font-weight: 300;
-
       letter-spacing: 1px;
-
       margin-bottom: 40px;
-
       color: var(--text-main);
-
     }
-
-
 
     .cta-button {
-
       padding: 20px 60px;
-
       background: var(--cta-bg);
-
       color: var(--cta-text);
-
       font-size: 14px;
-
       font-weight: 500;
-
       letter-spacing: 2px;
-
       text-transform: uppercase;
-
       border-radius: 4px;
-
       border: 1px solid var(--cta-bg);
-
       cursor: pointer;
-
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
     }
-
-
 
     .cta-button:hover {
-
       background: var(--cta-hover-bg);
-
       color: var(--cta-hover-text);
-
       transform: translateY(-4px);
-
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-
       border-color: var(--cta-hover-bg);
-
     }
-
-
-
-    /* --- FOOTER --- */
 
     .footer {
-
       border-top: 1px solid var(--card-border);
-
       padding: 60px 60px 80px;
-
       text-align: center;
-
       background: var(--nav-bg);
-
     }
-
-
 
     .footer-contact {
-
       font-size: 15px;
-
       font-weight: 300;
-
       color: var(--text-secondary);
-
       margin-bottom: 10px;
-
     }
-
-
-
-    /* --- RESPONSIVE --- */
 
     @media (max-width: 768px) {
-
       .nav-container { padding: 15px 24px; flex-direction: row; }
-
-     
-
+      
       .hamburger { display: flex; }
 
-
-
       .nav-menu {
-
         position: fixed;
-
         top: 0; right: -100%; width: 100%; height: 100vh;
-
         background: var(--mobile-menu-bg);
-
         flex-direction: column; justify-content: center;
-
         transition: right 0.4s ease;
-
         z-index: 1000; padding: 60px;
-
         box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-
       }
-
       .nav-menu.active { right: 0; }
-
       .nav-menu li { margin: 15px 0; }
-
       .nav-menu a { font-size: 20px; }
 
-
-
       .hero-banner { height: 500px; margin-top: 80px; }
-
       .hero-title { font-size: 36px; }
-
       .main-content { padding: 0 24px; }
-
-     
-
-      /* Tout en 1 colonne sur mobile */
-
-      .services-grid, .why-grid, .selection-grid, .contact-grid { grid-template-columns: 1fr; }
-
+      
+      .services-grid, .why-grid, .projets-grid, .contact-grid { grid-template-columns: 1fr; }
     }
-
 </style>
 
-
-
 <script src="/_sdk/element_sdk.js"></script>
-
 <style>@view-transition { navigation: auto; }</style>
-
 <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-
 <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
-
-
 
 </head>
 
-
-
 <body>
 
-
-
 <nav class="navigation">
-
 <div class="nav-container">
-
     <div class="nav-logo" id="navLogo">MATHEO ANGST</div>
-
-   
-
+    
     <button class="hamburger" aria-label="Menu">
-
         <span></span><span></span><span></span>
-
     </button>
-
-
 
     <ul class="nav-menu">
-
-        <li><a href="#pourquoi-moi" id="navServices" onclick="closeMenu()">Mon Profil</a></li>
-
-        <li><a href="#Expérience" id="navAccueil" onclick="closeMenu()">Expérience</a></li>
-
-        <li><a href="#selections" id="navSelections" onclick="closeMenu()">Projets informatiques</a></li>
-
         <li><a href="#contact-info" id="navFormulaire" onclick="closeMenu()">Contact</a></li>
-
+        <li><a href="#pourquoi-moi" id="navServices" onclick="closeMenu()">Mon Profil</a></li>
+        <li><a href="#Expérience" id="navAccueil" onclick="closeMenu()">Expérience</a></li>
+        <li><a href="#projets" id="navProjets" onclick="closeMenu()">Projets informatiques</a></li>
         <li><button class="theme-toggle" onclick="toggleTheme()" title="Changer le thème">🌗</button></li>
-
         <li>
-
             <button class="nav-cta" onclick="window.open('mon_cv.pdf', '_blank')" id="navCta">
-
                 Télécharger le CV (PDF)
-
             </button>
-
         </li>
-
     </ul>
-
 </div>
-
 </nav>
 
-
-
 <section class="hero-banner" id="accueil">
-
     <div class="hero-overlay"></div>
-
     <div class="hero-content">
-
         <h1 class="hero-title reveal-on-scroll" id="heroTitle"> Mathéo ANGST • CV </h1>
-
         <p class="hero-subtitle reveal-on-scroll" id="heroSubtitle" style="transition-delay: 0.2s;">CV interactif. Étudiant en BTS SIO à la recherche d'un Job étudiant.</p>
-
     </div>
-
 </section>
-
-
 
 <main class="main-content">
-
     <section class="intro-section">
-
         <p class="intro-text reveal-on-scroll" id="introText">Ce format numérique interactif (site) permet une exploration rapide de mes réalisations, tandis que la version téléchargeable (PDF) garantit une documentation structurée pour toute étude approfondie.</p>
-
     </section>
-
-
 
     <section class="manifesto-section reveal-on-scroll">
-
         <p class="manifesto-text" id="manifestoText">Je m'appelle Mathéo ANGST, j'ai 18 ans, actuellement en BTS SIO (Services Informatiques aux Organisations) • actuellement à la recherche d'un Job Étudiant.</p>
-
     </section>
-
-
 
     <section class="why-section" id="pourquoi-moi">
-
         <h2 class="section-title reveal-on-scroll">Pourquoi Moi</h2>
-
         <div class="why-grid">
-
             <div class="why-item reveal-on-scroll">
-
                 <h3 class="why-title">Hybride</h3>
-
                 <p class="why-description" id="whyClarity">Ma formation et mes expériences m'ont doté d'une polyvalence concrète, allant de la gestion documentaire structurée à l'installation de machines virtuelles.</p>
-
             </div>
-
             <div class="why-item reveal-on-scroll" style="transition-delay: 0.2s;">
-
                 <h3 class="why-title">Maîtrise des Flux d'Information</h3>
-
                 <p class="why-description" id="whyDiscretion">Ma formation AGOrA me permet de comprendre comment l'information circule au sein d'une structure. Je garantis une gestion documentaire fiable et la structuration des données pour supporter efficacement les processus administratifs.</p>
-
             </div>
-
             <div class="why-item reveal-on-scroll" style="transition-delay: 0.4s;">
-
                 <h3 class="why-title">Atout RSE</h3>
-
                 <p class="why-description" id="whyAccess">
-
                     Bénéficiaire de l'obligation d'emploi (RQTH). Une opportunité pour votre entreprise de concilier responsabilité sociétale et optimisation de la contribution AGEFIPH.
-
                 </p>
-
             </div>
-
         </div>
-
     </section>
-
-
 
     <section class="services-section" id="Competences">
-
         <h2 class="section-title reveal-on-scroll">Compétences Informatiques</h2>
-
         <div class="services-grid">
-
             <div class="service-card reveal-on-scroll">
-
                 <h3 class="service-title">Sur Téléphone</h3>
-
                 <p class="service-description"> Maîtrise complète des environnements iOS. <br><br>Création et mise en place de Bots Discord <br><br>Maîtrise de la création de raccourcis via l'application Raccourcis d'iOS.
-
                 </p>
-
             </div>
-
             <div class="service-card reveal-on-scroll" style="transition-delay: 0.2s;">
-
                 <h3 class="service-title">Sur Ordinateur</h3>
-
                 <p class="service-description">
-
-                    Aisance sur Windows ainsi que sur les machines virtuelles. <br><br>
-
-                    Maîtrise avancée du Pack Office (Word, Excel, PowerPoint) pour la gestion documentaire et administrative.<br><br>
-
+                    Aisance sur Windows ainsi que sur les machines virtuelles. <br><br>Dactylographie de précision<br><br>
+                    Maîtrise avancée du Pack Office (Word, Excel, PowerPoint) pour la gestion documentaire et administrative.<br><br> 
                     Navigation web sécurisée et gestion de fichiers organisée.<br><br>
-
                     Maîtrise des langages et logiciels :<br>HTML & CSS<br>SketchUp Make<br>FL Studio<br>
-
                 </p>
-
             </div>
-
             <div class="service-card reveal-on-scroll" style="transition-delay: 0.4s;">
-
                 <h3 class="service-title">Autres</h3>
-
                 <p class="service-description">Maintenance Matérielle & Dépannage : Je possède des connaissances solides de l'architecture interne d'un ordinateur (RAM, CPU, stockage). Je suis capable de réaliser le montage, le câblage et les diagnostics de panne de premier niveau. Je fais preuve d'une détermination absolue à identifier la source d'un problème et à mobiliser toutes les ressources nécessaires pour trouver la solution la plus efficace.</p>
-
-                </p>
-
             </div>
-
         </div>
-
     </section>
-
-
 
     <section class="services-section" id="Expérience">
-
         <h2 class="section-title reveal-on-scroll">Expérience</h2>
-
         <div class="services-grid">
-
             <div class="service-card En informatique art reveal-on-scroll">
-
                 <h3 class="service-title">Mes Stages en Informatique</h3>
-
                 <p class="service-description" id="serviceArt">
-
                   Janvier 2022 <br> Stage de découverte d'une semaine au service informatique <br>du garage Louis Grasser à Haguenau.
-
                 </p>
-
             </div>
-
             <div class="service-card immo reveal-on-scroll" style="transition-delay: 0.2s;">
-
                 <h3 class="service-title">Mes Stages en Gestion et Administration</h3>
-
                 <p class="service-description" id="serviceImmo">
-
                   De 2023 à 2025 :<br>3 semaines au E.Leclerc
-
                   <br><br>1 mois chez l'huissier de justice Da Costa.
-
                   <br><br>1 mois au Collège Albert-Camus.
-
                 </p>
-
             </div>
-
             <div class="service-card affaires reveal-on-scroll" style="transition-delay: 0.4s;">
-
                 <h3 class="service-title">Mes diplômes</h3>
-
                 <p class="service-description" id="serviceAffaires">Bac Pro AGOrA :<br>Assistance à la gestion des organisations et de leurs activités<br><br>Brevet des Collèges<br> avec Mention Assez Bien<br><br>Certification PIX niveau Terminale (Informatique)</p>
-
             </div>
-
         </div>
-
     </section>
 
-
-
-    <section class="selection-section" id="selections">
-
+    <section class="projets-section" id="projets">
         <h2 class="section-title reveal-on-scroll">Mes Projets informatiques</h2>
-
-        <div class="selection-grid">
-
-            <div class="selection-item reveal-on-scroll"></div>
-
-            <div class="selection-item reveal-on-scroll" style="transition-delay: 0.2s;"></div>
-
-            <div class="selection-item reveal-on-scroll" style="transition-delay: 0.4s;"></div>
-
-            <div class="selection-item reveal-on-scroll" style="transition-delay: 0.6s;"></div>
-
+        <div class="projets-grid">
+            <div class="projets-item reveal-on-scroll"></div>
+            <div class="projets-item reveal-on-scroll" style="transition-delay: 0.2s;"></div>
+            <div class="projets-item reveal-on-scroll" style="transition-delay: 0.4s;"></div>
+            <div class="projets-item reveal-on-scroll" style="transition-delay: 0.6s;"></div>
         </div>
-
     </section>
 
+    <section class="services-section" id="contact-info">
+        <h2 class="section-title reveal-on-scroll">Contact</h2>
+        <div class="contact-grid">
+            <div class="service-card reveal-on-scroll">
+                <h3 class="service-title">Téléphone</h3>
+                <p class="service-description">07 67 99 34 33</p>
+            </div>
+            <div class="service-card reveal-on-scroll" style="transition-delay: 0.2s;">
+                <h3 class="service-title">Email</h3>
+                <p class="service-description">
+                    <a href="mailto:angstmatheo@gmail.com" style="color: inherit; text-decoration: none;">
+                        angstmatheo@gmail.com
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
 </main>
 
-
-
-<section class="services-section" id="contact-info">
-
-    <div class="main-content">
-
-        <h2 class="section-title reveal-on-scroll">Contact</h2>
-
-        <div class="contact-grid">
-
-            <div class="service-card reveal-on-scroll">
-
-                <h3 class="service-title">Téléphone</h3>
-
-                <p class="service-description">
-
-                    07 67 99 34 33 </p>
-
-            </div>
-
-<div class="service-card reveal-on-scroll" style="transition-delay: 0.2s;">
-
-                <h3 class="service-title">Email</h3>
-
-                <p class="service-description">
-
-                    <a href="mailto:angstmatheo@gmail.com" style="color: inherit; text-decoration: none;">
-
-                        angstmatheo@gmail.com
-
-                    </a>
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
 <section class="cta-section" id="formulaire">
-
     <h2 class="cta-title reveal-on-scroll" id="ctaTitle">Téléchargez une version du CV complet disponible au format PDF.</h2>
-
     <button class="cta-button reveal-on-scroll" onclick="window.open('mon_cv.pdf', '_blank')">
-
         Télécharger le CV
-
     </button>
-
 </section>
-
-
 
 <footer class="footer">
-
     <p class="footer-contact" id="footerEmail">© ANGST Mathéo</p>
-
 </footer>
 
-
-
 <script>
-
     function toggleTheme() {
-
         document.body.classList.toggle('dark-mode');
-
     }
-
-</script>
-
-
-
-<script>
 
     const hamburger = document.querySelector('.hamburger');
-
     const navMenu = document.querySelector('.nav-menu');
 
-
-
     hamburger.addEventListener('click', () => {
-
         hamburger.classList.toggle('active');
-
         navMenu.classList.toggle('active');
-
     });
-
-
 
     function closeMenu() {
-
         hamburger.classList.remove('active');
-
         navMenu.classList.remove('active');
-
     }
-
-</script>
-
-
-
-<script>
 
     document.addEventListener("DOMContentLoaded", function() {
-
         const observerOptions = {
-
             root: null,
-
             rootMargin: '0px',
-
             threshold: 0.1
-
         };
 
-
-
         const observer = new IntersectionObserver((entries, observer) => {
-
             entries.forEach(entry => {
-
                 if (entry.isIntersecting) {
-
                     entry.target.classList.add('is-visible');
-
                     observer.unobserve(entry.target);
-
                 }
-
             });
-
         }, observerOptions);
 
-
-
         const elements = document.querySelectorAll('.reveal-on-scroll');
-
         elements.forEach(el => observer.observe(el));
-
     });
 
-</script>
-
-
-
-<script>
-
-    /* Configuration Element SDK */
-
-    const defaultConfig = {};
-
-    async function onConfigChange(config) {}
-
-    function mapToCapabilities(config) {}
-
-    function mapToEditPanelValues(config) {}
-
     if (window.elementSdk) {
-
-      window.elementSdk.init({ defaultConfig, onConfigChange, mapToCapabilities, mapToEditPanelValues });
-
+      window.elementSdk.init({ defaultConfig: {}, onConfigChange: async () => {}, mapToCapabilities: () => {}, mapToEditPanelValues: () => {} });
     }
-
 </script>
-
-
 
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a3fd2ccb19202bb',t:'MTc2NDA1OTgzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(a)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 
-
-
 </body>
-
 </html>
