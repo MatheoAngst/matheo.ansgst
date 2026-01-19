@@ -399,6 +399,33 @@
       color: var(--text-secondary);
     }
 
+    .projets-section { padding: 80px 0 120px; }
+    .projets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .projets-item {
+      aspect-ratio: 3/4;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.4s ease;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      /* Centrage du contenu */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    .projets-item:hover { transform: scale(1.03); }
+
     .cta-section {
       text-align: center;
       padding: 120px 60px;
@@ -472,7 +499,7 @@
       .hero-title { font-size: 36px; }
       .main-content { padding: 0 24px; }
       
-      .services-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; }
+      .services-grid, .why-grid, .projets-grid, .contact-grid { grid-template-columns: 1fr; }
     }
 </style>
 
@@ -497,6 +524,7 @@
         <li><a href="#contact-info" id="navFormulaire" onclick="closeMenu()">Contact</a></li>
         <li><a href="#pourquoi-moi" id="navServices" onclick="closeMenu()">Mon Profil</a></li>
         <li><a href="#Expérience" id="navAccueil" onclick="closeMenu()">Expérience</a></li>
+        <li><a href="#mes-sites" id="navSites" onclick="closeMenu()">Mes Sites</a></li>
         <li><button class="theme-toggle" onclick="toggleTheme()" title="Changer le thème">🌗</button></li>
         <li>
             <button class="nav-cta" onclick="window.open('mon_cv.pdf', '_blank')" id="navCta">
@@ -587,6 +615,29 @@
             <div class="service-card affaires reveal-on-scroll" style="transition-delay: 0.4s;">
                 <h3 class="service-title">Mes diplômes</h3>
                 <p class="service-description" id="serviceAffaires">Bac Pro AGOrA :<br>Assistance à la gestion des organisations et de leurs activités<br><br>Brevet des Collèges<br> avec Mention Assez Bien<br><br>Certification PIX niveau Terminale (Informatique)</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projets-section" id="mes-sites">
+        <h2 class="section-title reveal-on-scroll">Mes Sites</h2>
+        <div class="projets-grid">
+            <div class="projets-item reveal-on-scroll">
+                <h3 class="service-title" style="margin-bottom: 10px;">Agrimat</h3>
+                <p class="service-description" style="margin-bottom: 20px;">Site de gestion de matériel agricole.</p>
+                <a href="https://matheoangst.github.io/cv/agrimat/index.html" target="_blank" class="cta-button" style="padding: 12px 30px; font-size: 12px; text-decoration: none; border-width: 1px;">
+                    VOIR LE SITE
+                </a>
+            </div>
+            
+            <div class="projets-item reveal-on-scroll" style="transition-delay: 0.2s;">
+                <h3 class="service-title" style="margin-bottom: 10px;">Prochainement</h3>
+                <p class="service-description">Site en construction...</p>
+            </div>
+
+            <div class="projets-item reveal-on-scroll" style="transition-delay: 0.4s;">
+                <h3 class="service-title" style="margin-bottom: 10px;">Prochainement</h3>
+                <p class="service-description">Site en construction...</p>
             </div>
         </div>
     </section>
