@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales | AGRIMAT 67</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        agri: {
+                            red: '#cc0000',    /* Rouge Case IH */
+                            green: '#65a30d',  /* Vert Logo */
+                            dark: '#111111',   /* Noir */
+                            gray: '#f4f4f4',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        heading: ['Oswald', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glow': '0 4px 20px -2px rgba(204, 0, 0, 0.3)',
+                        'bubble': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #f8f9fa; }
+        
+        /* STYLE METALINK / BULLE TRANSPARENTE */
+        .glass-bubble {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+        .glass-bubble:hover {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.1);
+        }
+
+        .nav-link { position: relative; font-weight: 700; font-size: 0.9rem; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #cc0000;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+        
+        /* EFFET BOUTON METALINK PILL */
+        .metalink-pill {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: color 0.4s ease;
+        }
+        .metalink-pill::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #65a30d;
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .metalink-pill:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        .metalink-pill span, .metalink-pill i { position: relative; z-index: 2; }
+        
+        /* Pour le menu dropdown */
+        .group:hover .group-hover\:block { display: block; }
+    </style>
+</head>
+<body class="text-agri-dark antialiased flex flex-col min-h-screen">
+
+    <div class="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+        <nav class="glass-bubble shadow-bubble w-full max-w-7xl px-4 py-2 md:px-8 md:py-3 flex justify-between items-center">
+            
+            <a href="index.html" class="flex items-center group">
+                <img src="logo.png" alt="Agrimat Logo" class="h-10 md:h-14 w-auto object-contain transition group-hover:scale-105">
+            </a>
+
+            <div class="hidden lg:flex items-center space-x-8 uppercase tracking-wide text-gray-800">
+                <a href="index.html" class="nav-link hover:text-agri-red transition">Accueil</a>
+                <a href="index.html#produits" class="nav-link hover:text-agri-red transition">Produits</a>
+                <a href="promotion.html" class="nav-link hover:text-agri-red transition">Promotions</a>
+                <a href="Location.html" class="nav-link hover:text-agri-red transition">Location</a>
+                <a href="http://www.agriaffaires.com/pros/list/30129-0/1/agrimat.html" target="_blank" class="nav-link hover:text-agri-red transition">Occasions</a>
+                <div class="relative group">
+                    <button class="nav-link hover:text-agri-red transition flex items-center">
+                        Entreprise <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                    </button>
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white shadow-lg rounded-lg p-2 hidden group-hover:block w-48 z-20 border border-gray-100">
+                        <a href="index.html#methode" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded text-sm">Notre Approche</a>
+                        <a href="index.html#histoire" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded text-sm">Notre Histoire</a>
+                        <a href="index.html#equipe" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded text-sm">Notre Équipe</a>
+                    </div>
+                </div>
+                <a href="index.html#reseau" class="nav-link hover:text-agri-red transition">Agences</a>
+                
+                <a href="contact.html" class="metalink-pill bg-agri-red text-white px-6 py-2 rounded-full font-heading font-bold uppercase shadow-lg border-2 border-agri-red hover:border-agri-green">
+                    <span>Contact <i class="fas fa-arrow-right ml-2 text-xs"></i></span>
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="lg:hidden text-2xl text-agri-dark focus:outline-none p-2">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </div>
+
+    <div id="mobile-menu" class="fixed top-24 left-4 right-4 z-40 hidden lg:hidden">
+        <div class="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl p-6 flex flex-col space-y-4 font-bold text-gray-800 border border-gray-100">
+            <a href="index.html" class="hover:text-agri-red">Accueil</a>
+            <a href="index.html#produits" class="hover:text-agri-red">Produits</a>
+            <a href="promotion.html" class="hover:text-agri-red">Promotions</a>
+            <a href="Location.html" class="hover:text-agri-red">Location</a>
+            <a href="http://www.agriaffaires.com/pros/list/30129-0/1/agrimat.html" target="_blank" class="hover:text-agri-red">Occasions</a>
+            <a href="index.html#reseau" class="hover:text-agri-red">Nos Agences</a>
+            <div class="pt-4 border-t border-gray-200">
+                 <a href="contact.html" class="block text-center bg-agri-red text-white py-3 rounded-xl uppercase">Contactez-nous</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="pt-32 pb-20 px-6">
+        <div class="container mx-auto max-w-4xl">
+            <h1 class="text-4xl md:text-5xl font-heading font-bold text-agri-dark mb-12 text-center">MENTIONS LÉGALES</h1>
+            
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-lg border border-gray-100 space-y-12">
+                
+                <div>
+                    <h2 class="text-2xl font-heading font-bold text-agri-red mb-6 border-b border-gray-200 pb-2">1. Mentions légales éditeur</h2>
+                    <div class="text-gray-700 space-y-2 leading-relaxed">
+                        <p class="font-bold text-lg">AGRIMAT</p>
+                        <p>35 route de Strasbourg, 67270 HOCHFELDEN</p>
+                        <p><a href="tel:0388890929" class="hover:text-agri-red transition">+33 3 88 89 09 29</a></p>
+                        <p>SIRET : 738 500 842 00039</p>
+                        <p>APE : 4661 Z</p>
+                        <p><a href="mailto:c.kieffer@agrimat67.com" class="hover:text-agri-red transition">c.kieffer@agrimat67.com</a></p>
+                        <p><a href="http://www.agrimat67.com" class="hover:text-agri-red transition">www.agrimat67.com</a></p>
+                        <p class="mt-4"><span class="font-bold">Directeur de publication :</span> AGRIMAT</p>
+                        <p><span class="font-bold">Hébergeur :</span> 1&1 Internet</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-heading font-bold text-agri-red mb-6 border-b border-gray-200 pb-2">2. Mentions Légales Hébergeur</h2>
+                    <div class="text-gray-700 space-y-2 leading-relaxed">
+                        <p class="font-bold text-lg">1&1 Internet SARL</p>
+                        <p>7, place de la Gare , BP 70109 , 57201 Sarreguemines Cedex</p>
+                        <p>0825 080 020 (appel facturé 0,15 €/min depuis un poste fixe en France métropolitaine).</p>
+                        <p><a href="mailto:support@1and1.fr" class="hover:text-agri-red transition">support@1and1.fr</a></p>
+                        <p><a href="http://www.1and1.fr" class="hover:text-agri-red transition">www.1and1.fr</a></p>
+                        <p class="mt-4">SARL au capital de 100 000 EUR</p>
+                        <p>RCS Sarreguemines B 431 303 775</p>
+                        <p>SIRET 431 303 775 000 16</p>
+                        <p>APE 642 B</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-heading font-bold text-agri-red mb-6 border-b border-gray-200 pb-2">3. Mentions Légales CNIL</h2>
+                    <div class="text-gray-700 space-y-4 leading-relaxed text-justify">
+                        <p>Les informations recueillies font l’objet d’un traitement informatique destiné à une prospection commercial ainsi qu'une gestion de la clientèle.</p>
+                        <p>Les destinataires des données sont la société AGRIMAT.</p>
+                        <p>Conformément à la loi « informatique et libertés » du 6 janvier 1978 modifiée en 2004, vous bénéficiez d’un droit d’accès et de rectification aux informations qui vous concernent, que vous pouvez exercer en vous adressant à AGRIMAT par téléphone au <a href="tel:0388890929" class="font-bold hover:text-agri-red transition">+33 3 88 89 09 29</a> ou à l'adresse suivante : <strong>AGRIMAT - 35 route de Strasbourg, 67270 HOCHFELDEN</strong>.</p>
+                        <p>Vous pouvez également, pour des motifs légitimes, vous opposer au traitement des données vous concernant.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#111] text-white pt-20 pb-10 border-t-4 border-agri-red mt-auto">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="bg-white p-3 rounded-lg inline-block mb-6">
+                        <img src="logo.png" alt="Agrimat" class="h-12 w-auto">
+                    </div>
+                    <p class="text-gray-400 leading-relaxed max-w-sm">
+                        Expertise agricole en Alsace depuis 1951.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-heading font-bold mb-6 text-white uppercase tracking-wider">Liens</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="index.html" class="hover:text-agri-red transition">Accueil</a></li>
+                        <li><a href="promotion.html" class="hover:text-agri-red transition">Promotions</a></li>
+                        <li><a href="Location.html" class="hover:text-agri-red transition">Location</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-heading font-bold mb-6 text-white uppercase tracking-wider">Contact</h4>
+                    <div class="text-gray-400 space-y-2">
+                        <p>35 route de Strasbourg<br>67270 HOCHFELDEN</p>
+                        <p><a href="tel:0388890929" class="hover:text-white font-bold">03 88 89 09 29</a></p>
+                        <p><a href="mailto:c.kieffer@agrimat67.com" class="hover:text-white">Email direct</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-600 text-sm">
+                <p>&copy; 2026 Agrimat 67. Tous droits réservés. - <a href="mentions-legales.html" class="hover:text-white font-bold">Mentions Légales</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
+    </script>
+</body>
+</html>

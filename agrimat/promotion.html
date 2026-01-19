@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promotions | AGRIMAT 67</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        agri: {
+                            red: '#cc0000',
+                            green: '#65a30d',
+                            dark: '#111111',
+                            gray: '#f4f4f4'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        heading: ['Oswald', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'bubble': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #f8f9fa; }
+        
+        .glass-bubble {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+
+        .promo-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .promo-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.9);
+            border-color: #cc0000;
+        }
+
+        .metalink-pill { position: relative; overflow: hidden; z-index: 1; }
+        .metalink-pill::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #65a30d; z-index: -1; transform: scaleX(0);
+            transform-origin: right; transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .metalink-pill:hover::before { transform: scaleX(1); transform-origin: left; }
+        .metalink-pill span { position: relative; z-index: 2; }
+    </style>
+</head>
+<body class="text-agri-dark flex flex-col min-h-screen">
+
+    <div class="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+        <nav class="glass-bubble shadow-bubble w-full max-w-7xl px-6 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="logo.png" alt="Agrimat" class="h-12 w-auto object-contain">
+            </a>
+            <div class="hidden lg:flex items-center space-x-6 text-sm tracking-wide text-gray-800 font-bold uppercase">
+                <a href="index.html" class="hover:text-agri-red transition">Accueil</a>
+                <a href="#" class="text-agri-red">Promotions</a>
+                <a href="http://www.agriaffaires.com/pros/list/30129-0/1/agrimat.html" target="_blank" class="hover:text-agri-red transition">Occasions</a>
+                <a href="Location.html" class="hover:text-agri-red transition">Location</a>
+                <a href="contact.html" class="metalink-pill bg-agri-red text-white px-5 py-2 rounded-full font-bold transition text-xs shadow-lg border-2 border-agri-red hover:border-agri-green">
+                    <span>Contact</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <header class="pt-32 pb-12 text-center px-6">
+        <h1 class="text-4xl md:text-6xl font-heading font-bold uppercase tracking-tighter">Nos <span class="text-agri-red">Promotions</span></h1>
+        <div class="w-20 h-1 bg-agri-red mx-auto mt-4"></div>
+    </header>
+
+    <main class="flex-grow py-16 px-6">
+        <div class="container mx-auto max-w-7xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="promo-card rounded-2xl p-8 flex flex-col items-center text-center shadow-sm">
+                    <div class="w-16 h-16 bg-agri-red/10 rounded-full flex items-center justify-center text-agri-red mb-6">
+                        <i class="fas fa-file-pdf text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-4 h-12 flex items-center uppercase">Printemps 2025 Partie 1</h3>
+                    <a href="promotion/catalogue printemps 2025 partie 1.pdf" target="_blank" class="metalink-pill bg-agri-red text-white w-full py-3 rounded-xl font-bold uppercase text-xs">
+                        <span>Voir l'offre</span>
+                    </a>
+                </div>
+
+                <div class="promo-card rounded-2xl p-8 flex flex-col items-center text-center shadow-sm">
+                    <div class="w-16 h-16 bg-agri-red/10 rounded-full flex items-center justify-center text-agri-red mb-6">
+                        <i class="fas fa-file-pdf text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-4 h-12 flex items-center uppercase">Printemps 2025 Partie 2</h3>
+                    <a href="promotion/catalogue printemps 2025 partie 2.pdf" target="_blank" class="metalink-pill bg-agri-red text-white w-full py-3 rounded-xl font-bold uppercase text-xs">
+                        <span>Voir l'offre</span>
+                    </a>
+                </div>
+
+                <div class="promo-card rounded-2xl p-8 flex flex-col items-center text-center shadow-sm">
+                    <div class="w-16 h-16 bg-agri-red/10 rounded-full flex items-center justify-center text-agri-red mb-6">
+                        <i class="fas fa-tools text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-4 h-12 flex items-center uppercase">Outillage Lacme</h3>
+                    <a href="promotion/outillage lacme.pdf" target="_blank" class="metalink-pill bg-agri-red text-white w-full py-3 rounded-xl font-bold uppercase text-xs">
+                        <span>Voir l'offre</span>
+                    </a>
+                </div>
+
+                <div class="promo-card rounded-2xl p-8 flex flex-col items-center text-center shadow-sm">
+                    <div class="w-16 h-16 bg-agri-red/10 rounded-full flex items-center justify-center text-agri-red mb-6">
+                        <i class="fas fa-book-open text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-4 h-12 flex items-center uppercase">Catalogue Printemps Agrimat</h3>
+                    <a href="promotion/catalogue printemps 2025 agrimat.pdf" target="_blank" class="metalink-pill bg-agri-red text-white w-full py-3 rounded-xl font-bold uppercase text-xs">
+                        <span>Voir l'offre</span>
+                    </a>
+                </div>
+
+                <div class="promo-card rounded-2xl p-8 flex flex-col items-center text-center shadow-sm">
+                    <div class="w-16 h-16 bg-agri-red/10 rounded-full flex items-center justify-center text-agri-red mb-6">
+                        <i class="fas fa-leaf text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-4 h-12 flex items-center uppercase">Husqvarna Printemps 2025</h3>
+                    <a href="promotion/husqvarna printemps 2025.pdf" target="_blank" class="metalink-pill bg-agri-red text-white w-full py-3 rounded-xl font-bold uppercase text-xs">
+                        <span>Voir l'offre</span>
+                    </a>
+                </div>
+
+                <div class="promo-card rounded-2xl p-8 flex flex-col items-center text-center shadow-sm">
+                    <div class="w-16 h-16 bg-agri-red/10 rounded-full flex items-center justify-center text-agri-red mb-6">
+                        <i class="fas fa-snowflake text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-4 h-12 flex items-center uppercase">Hiver 2024 - 2025</h3>
+                    <a href="promotion/hiver 2024 - 2025.pdf" target="_blank" class="metalink-pill bg-agri-red text-white w-full py-3 rounded-xl font-bold uppercase text-xs">
+                        <span>Voir l'offre</span>
+                    </a>
+                </div>
+
+                <div class="promo-card rounded-2xl p-8 flex flex-col items-center text-center shadow-sm font-bold">
+                    <div class="w-16 h-16 bg-agri-red/10 rounded-full flex items-center justify-center text-agri-red mb-6">
+                        <i class="fas fa-motorcycle text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-4 h-12 flex items-center uppercase">Honda 2025</h3>
+                    <a href="promotion/honda 2025.pdf" target="_blank" class="metalink-pill bg-agri-red text-white w-full py-3 rounded-xl font-bold uppercase text-xs">
+                        <span>Voir l'offre</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-agri-dark text-white py-12 border-t-4 border-agri-red mt-auto">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <h4 class="font-heading font-bold text-xl uppercase tracking-wider">Agrimat 67</h4>
+                <p class="text-gray-500 text-sm mt-1">Expert Agricole depuis 1951</p>
+            </div>
+            <div>
+                <a href="tel:0388890929" class="text-2xl font-bold hover:text-agri-green transition font-heading">03 88 89 09 29</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espaces Verts & Forêt | AGRIMAT 67</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        agri: {
+                            red: '#cc0000',
+                            green: '#65a30d',
+                            dark: '#111111',
+                            gray: '#f4f4f4'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        heading: ['Oswald', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 10px 30px -5px rgba(0, 0, 0, 0.05)',
+                        'bubble': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #f8f9fa; }
+        .hero-bg { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1558904541-efa843a96f01?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); 
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed;
+            height: 50vh;
+        }
+        
+        /* Menu Bulle */
+        .glass-bubble {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+        .glass-bubble:hover {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.1);
+        }
+
+        .nav-link { position: relative; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; }
+        .nav-link:hover { color: #cc0000; }
+        
+        /* Bouton Metalink */
+        .metalink-pill { position: relative; overflow: hidden; z-index: 1; }
+        .metalink-pill::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #65a30d; z-index: -1; transform: scaleX(0);
+            transform-origin: right; transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .metalink-pill:hover::before { transform: scaleX(1); transform-origin: left; }
+        .metalink-pill span { position: relative; z-index: 2; }
+
+        /* Carte Marque */
+        .brand-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 140px;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            position: relative;
+        }
+        .brand-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1);
+            border-color: #65a30d;
+            z-index: 10;
+        }
+        .brand-card img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.8;
+            transition: all 0.4s ease;
+        }
+        .brand-card:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="text-agri-dark flex flex-col min-h-screen">
+
+    <div class="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+        <nav class="glass-bubble shadow-bubble w-full max-w-7xl px-6 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="logo.png" alt="Agrimat" class="h-12 w-auto object-contain">
+            </a>
+
+            <div class="hidden lg:flex items-center space-x-6 text-sm tracking-wide text-gray-800">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="promotion.html" class="nav-link">Promotions</a>
+                <a href="http://www.agriaffaires.com/pros/list/30129-0/1/agrimat.html" target="_blank" class="nav-link">Occasions</a>
+                <a href="Location.html" class="nav-link">Location</a>
+                <a href="index.html#reseau" class="nav-link">Agences</a>
+                
+                <a href="contact.html" class="metalink-pill bg-agri-red text-white px-5 py-2 rounded-full font-bold uppercase hover:bg-black transition text-xs shadow-lg border-2 border-agri-red hover:border-agri-green">
+                    <span>Contact</span>
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="lg:hidden text-2xl p-2"><i class="fas fa-bars"></i></button>
+        </nav>
+    </div>
+
+    <header class="hero-bg flex items-center justify-center text-center px-4 pt-20">
+        <div>
+            <span class="bg-agri-green text-white px-3 py-1 text-xs font-bold uppercase tracking-widest mb-4 inline-block rounded">Paysage & Forêt</span>
+            <h1 class="text-5xl md:text-7xl text-white font-heading font-bold uppercase tracking-wider drop-shadow-lg">Espaces Verts</h1>
+            <p class="text-gray-100 mt-4 text-lg max-w-2xl mx-auto font-medium shadow-black drop-shadow-md">
+                Du matériel professionnel pour les collectivités, les paysagistes et les particuliers exigeants.
+            </p>
+        </div>
+    </header>
+
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-heading font-bold text-agri-dark uppercase">Nos Partenaires</h2>
+                <div class="w-16 h-1 bg-agri-green mx-auto mt-4 mb-6"></div>
+                <p class="text-gray-500">Cliquez sur une marque pour visiter son site officiel.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                
+                <a href="http://www.honda-equipement.fr/" target="_blank" class="brand-card" title="Honda">
+                    <img src="agricole/honda.jpg" alt="Honda">
+                </a>
+
+                <a href="https://www.husqvarnacp.com/fr/" target="_blank" class="brand-card" title="Husqvarna">
+                    <img src="agricole/LOGO OIP.jpg" alt="Husqvarna">
+                </a>
+
+                <a href="http://www.a-m-r.fr/" target="_blank" class="brand-card" title="AMR">
+                    <img src="agricole/amr.jpg" alt="AMR">
+                </a>
+
+                <a href="http://www.materiel-forestier.fr/" target="_blank" class="brand-card" title="Astic">
+                    <img src="agricole/logo-astic.png" alt="Astic">
+                </a>
+
+                <a href="http://www.oehlermaschinen.de/" target="_blank" class="brand-card" title="Oehler">
+                    <img src="agricole/oehler.png" alt="Oehler">
+                </a>
+
+                <a href="http://www.posch.com/" target="_blank" class="brand-card" title="Posch">
+                    <span class="font-bold text-2xl text-green-600">POSCH</span>
+                </a>
+
+                <a href="http://www.rabaud.com/" target="_blank" class="brand-card" title="Rabaud">
+                    <span class="font-bold text-2xl text-blue-700">RABAUD</span>
+                </a>
+
+                <a href="http://www.vitiforest.com/" target="_blank" class="brand-card" title="Krpan">
+                    <span class="font-bold text-2xl text-red-600">KRPAN</span>
+                </a>
+
+                <a href="http://www.ppk.fr/" target="_blank" class="brand-card" title="Echo">
+                    <span class="font-bold text-2xl text-orange-500">ECHO</span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white border-t border-gray-100">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-heading font-bold text-agri-dark mb-4">ENTRETIEN ET SAV</h3>
+            <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+                Nos techniciens assurent la maintenance et la réparation de vos équipements de jardin et forestiers dans nos ateliers.
+            </p>
+            <a href="contact.html" class="metalink-pill inline-block bg-agri-dark text-white px-10 py-4 rounded-full font-bold uppercase tracking-wider shadow-lg">
+                <span>Prendre rendez-vous à l'atelier</span>
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-agri-dark text-white py-12 mt-auto border-t-4 border-agri-red">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="mb-4 md:mb-0">
+                <h4 class="font-heading font-bold text-xl uppercase tracking-wider">Agrimat 67</h4>
+                <p class="text-gray-500 text-sm mt-1">Expert Espaces Verts depuis 1951</p>
+            </div>
+            <div>
+                <a href="tel:0388890929" class="text-2xl font-bold hover:text-agri-green transition">03 88 89 09 29</a>
+                <p class="text-gray-500 text-sm">35 route de Strasbourg, 67270 HOCHFELDEN</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.createElement('div');
+        menu.id = 'mobile-menu';
+        menu.className = 'fixed top-24 left-4 right-4 z-40 hidden lg:hidden bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-gray-100 flex flex-col space-y-4 font-bold text-center uppercase';
+        menu.innerHTML = `
+            <a href="index.html">Accueil</a>
+            <a href="promotion.html">Promotions</a>
+            <a href="http://www.agriaffaires.com/pros/list/30129-0/1/agrimat.html">Occasions</a>
+            <a href="Location.html">Location</a>
+            <a href="index.html#reseau">Agences</a>
+            <a href="contact.html" class="text-agri-red border-t pt-4">Contact</a>
+        `;
+        document.body.appendChild(menu);
+
+        btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
+    </script>
+</body>
+</html>
