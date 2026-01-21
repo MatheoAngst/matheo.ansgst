@@ -1,0 +1,74 @@
+$('.t-hoffen').mouseover(function(){
+  $('.content_info').css("display","block");
+  $('.niess_hoffen').css("display","block");
+   $('.niess_dambach').css("display","none");
+   $('.niess_wahl').css("display","none");
+    $('.niess_marlenheim').css("display","none");
+    $('.allp').css("display","block");
+
+
+});
+/*$('.t-hoffen').mouseout(function(){
+  $('.content_info').css("display","none");
+  $('.niess_hoffen').css("display","none");
+
+
+});*/
+$('.t-wahl').mouseover(function(){
+  $('.content_info').css("display","block");
+  $('.niess_wahl').css("display","block");
+  $('.niess_dambach').css("display","none");
+   $('.niess_hoffen').css("display","none");
+    $('.niess_marlenheim').css("display","none");
+    $('.allp').css("display","block");
+
+
+
+});
+
+
+
+$('.t-dambach').mouseover(function(){
+  $('.content_info').css("display","block");
+  $('.niess_dambach').css("display","block");
+   $('.niess_hoffen').css("display","none");
+   $('.niess_wahl').css("display","none");
+    $('.niess_marlenheim').css("display","none");
+    $('.allp').css("display","block");
+
+
+});
+/*$('.t-dambach').mouseout(function(){
+  $('.content_info').css("display","none");
+  $('.niess_dambach').css("display","none");
+
+
+});*/
+$('.t-marlenheim').mouseover(function(){
+  $('.content_info').css("display","block");
+  $('.niess_marlenheim').css("display","block");
+   $('.niess_dambach').css("display","none");
+   $('.niess_hoffen').css("display","none");
+   $('.niess_wahl').css("display","none");
+   $('.allp').css("display","block");
+    
+
+
+});
+/*$('.t-marlenheim').mouseout(function(){
+  $('.content_info').css("display","none");
+  $('.niess_marlenheim').css("display","none");
+
+
+});*/
+$('.allp').click(function(){
+  
+  $('.niess_marlenheim').css("display","none");
+   $('.niess_dambach').css("display","none");
+   $('.niess_hoffen').css("display","none");
+   $('.content_info').css("display","none");
+   $('.allp').css("display","none");
+
+
+
+});

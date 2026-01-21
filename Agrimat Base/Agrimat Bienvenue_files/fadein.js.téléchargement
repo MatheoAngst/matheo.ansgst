@@ -1,0 +1,4 @@
+   $(document).ready(function(){
+           $(".content_main").fadeIn(800);
+   });
+

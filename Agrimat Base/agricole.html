@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Agrimat- Materiel agricole</title>
+<META NAME="Description" CONTENT="Agrimat, un grand choix de matériel agricole, tracteur, broyeur, manutention, semoir et bien d'autre !">
+<META NAME="Keywords" CONTENT="agrimat, agriculture, agricole, alsace,tracteur, vente, reparation, transformation,tracteur, broyeur, manutention, semoir, stockage  ">
+<META NAME="Author" CONTENT="POINTSOFT">
+<META NAME="Robots" CONTENT="all">
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/header.css" />
+<link rel="stylesheet" type="text/css" href="vue/module/show_marque/css/show_marque.css" />
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery-1.10.0.min.js"></script>
+<script type="text/javascript" src="js/fadein.js"></script>
+<script type="text/javascript" src="js/mention.js"></script>
+  <!--<script type="text/javascript" src="../lib/jquery-1.3.2.min.js"></script>-->
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+
+      var id = "divID" + $("option:selected", this).val();
+        $(".montreDiv").removeClass("montreDiv").addClass("cacheDiv");
+        $("#"+id).removeClass("cacheDiv").addClass("montreDiv");
+
+
+      $("#maSelection").change(function(){
+        var id = "divID" + $("option:selected", this).val();
+
+        $(".montreDiv").removeClass("montreDiv").addClass("cacheDiv");
+        $("#"+id).removeClass("cacheDiv").addClass("montreDiv");
+      });
+    });
+  </script>
+<link rel="stylesheet" type="text/css" href="vue/module/slider/css/slider.css" />
+<link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<script type="text/javascript" src="vue/module/slider/js/slider.js"></script>
+
+
+
+</head>
+<body>
+  <div class="mention">
+	<div class="close"><img src="Images/close.png" alt="close"/></div>
+	<h2>Mentions légales </h2>
+	    		
+	    			<h3>1. Mentions légales éditeur</h3>
+	    			<div class="clear"></div>
+	    			AGRIMAT
+	    			<div class="clear"></div>
+	    			35 route de Strasbourg,67270 HOCHFELDEN
+	    			<div class="clear"></div>
+	    			+33 3 88 89 09 29
+	    			<div class="clear"></div>
+	    			SIRET : 738 500 842 00039 
+	    			<div class="clear"></div>
+	    			APE : 4661 Z
+	    			<div class="clear"></div>
+	    			<a href="mailto:c.kieffer@agrimat67.com">c.kieffer@agrimat67.com</a>
+	    			<div class="clear"></div>
+	    			www.agrimat67.com
+	    			<div class="clear"></div>
+	    			Directeur de publication : AGRIMAT
+	    			<div class="clear"></div>
+	    			Hébergeur : 1&1 Internet
+					<div class="clear"></div>
+
+
+	    			<h3>2. Mentions Légales Hébergeur</h3>
+	    			1&1 Internet SARL 
+	    			<div class="clear"></div>
+	    			7, place de la Gare , BP 70109 , 57201 Sarreguemines Cedex
+	    			<div class="clear"></div>
+	    			0825 080 020 (appel facturé 0,15 €/min depuis un poste fixe en France métropolitaine).
+	    			<div class="clear"></div>
+	    			<a href="mailto:support@1and1.fr">support@1and1.fr</a>
+	    			<div class="clear"></div>
+	    			www.1and1.fr
+	    			<div class="clear"></div>
+	    			SARL au capital de 100 000 EUR 
+	    			<div class="clear"></div>
+	    			RCS Sarreguemines B 431 303 775 
+	    			<div class="clear"></div>
+	    			SIRET 431 303 775 000 16
+	    			<div class="clear"></div>
+	    			APE 642 B
+	    			<div class="clear"></div>
+
+	    			<h3>3. Mentions Légales CNIL</h3>
+	    			Les informations recueillies font l’objet d’un traitement informatique destiné à 
+	    			une prospection commercial ainsi  qu'une gestion de la clientèle.
+	    			<div class="clear"></div>
+	    			Les destinataires des données sont la société AGRIMAT
+	    			<div class="clear"></div>
+	    			Conformément à la loi « informatique et libertés » du 6 janvier 1978 modifiée en 2004, vous
+	    			 bénéficiez d’un droit d’accès et de rectification aux informations qui vous concernent, que 
+	    			 vous pouvez exercer en vous adressant à AGRIMAT par téléphone au +33 3 88 89 09 29 ou à
+	    			 l'adresse suivante :  AGRIMAT - 35 route de Strasbourg, 67270 HOCHFELDEN
+	    			 <div class="clear"></div>
+	    			 Vous pouvez également, pour des motifs légitimes, vous opposer au traitement des données vous concernant.
+
+
+
+
+</div>    <!-- Include Header -->
+  <script> 
+var $buoop = {c:2}; 
+function $buo_f(){ 
+ var e = document.createElement("script"); 
+ e.src = "//browser-update.org/update.js"; 
+ document.body.appendChild(e);
+};
+try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+catch(e){window.attachEvent("onload", $buo_f)}
+</script> 
+
+
+
+
+
+<div id="header">
+  <div class="content_header">
+    <a  href="https://agrimat67.com"><img class="logo" src="Images/agrimat_logo.png" alt="logo agrimat"></a>
+    <div class="depot">
+      <div class="">35 route de Strasbourg</div>
+          <div class="">67270 HOCHFELDEN</div>
+          <div class="">Lundi au vendredi</div>
+          <div class=""><img style="max-width:15px;" alt="horraire" src='Images/clockbtn.png'/> 08h00 - 12h00 </div>
+          <div class=""><img style="max-width:15px;" alt="horraire" src='Images/clockbtn.png'/> 13h30 - 17h30 </div>
+          <div class="">Tél. <a href="tel:0388890929">03 88 89 09 29</a></div>
+          
+      <br/>
+    </div>
+      <div class="content_menu">
+      <ul id="menu">
+        <li><a  href="accueil-agrimat.html">Accueil</a></li>
+        <li><a href="#">Produits</a>
+          <ul>
+            <li><a  href="agricole.html">Agricole</a></li>
+            <li><a  href="viticole.html">Viticole</a></li>
+            <li><a  href="espacevert.html">Espace vert   Forestier</a></li>
+          </ul>
+
+        </li>
+        
+
+
+
+        <li><a  href="promotion.html">Promotions</a></li>
+         <li><a target="blank" href="http://www.agriaffaires.com/pros/list/30129-0/1/agrimat.html">Occasions</a></li>
+        <li><a  href="Location.html">Location</a></li>
+        <li><a  href="#">Entreprise</a>
+          <ul>
+            <li><a  href="Equipe.html">Notre équipe</a></li>
+            <li><a  href="Historique.html">Historique</a></li>
+            
+          </ul>
+
+        </li>
+        <!--<li><a href="index.php?page=Partenaire">Succursales</a></li>-->
+        
+      </ul>
+      
+
+
+      </div>
+      
+      <div class="content-brand">
+     
+        <ul class="ul-brand">
+         <!--  <li class="brand-up brand-first first-brand"><a href="#"><img src="images/brand/cnh.png" alt="" title=""/></a></li> --><li class="brand-up brand-first first-brand"><span style="width:100px;"></span></li>
+         <li class="brand-up brand-first first-brand"><span style="width:100px;"></span></li><li class="brand-up brand-first first-brand"><span style="width:100px;"></span></li>
+          <li class="brand-up brand-first"><a target="_blank" href="http://www.delta-force.com/"><img src="images/brand/deltaforce.jpg" alt="" title=""/></a></li>
+          <!-- <li class="brand-up brand-first"><a target="_blank" href="http://www.caseih.com/"><img src="images/brand/caseih.png" alt="" title=""/></a></li> -->
+          <li class="brand-up"><a target="_blank" href="http://www.honda-equipement.fr/"><img src="images/brand/honda.jpg" alt="" title=""/></a></li>
+          <li class="brand-up"><a target="_blank" href="http://www.amazone.fr/"><img src="images/brand/amazone.png" alt="" title=""/></a></li>
+          
+        </ul>
+       
+    </div>
+    
+  </div>
+</div>
+
+    <!-- ************** -->
+    <div class="allp"></div>
+  <div id="main">
+     <div class="modal">
+      <div class="content_info">
+        <div class="niess_hoffen">
+          <div class="">20 rue du Sable</div>
+          <!--<div class="">Adresse2</div>-->
+          <div class="">67250 Hoffen</div>
+          <div class=""><a href="mailto:contact@niess.fr">niess@niess.fr</a></div>
+          <div class=""><img style="max-width:15px;" alt="clock" src='Images/clockbtn.png'/> 08h00 - 12h00 | 13h30 - 17h00 </div>
+          <div class=""><img style="max-width:15px;" alt="clock" src='Images/clockbtn.png'/> Samedi : 8h00 - 12h00 </div>
+          <div class="">Tél. <a href="tel:0388056800">03 88 05 68 00</a></div>
+          <div class="">Fax. 03 88 05 54 00</div>
+        </div>
+
+        <div class="niess_wahl">
+          <div class="">Machines agricoles et élevages</div>
+          <div class="">Parc d'activité</div>
+          <!--<div class="">Adresse2</div>-->
+          <div class="">57930 Fénétrange</div>
+          <div class=""><a href="mailto:niessmae@niess57.fr">niessmae@niess57.fr</a></div>
+          <div class=""><img style="max-width:15px;" alt="clock" src='Images/clockbtn.png'/> 08h00 - 12h00 | 13h30 - 17h00 </div>
+          <div class="">Tél. 03 87 07 03 74</div>
+          <div class="">Fax. 03 87 07 08 11</div>
+          <div>Urgence élevage : 06 15 96 50 59</div>
+          
+        </div>
+
+        <div class="niess_dambach">
+          <div class="">Z.A du Wasen - 2 rue du Muscat</div>
+          <!--<div class="">Adresse2</div>-->
+          <div class="">67650 Dambach la ville</div>
+          <div class=""><a href="mailto:magasin.dambach@niess.fr">magasin.dambach@niess.fr</a></div>
+          <div class=""><img style="max-width:15px;" alt="clock" src='Images/clockbtn.png'/> 08h00 - 12h00 | 13h30 - 17h00 </div>
+          <div class=""><img style="max-width:15px;" alt="clock" src='Images/clockbtn.png'/> Samedi : 8h00 - 12h00 </div>
+          <div class="">Tél. <a href="tel:0388850923">03 88 85 09 23</a></div>
+          <div class="">Fax. 03 88 64 30 12</div>
+        </div>
+
+        <div class="niess_marlenheim">
+          <div class="">8 rue de Kirchheim</div>
+          <!--<div class="">Adresse2</div>-->
+          <div class="">67520 Marlenheim</div>
+          <div class=""><a href="mailto:mag.kirchheim@fr.oleane.com">mag.kirchheim@fr.oleane.com</a></div>
+          <div class=""><img style="max-width:15px;" alt="clock" src='Images/clockbtn.png'/> 08h00 - 12h00 | 13h30 - 17h00 </div>
+          <div class="">Tél. <a href="tel:0388047870">03 88 04 78 70</a></div>
+          <div class="">Fax. 03 88 64 30 12</div>
+        </div>
+
+      </div>
+    </div>    <div  class="content_main">
+        
+<div class="sm_content">
+
+	<select id="maSelection"  class="sm_select" name="select_magasin" >
+			
+	        <option selected="selected" value="0">Toutes les marques</option>
+	        	          
+	          <option value="178" >Matériels de récolte - Moissonneuse batteuse et accessoires </option>
+
+	        	          
+	          <option value="179" >Matériels de récolte - Matériel de récolte - autre</option>
+
+	        	          
+	          <option value="180" >Semoirs - Semoir en ligne conventionnel </option>
+
+	        	          
+	          <option value="181" >Semoirs - Semoir pour semis simplifié </option>
+
+	        	          
+	          <option value="182" >Semoirs - Semoir monograine </option>
+
+	        	          
+	          <option value="183" >Semoirs - Combiné de semis ( herse+ semoir)</option>
+
+	        	          
+	          <option value="184" >Semoirs - Semoir autre </option>
+
+	        	          
+	          <option value="185" >Pulvérisateur - Pulvérisateur traîné </option>
+
+	        	          
+	          <option value="186" >Pulvérisateur - Pulvérisateur automoteur</option>
+
+	        	          
+	          <option value="187" >Pulvérisateur - Pulvérisateur porté </option>
+
+	        	          
+	          <option value="188" >Pulvérisateur - Pulvérisateur vigne</option>
+
+	        	          
+	          <option value="189" >Pulvérisateur - Atomiseur arboricole</option>
+
+	        	          
+	          <option value="190" >Outil du sol animé par prise de force - Herse rotative</option>
+
+	        	          
+	          <option value="191" >Outil du sol animé par prise de force - Cultivateur à axe horizontal</option>
+
+	        	          
+	          <option value="192" >Outil du sol animé par prise de force - Broyeur de pierres</option>
+
+	        	          
+	          <option value="193" >Outil du sol non animé - Charrue</option>
+
+	        	          
+	          <option value="194" >Outil du sol non animé - Cover cop</option>
+
+	        	          
+	          <option value="195" >Outil du sol non animé - Déchaumeur</option>
+
+	        	          
+	          <option value="196" >Outil du sol non animé - Vibroculteur</option>
+
+	        	          
+	          <option value="197" >Outil du sol non animé - Décompacteur</option>
+
+	        	          
+	          <option value="198" >Outil du sol non animé - Chisel</option>
+
+	        	          
+	          <option value="199" >Outil du sol non animé - Herse étrille</option>
+
+	        	          
+	          <option value="200" >Outil du sol non animé - Herse de pairie</option>
+
+	        	          
+	          <option value="201" >Outil du sol non animé - Bineuse</option>
+
+	        	          
+	          <option value="202" >Outil du sol non animé - Combiné de préparation de sol </option>
+
+	        	          
+	          <option value="203" >Épandage - Distributeur d'engrais </option>
+
+	        	          
+	          <option value="204" >Épandage - Enpandeur à fumier</option>
+
+	        	          
+	          <option value="205" >Épandage - Tonne à lisier </option>
+
+	        	          
+	          <option value="206" >Broyeur épareuse - Broyeur à axe horizontal</option>
+
+	        	          
+	          <option value="207" >Broyeur épareuse - Broyeur d'accotement</option>
+
+	        	          
+	          <option value="208" >Broyeur épareuse - Épareuse</option>
+
+	        	          
+	          <option value="209" >Remorque agricole - Benne agricole</option>
+
+	        	          
+	          <option value="210" >Remorque agricole - Benne tp</option>
+
+	        	          
+	          <option value="211" >Remorque agricole - Plateau fourrager</option>
+
+	        	          
+	          <option value="212" >Remorque agricole - Plateau porte Matériel</option>
+
+	        	          
+	          <option value="213" >Remorque agricole - Bétailliere</option>
+
+	        	          
+	          <option value="214" >Remorque agricole - Remorque autochargeuse</option>
+
+	        	          
+	          <option value="215" >Stockage - Cellule - silo</option>
+
+	        	          
+	          <option value="216" >Stockage - Vis, élévateur, sauterelle</option>
+
+	        	          
+	          <option value="217" >Stockage - Nettoyeur, séparateur</option>
+
+	        	          
+	          <option value="218" >Stockage - Manutention du fourrage</option>
+
+	        	          
+	          <option value="219" >Stockage - Betonnière</option>
+
+	        	          
+	          <option value="220" >Matériel de fenaison - Presse à balles rondes</option>
+
+	        	          
+	          <option value="221" >Matériel de fenaison - Presse à haute densité</option>
+
+	        	          
+	          <option value="222" >Matériel de fenaison - Presse enrubanneuse</option>
+
+	        	          
+	          <option value="223" >Matériel de fenaison - Faucheuse</option>
+
+	        	          
+	          <option value="224" >Matériel de fenaison - Faucheuse conditionneuse</option>
+
+	        	          
+	          <option value="225" >Matériel de fenaison - Faneur</option>
+
+	        	          
+	          <option value="226" >Matériel de fenaison - Faneur andraineur</option>
+
+	        	          
+	          <option value="227" >Matériel de fenaison - Andraineur</option>
+
+	        	          
+	          <option value="228" >Matériel de fenaison - Enrubanneuse</option>
+
+	        	          
+	          <option value="229" >Matériel de fenaison - Autochargeuse</option>
+
+	        	          
+	          <option value="230" >Matériel d'élevage - Désileuse</option>
+
+	        	          
+	          <option value="231" >Matériel d'élevage - Désileuse pailleuse</option>
+
+	        	          
+	          <option value="232" >Matériel d'élevage - Godet désileur</option>
+
+	        	          
+	          <option value="233" >Matériel d'élevage - Pailleuse</option>
+
+	        	          
+	          <option value="234" >Matériel d'élevage - Dérouleur de balle</option>
+
+	        	          
+	          <option value="235" >Matériel d'élevage - Mélangeuse</option>
+
+	        	          
+	          <option value="236" >Matériel d'élevage - Remorque distributrice</option>
+
+	        	          
+	          <option value="237" >Matériel d'élevage - Bétaillere</option>
+
+	        	          
+	          <option value="238" >Matériel d'élevage - Cornadis</option>
+
+	        	          
+	          <option value="239" >Matériel d'élevage - Tonne à eau</option>
+
+	        	          
+	          <option value="240" >Matériel d'élevage - Régénérateur de pairie</option>
+
+	        	          
+	          <option value="241" >Matériel d'élevage - Racleur</option>
+
+	        	          
+	          <option value="242" >Matériel d'élevage - Matériel d'élevage-autre</option>
+
+	        	          
+	          <option value="243" >Manutention - Téléscopique </option>
+
+	        	          
+	          <option value="244" >Manutention - Chargeur frontal</option>
+
+	        	          
+	          <option value="245" >Manutention - Surélévateur</option>
+
+	        	          
+	          <option value="246" >Manutention - Valet de ferme</option>
+
+	        	          
+	          <option value="247" >Manutention - Fourche et godet</option>
+
+	        	          
+	          <option value="248" >Manutention - Autre Matériel de Manutention</option>
+
+	        	          
+	          <option value="249" >Matériel de culture spécialisées - Matériel de maraichage</option>
+
+	        	          
+	          <option value="250" >Matériel de culture spécialisées - Matériel tabac</option>
+
+	        	          
+	          <option value="251" >Matériel viticole - Tracteur etroit</option>
+
+	        	          
+	          <option value="252" >Matériel viticole - Pulvérisateur vigne</option>
+
+	        	          
+	          <option value="253" >Matériel forestier - Tracteur forestier</option>
+
+	        	          
+	          <option value="254" >Matériel forestier - Remorque forestière</option>
+
+	        	          
+	          <option value="255" >Matériel forestier - Grue forestière</option>
+
+	        	          
+	          <option value="256" >Matériel forestier - Broyeur forestier</option>
+
+	        	          
+	          <option value="257" >Matériel forestier - Treuil forestier</option>
+
+	        	          
+	          <option value="258" >Matériel forestier - Broyeur de branche</option>
+
+	        	          
+	          <option value="259" >Matériel forestier - Fendeuse a bois</option>
+
+	        	          
+	          <option value="260" >Matériel forestier - Scie</option>
+
+	        	          
+	          <option value="261" >Matériel forestier - Combiné scie / fendeuse</option>
+
+	        	          
+	          <option value="262" >Matériel forestier - Tronconneuse</option>
+
+	        	          
+	          <option value="343" >Tracteur - Tracteur</option>
+
+	        	</select> 
+	<div class="content_marque">
+
+		<!-- Affichage de toutes les marques -->
+		<div id="divID0" class="cacheDiv show_first">
+					<a target="_blank" href="http://www.amazone.fr/default2009.asp"><img class="sm_img" alt="Amazone" title="Amazone" src="modules/show_marque/amazone.png"/></a>
+					<a target="_blank" href="http://www.a-m-r.fr/"><img class="sm_img" alt="AMR" title="AMR" src="modules/show_marque/amr.jpg"/></a>
+					<a target="_blank" href="http://www.altec.fr/"><img class="sm_img" alt="Altec" title="Altec" src="modules/show_marque/altec.jpg"/></a>
+					<a target="_blank" href="http://www.bugnot.com/"><img class="sm_img" alt="Bugnot" title="Bugnot" src="modules/show_marque/bugnot.png"/></a>
+					<a target="_blank" href="http://www.desvoys.fr/"><img class="sm_img" alt="Desvoys" title="Desvoys" src="modules/show_marque/desvoys.jpg"/></a>
+					<a target="_blank" href="http://www.emily.fr/"><img class="sm_img" alt="Emily" title="Emily" src="modules/show_marque/emily.png"/></a>
+					<a target="_blank" href="http://www.rousseau-web.com/"><img class="sm_img" alt="Rousseau" title="Rousseau" src="modules/show_marque/rousseau.jpg"/></a>
+					<a target="_blank" href="http://www.mammut.at/"><img class="sm_img" alt="Mammut" title="Mammut" src="modules/show_marque/mammut.jpg"/></a>
+					<a target="_blank" href="http://www.m-x.eu/"><img class="sm_img" alt="MX" title="MX" src="modules/show_marque/mx.png"/></a>
+					<a target="_blank" href="http://www.monosem.fr/"><img class="sm_img" alt="Monosem" title="Monosem" src="modules/show_marque/images.png"/></a>
+					<a target="_blank" href="http://fr.kvernelandgroup.com"><img class="sm_img" alt="Kverneland" title="Kverneland" src="modules/show_marque/kverneland.jpg"/></a>
+					<a target="_blank" href="https://www.horsch2.com/fr/start/"><img class="sm_img" alt="Horsch" title="Horsch" src="modules/show_marque/horsch.jpg"/></a>
+					<a target="_blank" href="http://www.trioliet.eu/fr/vente/leurope/france/"><img class="sm_img" alt="Trioliet" title="Trioliet" src="modules/show_marque/trioliet.jpg"/></a>
+					<a target="_blank" href="http://www.jourdain-group.com/accueil/"><img class="sm_img" alt="JOURDAIN" title="JOURDAIN" src="modules/show_marque/JOURDAIN.jpg"/></a>
+					<a target="_blank" href="http://www.quivogne.fr/"><img class="sm_img" alt="QUIVOGNE" title="QUIVOGNE" src="modules/show_marque/QUIVOGNE.jpg"/></a>
+					<a target="_blank" href="http://www.manip-loaders.com/"><img class="sm_img" alt="MANIP" title="MANIP" src="modules/show_marque/MANIP.jpg"/></a>
+					<a target="_blank" href="http://gruppe.krone.de/"><img class="sm_img" alt="Krone" title="Krone" src="modules/show_marque/krone.jpg"/></a>
+					<a target="_blank" href="http://www.comanassisi.it/index.php?lan=9"><img class="sm_img" alt="Coman" title="Coman" src="modules/show_marque/Coman.png"/></a>
+					<a target="_blank" href="http://www.horsch.com/home/"><img class="sm_img" alt="Horsh" title="Horsh" src="modules/show_marque/horsch.png"/></a>
+					<a target="_blank" href="http://delimbe.com/index.html?lang=fr?lang=fr"><img class="sm_img" alt="Delimbe" title="Delimbe" src="modules/show_marque/delimbe.jpg"/></a>
+					<a target="_blank" href="http://www.idealitalia.it/fr/index.php"><img class="sm_img" alt="Ideal" title="Ideal" src="modules/show_marque/ideal.gif"/></a>
+					<a target="_blank" href="http://www.agrisem.com/"><img class="sm_img" alt="Agrisem" title="Agrisem" src="modules/show_marque/agrisem.png"/></a>
+					<a target="_blank" href="http://www.carre.fr/"><img class="sm_img" alt="Carre" title="Carre" src="modules/show_marque/carre.png"/></a>
+					<a target="_blank" href="http://www.sauerburger.de/german/index.html"><img class="sm_img" alt="Sauerburger" title="Sauerburger" src="modules/show_marque/sauerburger.jpg"/></a>
+					<a target="_blank" href="http://www.vigolo.com/index.php/it/"><img class="sm_img" alt="Vigolo" title="Vigolo" src="modules/show_marque/vigolo.png"/></a>
+					<a target="_blank" href="http://www.cochetsa.com/"><img class="sm_img" alt="Cochet" title="Cochet" src="modules/show_marque/cochet.gif"/></a>
+					<a target="_blank" href="http://www.fao.fr/fr/"><img class="sm_img" alt="Fao" title="Fao" src="modules/show_marque/Fao.png"/></a>
+					<a target="_blank" href="http://www.hugedomains.com/domain_profile.cfm?d=calvetsa&e=com"><img class="sm_img" alt="Calvet" title="Calvet" src="modules/show_marque/calvet.png"/></a>
+					<a target="_blank" href="http://www.groupe-cartel.fr"><img class="sm_img" alt="Cartel" title="Cartel" src="modules/show_marque/lerin-cartel.jpg"/></a>
+					<a target="_blank" href="http://www.supertino.it/fra/index.asp"><img class="sm_img" alt="Supertino" title="Supertino" src="modules/show_marque/supertino.png"/></a>
+					<a target="_blank" href="http://www.eurotechnicsagri.eu/"><img class="sm_img" alt="Eurotechnics" title="Eurotechnics" src="modules/show_marque/eurotechnics.png"/></a>
+					<a target="_blank" href="http://www.lagee.com/Public/ipage/nodes/default/09339031-7F000001-02D572EC-633BAE53/Site+FR.htm"><img class="sm_img" alt="La Gée" title="La Gée" src="modules/show_marque/la-gee.gif"/></a>
+					<a target="_blank" href="http://www.ck-industries.com/fr/"><img class="sm_img" alt="Ck Industrie" title="Ck Industrie" src="modules/show_marque/ck-industries.png"/></a>
+					<a target="_blank" href="http://www.merlo.com/"><img class="sm_img" alt="Merlo" title="Merlo" src="modules/show_marque/merlo.jpg"/></a>
+					<a target="_blank" href="http://www.tobroco.isinontwikkeling.nl/"><img class="sm_img" alt="Giant" title="Giant" src="modules/show_marque/giant.jpg"/></a>
+					<a target="_blank" href="http://www.lamy-les-constructeurs.com/"><img class="sm_img" alt="Lamy" title="Lamy" src="modules/show_marque/lamy.png"/></a>
+					<a target="_blank" href="http://www.tecnoagri.it/"><img class="sm_img" alt="Technoagri" title="Technoagri" src="modules/show_marque/tecnoagri.png"/></a>
+					<a target="_blank" href="http://www.materiel-ferrari.com/"><img class="sm_img" alt="Ferrari" title="Ferrari" src="modules/show_marque/ferrari.gif"/></a>
+					<a target="_blank" href="http://www.gome.it/fr-fr/home"><img class="sm_img" alt="Gome" title="Gome" src="modules/show_marque/gome.png"/></a>
+					<a target="_blank" href="http://www.materiel-forestier.fr/"><img class="sm_img" alt="Astic" title="Astic" src="modules/show_marque/logo-astic.png"/></a>
+					<a target="_blank" href="http://www.oehlermaschinen.de/cms/front_content.php?id=1&changelang=3"><img class="sm_img" alt="Oehler" title="Oehler" src="modules/show_marque/oehler.png"/></a>
+					<a target="_blank" href="https://toyo-france.fr/"><img class="sm_img" alt="TOYO" title="TOYO" src="modules/show_marque/TOYO LOGO.pdf"/></a>
+					<a target="_blank" href="http://mb-otto-gruber.at/"><img class="sm_img" alt="GRUBER" title="GRUBER" src="modules/show_marque/LOGO.jpg"/></a>
+					<a target="_blank" href="https://www.lindner-traktoren.at/fr-fr/vehicules"><img class="sm_img" alt="LINDNER" title="LINDNER" src="modules/show_marque/LOGO lindner_0.png"/></a>
+			 		<div class="clear"></div>
+		</div>
+			      <div id="divID178" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID179" class="cacheDiv">
+	      								<a target="_blank" href="http://gruppe.krone.de/"><img class="sm_img" alt="Krone" title="Krone" src="modules/show_marque/krone.jpg"/></a>
+						
+											<a target="_blank" href="http://www.comanassisi.it/index.php?lan=9"><img class="sm_img" alt="Coman" title="Coman" src="modules/show_marque/Coman.png"/></a>
+						
+								</div> 
+				      <div id="divID180" class="cacheDiv">
+	      								<a target="_blank" href="http://www.amazone.fr/default2009.asp"><img class="sm_img" alt="Amazone" title="Amazone" src="modules/show_marque/amazone.png"/></a>
+						
+											<a target="_blank" href="http://fr.kvernelandgroup.com"><img class="sm_img" alt="Kverneland" title="Kverneland" src="modules/show_marque/kverneland.jpg"/></a>
+						
+								</div> 
+				      <div id="divID181" class="cacheDiv">
+	      								<a target="_blank" href="http://www.horsch.com/home/"><img class="sm_img" alt="Horsh" title="Horsh" src="modules/show_marque/horsch.png"/></a>
+						
+								</div> 
+				      <div id="divID182" class="cacheDiv">
+	      								<a target="_blank" href="http://www.monosem.fr/"><img class="sm_img" alt="Monosem" title="Monosem" src="modules/show_marque/images.png"/></a>
+						
+								</div> 
+				      <div id="divID183" class="cacheDiv">
+	      								<a target="_blank" href="http://www.amazone.fr/default2009.asp"><img class="sm_img" alt="Amazone" title="Amazone" src="modules/show_marque/amazone.png"/></a>
+						
+											<a target="_blank" href="http://fr.kvernelandgroup.com"><img class="sm_img" alt="Kverneland" title="Kverneland" src="modules/show_marque/kverneland.jpg"/></a>
+						
+											<a target="_blank" href="http://www.horsch.com/home/"><img class="sm_img" alt="Horsh" title="Horsh" src="modules/show_marque/horsch.png"/></a>
+						
+								</div> 
+				      <div id="divID184" class="cacheDiv">
+	      								<a target="_blank" href="http://delimbe.com/index.html?lang=fr?lang=fr"><img class="sm_img" alt="Delimbe" title="Delimbe" src="modules/show_marque/delimbe.jpg"/></a>
+						
+								</div> 
+				      <div id="divID185" class="cacheDiv">
+	      								<a target="_blank" href="http://www.amazone.fr/default2009.asp"><img class="sm_img" alt="Amazone" title="Amazone" src="modules/show_marque/amazone.png"/></a>
+						
+								</div> 
+				      <div id="divID186" class="cacheDiv">
+	      								<a target="_blank" href="http://www.amazone.fr/default2009.asp"><img class="sm_img" alt="Amazone" title="Amazone" src="modules/show_marque/amazone.png"/></a>
+						
+								</div> 
+				      <div id="divID187" class="cacheDiv">
+	      								<a target="_blank" href="http://www.amazone.fr/default2009.asp"><img class="sm_img" alt="Amazone" title="Amazone" src="modules/show_marque/amazone.png"/></a>
+						
+								</div> 
+				      <div id="divID188" class="cacheDiv">
+	      								<a target="_blank" href="http://www.idealitalia.it/fr/index.php"><img class="sm_img" alt="Ideal" title="Ideal" src="modules/show_marque/ideal.gif"/></a>
+						
+								</div> 
+				      <div id="divID189" class="cacheDiv">
+	      								<a target="_blank" href="http://www.idealitalia.it/fr/index.php"><img class="sm_img" alt="Ideal" title="Ideal" src="modules/show_marque/ideal.gif"/></a>
+						
+								</div> 
+				      <div id="divID190" class="cacheDiv">
+	      								<a target="_blank" href="http://www.amazone.fr/default2009.asp"><img class="sm_img" alt="Amazone" title="Amazone" src="modules/show_marque/amazone.png"/></a>
+						
+											<a target="_blank" href="http://fr.kvernelandgroup.com"><img class="sm_img" alt="Kverneland" title="Kverneland" src="modules/show_marque/kverneland.jpg"/></a>
+						
+								</div> 
+				      <div id="divID191" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID192" class="cacheDiv">
+	      								<a target="_blank" href="http://www.bugnot.com/"><img class="sm_img" alt="Bugnot" title="Bugnot" src="modules/show_marque/bugnot.png"/></a>
+						
+								</div> 
+				      <div id="divID193" class="cacheDiv">
+	      								<a target="_blank" href="http://fr.kvernelandgroup.com"><img class="sm_img" alt="Kverneland" title="Kverneland" src="modules/show_marque/kverneland.jpg"/></a>
+						
+								</div> 
+				      <div id="divID194" class="cacheDiv">
+	      								<a target="_blank" href="http://fr.kvernelandgroup.com"><img class="sm_img" alt="Kverneland" title="Kverneland" src="modules/show_marque/kverneland.jpg"/></a>
+						
+											<a target="_blank" href="http://www.quivogne.fr/"><img class="sm_img" alt="QUIVOGNE" title="QUIVOGNE" src="modules/show_marque/QUIVOGNE.jpg"/></a>
+						
+								</div> 
+				      <div id="divID195" class="cacheDiv">
+	      								<a target="_blank" href="http://www.amazone.fr/default2009.asp"><img class="sm_img" alt="Amazone" title="Amazone" src="modules/show_marque/amazone.png"/></a>
+						
+											<a target="_blank" href="http://www.agrisem.com/"><img class="sm_img" alt="Agrisem" title="Agrisem" src="modules/show_marque/agrisem.png"/></a>
+						
+											<a target="_blank" href="http://fr.kvernelandgroup.com"><img class="sm_img" alt="Kverneland" title="Kverneland" src="modules/show_marque/kverneland.jpg"/></a>
+						
+											<a target="_blank" href="https://www.horsch2.com/fr/start/"><img class="sm_img" alt="Horsch" title="Horsch" src="modules/show_marque/horsch.jpg"/></a>
+						
+											<a target="_blank" href="http://www.quivogne.fr/"><img class="sm_img" alt="QUIVOGNE" title="QUIVOGNE" src="modules/show_marque/QUIVOGNE.jpg"/></a>
+						
+								</div> 
+				      <div id="divID196" class="cacheDiv">
+	      								<a target="_blank" href="http://fr.kvernelandgroup.com"><img class="sm_img" alt="Kverneland" title="Kverneland" src="modules/show_marque/kverneland.jpg"/></a>
+						
+								</div> 
+				      <div id="divID197" class="cacheDiv">
+	      								<a target="_blank" href="http://fr.kvernelandgroup.com"><img class="sm_img" alt="Kverneland" title="Kverneland" src="modules/show_marque/kverneland.jpg"/></a>
+						
+											<a target="_blank" href="http://www.quivogne.fr/"><img class="sm_img" alt="QUIVOGNE" title="QUIVOGNE" src="modules/show_marque/QUIVOGNE.jpg"/></a>
+						
+								</div> 
+				      <div id="divID198" class="cacheDiv">
+	      								<a target="_blank" href="http://fr.kvernelandgroup.com"><img class="sm_img" alt="Kverneland" title="Kverneland" src="modules/show_marque/kverneland.jpg"/></a>
+						
+											<a target="_blank" href="http://www.quivogne.fr/"><img class="sm_img" alt="QUIVOGNE" title="QUIVOGNE" src="modules/show_marque/QUIVOGNE.jpg"/></a>
+						
+								</div> 
+				      <div id="divID199" class="cacheDiv">
+	      								<a target="_blank" href="http://www.carre.fr/"><img class="sm_img" alt="Carre" title="Carre" src="modules/show_marque/carre.png"/></a>
+						
+											<a target="_blank" href="http://www.quivogne.fr/"><img class="sm_img" alt="QUIVOGNE" title="QUIVOGNE" src="modules/show_marque/QUIVOGNE.jpg"/></a>
+						
+								</div> 
+				      <div id="divID200" class="cacheDiv">
+	      								<a target="_blank" href="http://www.carre.fr/"><img class="sm_img" alt="Carre" title="Carre" src="modules/show_marque/carre.png"/></a>
+						
+											<a target="_blank" href="http://www.quivogne.fr/"><img class="sm_img" alt="QUIVOGNE" title="QUIVOGNE" src="modules/show_marque/QUIVOGNE.jpg"/></a>
+						
+								</div> 
+				      <div id="divID201" class="cacheDiv">
+	      								<a target="_blank" href="http://www.monosem.fr/"><img class="sm_img" alt="Monosem" title="Monosem" src="modules/show_marque/images.png"/></a>
+						
+											<a target="_blank" href="http://www.carre.fr/"><img class="sm_img" alt="Carre" title="Carre" src="modules/show_marque/carre.png"/></a>
+						
+								</div> 
+				      <div id="divID202" class="cacheDiv">
+	      								<a target="_blank" href="http://www.sauerburger.de/german/index.html"><img class="sm_img" alt="Sauerburger" title="Sauerburger" src="modules/show_marque/sauerburger.jpg"/></a>
+						
+								</div> 
+				      <div id="divID203" class="cacheDiv">
+	      								<a target="_blank" href="http://www.amazone.fr/default2009.asp"><img class="sm_img" alt="Amazone" title="Amazone" src="modules/show_marque/amazone.png"/></a>
+						
+								</div> 
+				      <div id="divID204" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID205" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID206" class="cacheDiv">
+	      								<a target="_blank" href="http://www.vigolo.com/index.php/it/"><img class="sm_img" alt="Vigolo" title="Vigolo" src="modules/show_marque/vigolo.png"/></a>
+						
+											<a target="_blank" href="http://www.desvoys.fr/"><img class="sm_img" alt="Desvoys" title="Desvoys" src="modules/show_marque/desvoys.jpg"/></a>
+						
+								</div> 
+				      <div id="divID207" class="cacheDiv">
+	      								<a target="_blank" href="http://www.rousseau-web.com/"><img class="sm_img" alt="Rousseau" title="Rousseau" src="modules/show_marque/rousseau.jpg"/></a>
+						
+								</div> 
+				      <div id="divID208" class="cacheDiv">
+	      								<a target="_blank" href="http://www.rousseau-web.com/"><img class="sm_img" alt="Rousseau" title="Rousseau" src="modules/show_marque/rousseau.jpg"/></a>
+						
+								</div> 
+				      <div id="divID209" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID210" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID211" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID212" class="cacheDiv">
+	      								<a target="_blank" href="http://www.cochetsa.com/"><img class="sm_img" alt="Cochet" title="Cochet" src="modules/show_marque/cochet.gif"/></a>
+						
+								</div> 
+				      <div id="divID213" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID214" class="cacheDiv">
+	      								<a target="_blank" href="http://gruppe.krone.de/"><img class="sm_img" alt="Krone" title="Krone" src="modules/show_marque/krone.jpg"/></a>
+						
+											<a target="_blank" href="http://mb-otto-gruber.at/"><img class="sm_img" alt="GRUBER" title="GRUBER" src="modules/show_marque/LOGO.jpg"/></a>
+						
+								</div> 
+				      <div id="divID215" class="cacheDiv">
+	      								<a target="_blank" href="http://www.fao.fr/fr/"><img class="sm_img" alt="Fao" title="Fao" src="modules/show_marque/Fao.png"/></a>
+						
+								</div> 
+				      <div id="divID216" class="cacheDiv">
+	      								<a target="_blank" href="http://www.fao.fr/fr/"><img class="sm_img" alt="Fao" title="Fao" src="modules/show_marque/Fao.png"/></a>
+						
+								</div> 
+				      <div id="divID217" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID218" class="cacheDiv">
+	      								<a target="_blank" href="http://www.altec.fr/"><img class="sm_img" alt="Altec" title="Altec" src="modules/show_marque/altec.jpg"/></a>
+						
+											<a target="_blank" href="http://www.hugedomains.com/domain_profile.cfm?d=calvetsa&e=com"><img class="sm_img" alt="Calvet" title="Calvet" src="modules/show_marque/calvet.png"/></a>
+						
+											<a target="_blank" href="http://www.bugnot.com/"><img class="sm_img" alt="Bugnot" title="Bugnot" src="modules/show_marque/bugnot.png"/></a>
+						
+											<a target="_blank" href="http://www.groupe-cartel.fr"><img class="sm_img" alt="Cartel" title="Cartel" src="modules/show_marque/lerin-cartel.jpg"/></a>
+						
+								</div> 
+				      <div id="divID219" class="cacheDiv">
+	      								<a target="_blank" href="http://www.mammut.at/"><img class="sm_img" alt="Mammut" title="Mammut" src="modules/show_marque/mammut.jpg"/></a>
+						
+								</div> 
+				      <div id="divID220" class="cacheDiv">
+	      								<a target="_blank" href="http://gruppe.krone.de/"><img class="sm_img" alt="Krone" title="Krone" src="modules/show_marque/krone.jpg"/></a>
+						
+											<a target="_blank" href="http://www.supertino.it/fra/index.asp"><img class="sm_img" alt="Supertino" title="Supertino" src="modules/show_marque/supertino.png"/></a>
+						
+								</div> 
+				      <div id="divID221" class="cacheDiv">
+	      								<a target="_blank" href="http://gruppe.krone.de/"><img class="sm_img" alt="Krone" title="Krone" src="modules/show_marque/krone.jpg"/></a>
+						
+											<a target="_blank" href="http://www.supertino.it/fra/index.asp"><img class="sm_img" alt="Supertino" title="Supertino" src="modules/show_marque/supertino.png"/></a>
+						
+								</div> 
+				      <div id="divID222" class="cacheDiv">
+	      								<a target="_blank" href="http://gruppe.krone.de/"><img class="sm_img" alt="Krone" title="Krone" src="modules/show_marque/krone.jpg"/></a>
+						
+								</div> 
+				      <div id="divID223" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID224" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID225" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID226" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID227" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID228" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID229" class="cacheDiv">
+	      								<a target="_blank" href="http://gruppe.krone.de/"><img class="sm_img" alt="Krone" title="Krone" src="modules/show_marque/krone.jpg"/></a>
+						
+											<a target="_blank" href="http://www.supertino.it/fra/index.asp"><img class="sm_img" alt="Supertino" title="Supertino" src="modules/show_marque/supertino.png"/></a>
+						
+								</div> 
+				      <div id="divID230" class="cacheDiv">
+	      								<a target="_blank" href="http://www.supertino.it/fra/index.asp"><img class="sm_img" alt="Supertino" title="Supertino" src="modules/show_marque/supertino.png"/></a>
+						
+								</div> 
+				      <div id="divID231" class="cacheDiv">
+	      								<a target="_blank" href="http://www.supertino.it/fra/index.asp"><img class="sm_img" alt="Supertino" title="Supertino" src="modules/show_marque/supertino.png"/></a>
+						
+								</div> 
+				      <div id="divID232" class="cacheDiv">
+	      								<a target="_blank" href="http://www.emily.fr/"><img class="sm_img" alt="Emily" title="Emily" src="modules/show_marque/emily.png"/></a>
+						
+											<a target="_blank" href="http://www.desvoys.fr/"><img class="sm_img" alt="Desvoys" title="Desvoys" src="modules/show_marque/desvoys.jpg"/></a>
+						
+											<a target="_blank" href="http://www.m-x.eu/"><img class="sm_img" alt="MX" title="MX" src="modules/show_marque/mx.png"/></a>
+						
+								</div> 
+				      <div id="divID233" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID234" class="cacheDiv">
+	      								<a target="_blank" href="http://www.altec.fr/"><img class="sm_img" alt="Altec" title="Altec" src="modules/show_marque/altec.jpg"/></a>
+						
+											<a target="_blank" href="http://www.hugedomains.com/domain_profile.cfm?d=calvetsa&e=com"><img class="sm_img" alt="Calvet" title="Calvet" src="modules/show_marque/calvet.png"/></a>
+						
+											<a target="_blank" href="http://www.eurotechnicsagri.eu/"><img class="sm_img" alt="Eurotechnics" title="Eurotechnics" src="modules/show_marque/eurotechnics.png"/></a>
+						
+								</div> 
+				      <div id="divID235" class="cacheDiv">
+	      								<a target="_blank" href="http://www.trioliet.eu/fr/vente/leurope/france/"><img class="sm_img" alt="Trioliet" title="Trioliet" src="modules/show_marque/trioliet.jpg"/></a>
+						
+											<a target="_blank" href="http://www.supertino.it/fra/index.asp"><img class="sm_img" alt="Supertino" title="Supertino" src="modules/show_marque/supertino.png"/></a>
+						
+								</div> 
+				      <div id="divID236" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID237" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID238" class="cacheDiv">
+	      								<a target="_blank" href="http://www.jourdain-group.com/accueil/"><img class="sm_img" alt="JOURDAIN" title="JOURDAIN" src="modules/show_marque/JOURDAIN.jpg"/></a>
+						
+								</div> 
+				      <div id="divID239" class="cacheDiv">
+	      								<a target="_blank" href="http://www.lagee.com/Public/ipage/nodes/default/09339031-7F000001-02D572EC-633BAE53/Site+FR.htm"><img class="sm_img" alt="La Gée" title="La Gée" src="modules/show_marque/la-gee.gif"/></a>
+						
+								</div> 
+				      <div id="divID240" class="cacheDiv">
+	      								<a target="_blank" href="http://www.carre.fr/"><img class="sm_img" alt="Carre" title="Carre" src="modules/show_marque/carre.png"/></a>
+						
+											<a target="_blank" href="http://www.quivogne.fr/"><img class="sm_img" alt="QUIVOGNE" title="QUIVOGNE" src="modules/show_marque/QUIVOGNE.jpg"/></a>
+						
+								</div> 
+				      <div id="divID241" class="cacheDiv">
+	      								<a target="_blank" href="http://www.ck-industries.com/fr/"><img class="sm_img" alt="Ck Industrie" title="Ck Industrie" src="modules/show_marque/ck-industries.png"/></a>
+						
+								</div> 
+				      <div id="divID242" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID243" class="cacheDiv">
+	      								<a target="_blank" href="http://www.merlo.com/"><img class="sm_img" alt="Merlo" title="Merlo" src="modules/show_marque/merlo.jpg"/></a>
+						
+								</div> 
+				      <div id="divID244" class="cacheDiv">
+	      								<a target="_blank" href="http://www.manip-loaders.com/"><img class="sm_img" alt="MANIP" title="MANIP" src="modules/show_marque/MANIP.jpg"/></a>
+						
+											<a target="_blank" href="http://www.m-x.eu/"><img class="sm_img" alt="MX" title="MX" src="modules/show_marque/mx.png"/></a>
+						
+								</div> 
+				      <div id="divID245" class="cacheDiv">
+	      								<a target="_blank" href="http://www.manip-loaders.com/"><img class="sm_img" alt="MANIP" title="MANIP" src="modules/show_marque/MANIP.jpg"/></a>
+						
+											<a target="_blank" href="http://www.m-x.eu/"><img class="sm_img" alt="MX" title="MX" src="modules/show_marque/mx.png"/></a>
+						
+								</div> 
+				      <div id="divID246" class="cacheDiv">
+	      								<a target="_blank" href="http://www.tobroco.isinontwikkeling.nl/"><img class="sm_img" alt="Giant" title="Giant" src="modules/show_marque/giant.jpg"/></a>
+						
+											<a target="_blank" href="https://toyo-france.fr/"><img class="sm_img" alt="TOYO" title="TOYO" src="modules/show_marque/TOYO LOGO.pdf"/></a>
+						
+								</div> 
+				      <div id="divID247" class="cacheDiv">
+	      								<a target="_blank" href="http://www.merlo.com/"><img class="sm_img" alt="Merlo" title="Merlo" src="modules/show_marque/merlo.jpg"/></a>
+						
+											<a target="_blank" href="http://www.lamy-les-constructeurs.com/"><img class="sm_img" alt="Lamy" title="Lamy" src="modules/show_marque/lamy.png"/></a>
+						
+								</div> 
+				      <div id="divID248" class="cacheDiv">
+	      								<a target="_blank" href="http://www.tecnoagri.it/"><img class="sm_img" alt="Technoagri" title="Technoagri" src="modules/show_marque/tecnoagri.png"/></a>
+						
+								</div> 
+				      <div id="divID249" class="cacheDiv">
+	      								<a target="_blank" href="http://www.materiel-ferrari.com/"><img class="sm_img" alt="Ferrari" title="Ferrari" src="modules/show_marque/ferrari.gif"/></a>
+						
+								</div> 
+				      <div id="divID250" class="cacheDiv">
+	      								<a target="_blank" href="http://www.gome.it/fr-fr/home"><img class="sm_img" alt="Gome" title="Gome" src="modules/show_marque/gome.png"/></a>
+						
+											<a target="_blank" href="http://www.comanassisi.it/index.php?lan=9"><img class="sm_img" alt="Coman" title="Coman" src="modules/show_marque/Coman.png"/></a>
+						
+								</div> 
+				      <div id="divID251" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID252" class="cacheDiv">
+	      								<a target="_blank" href="http://www.idealitalia.it/fr/index.php"><img class="sm_img" alt="Ideal" title="Ideal" src="modules/show_marque/ideal.gif"/></a>
+						
+								</div> 
+				      <div id="divID253" class="cacheDiv">
+	      								<a target="_blank" href="http://www.merlo.com/"><img class="sm_img" alt="Merlo" title="Merlo" src="modules/show_marque/merlo.jpg"/></a>
+						
+								</div> 
+				      <div id="divID254" class="cacheDiv">
+	      								<a target="_blank" href="http://www.materiel-forestier.fr/"><img class="sm_img" alt="Astic" title="Astic" src="modules/show_marque/logo-astic.png"/></a>
+						
+											<a target="_blank" href="http://www.oehlermaschinen.de/cms/front_content.php?id=1&changelang=3"><img class="sm_img" alt="Oehler" title="Oehler" src="modules/show_marque/oehler.png"/></a>
+						
+								</div> 
+				      <div id="divID255" class="cacheDiv">
+	      								<a target="_blank" href="http://www.materiel-forestier.fr/"><img class="sm_img" alt="Astic" title="Astic" src="modules/show_marque/logo-astic.png"/></a>
+						
+											<a target="_blank" href="http://www.oehlermaschinen.de/cms/front_content.php?id=1&changelang=3"><img class="sm_img" alt="Oehler" title="Oehler" src="modules/show_marque/oehler.png"/></a>
+						
+								</div> 
+				      <div id="divID256" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID257" class="cacheDiv">
+	      								<a target="_blank" href="http://www.a-m-r.fr/"><img class="sm_img" alt="AMR" title="AMR" src="modules/show_marque/amr.jpg"/></a>
+						
+								</div> 
+				      <div id="divID258" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID259" class="cacheDiv">
+	      								<a target="_blank" href="http://www.a-m-r.fr/"><img class="sm_img" alt="AMR" title="AMR" src="modules/show_marque/amr.jpg"/></a>
+						
+								</div> 
+				      <div id="divID260" class="cacheDiv">
+	      								<a target="_blank" href="http://www.a-m-r.fr/"><img class="sm_img" alt="AMR" title="AMR" src="modules/show_marque/amr.jpg"/></a>
+						
+								</div> 
+				      <div id="divID261" class="cacheDiv">
+	      								<a target="_blank" href="http://www.materiel-forestier.fr/"><img class="sm_img" alt="Astic" title="Astic" src="modules/show_marque/logo-astic.png"/></a>
+						
+								</div> 
+				      <div id="divID262" class="cacheDiv">
+	      							<div class="sm_err">Aucune marque dans cette catégorie</div>
+							</div> 
+				      <div id="divID343" class="cacheDiv">
+	      								<a target="_blank" href="https://www.lindner-traktoren.at/fr-fr/vehicules"><img class="sm_img" alt="LINDNER" title="LINDNER" src="modules/show_marque/LOGO lindner_0.png"/></a>
+						
+								</div> 
+						<div class="clear"></div>
+	</div>
+</div>
+    </div>
+  </div>
+
+
+
+  <!-- Include footer -->
+  
+<div id="footer">
+  <div class="menu_bottom">
+    <ul>
+      <li><a  href="contact.html">Contact</a></li>
+     
+      <li><a id="mention" href="#">Mentions légales</a></li>
+    </ul>
+  </div>
+  
+</div>  <!-- ************** -->
+<script type="text/javascript" src="js/depot.js"></script>
+</body>
+</html>
