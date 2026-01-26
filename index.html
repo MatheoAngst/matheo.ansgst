@@ -7,7 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
 
 <style>
     :root {
@@ -381,50 +381,287 @@
       transition: color 0.3s ease;
     }
     
-    .process-steps { display: flex; flex-direction: column; gap: 50px; }
-    .process-step { display: flex; gap: 40px; align-items: flex-start; }
-
-    .step-number {
-      font-size: 48px;
-      font-weight: 100;
-      color: #d4b5e8;
-      min-width: 80px;
-    }
-
-    .step-content { flex: 1; padding-top: 8px; }
-    .step-text {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.8;
-      color: var(--text-secondary);
-    }
-
+    /* --- CSS "MES SITES" (Style Animé) --- */
     .projets-section { padding: 80px 0 120px; }
+    
     .projets-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      gap: 40px;
       max-width: 1200px;
       margin: 0 auto;
+      justify-items: center; 
     }
 
-    .projets-item {
-      aspect-ratio: 3/4;
-      border-radius: 12px;
-      overflow: hidden;
+    .project-card {
       position: relative;
-      transition: transform 0.4s ease;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      /* Centrage du contenu */
+      width: 100%;
+      max-width: 300px;
+      height: 350px;
+      background: #1a1a1a;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      padding: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
-    .projets-item:hover { transform: scale(1.03); }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(315deg,#03a9f4,#ff0058);
+      opacity: 0.8;
+    }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(315deg,#03a9f4,#ff0058);
+      filter: blur(30px);
+      opacity: 0.5;
+    }
+
+    .project-card b {
+      position: absolute;
+      inset: 4px;
+      background: rgba(20, 20, 20, 0.9);
+      z-index: 2;
+      border-radius: 8px;
+    }
+
+    .project-card img {
+      position: absolute;
+      z-index: 3;
+      scale: 0.8;
+      opacity: 0.5;
+      transition: 0.5s;
+      max-width: 80%;
+      border-radius: 8px;
+    }
+
+    .project-card:hover img {
+      scale: 0.5;
+      opacity: 0.9;
+      transform: translateY(-90px);
+    }
+
+    .project-card .content {
+      position: absolute;
+      z-index: 3;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: scale(0);
+      transition: 0.5s;
+      width: 100%;
+      padding-bottom: 20px;
+    }
+
+    .project-card:hover .content {
+      transform: scale(1);
+      bottom: 10px;
+    }
+
+    .content .title {
+      position: relative;
+      color: #fff;
+      font-weight: 500;
+      line-height: 1em;
+      font-size: 1.2em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .content .title span {
+      font-weight: 300;
+      font-size: 0.70em;
+      color: #ccc;
+    }
+
+    .content .sci {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-top: 5px;
+      padding: 0;
+    }
+
+    .sci li { list-style: none; }
+
+    .sci li a {
+      position: relative;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.1);
+      fill: currentColor;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      transition: 0.5s;
+      font-size: 18px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .sci li a:hover {
+      background: rgba(255, 255, 255, 1);
+      color: #000;
+      transform: translateY(-5px);
+    }
+
+    /* --- MODALE ALIGNEMENT PARFAIT --- */
+    dialog {
+        padding: 0;
+        border: none;
+        background: #000;
+        color: #fff;
+        max-width: 900px;
+        width: 90%;
+        margin: auto;
+        border-radius: 4px;
+        box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        overflow: hidden;
+    }
+    
+    dialog::backdrop {
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+    }
+
+    dialog[open] {
+        animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(100px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    /* BANNIERE AVEC GRILLE IDENTIQUE AU CORPS POUR ALIGNEMENT */
+    .modal-banner {
+        height: 280px;
+        background: linear-gradient(rgba(0,0,0,0.4), #000), url('https://images.unsplash.com/photo-1625246333195-58197bd47d19?q=80&w=1000&auto=format&fit=crop') center/cover no-repeat;
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 2 colonnes égales comme le body */
+        gap: 40px; /* Espace central identique au body */
+        align-items: center; 
+        padding: 0 50px; /* Padding identique au body (horizontal) */
+    }
+
+    .modal-title-block {
+        position: relative;
+        z-index: 2;
+        text-align: left;
+        grid-column: 1; /* Force le titre dans la colonne 1 */
+    }
+
+    .modal-title-block h2 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 800;
+        font-size: 3.5rem;
+        line-height: 1;
+        margin: 0;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, #fff, #ccc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .modal-title-block .subtitle {
+        color: #ff0058; 
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        display: block;
+        margin-top: 10px;
+    }
+
+    .modal-logo-right {
+        max-height: 180px;
+        width: auto;
+        object-fit: contain;
+        z-index: 2;
+        grid-column: 2; /* Force le logo dans la colonne 2 */
+        justify-self: start; /* Aligne le logo au début de la colonne 2 (Gauche de la zone de droite) */
+    }
+
+    /* CORPS AVEC GRILLE IDENTIQUE */
+    .modal-body {
+        padding: 40px 50px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        background: #000;
+    }
+
+    .info-block h3 {
+        color: #03a9f4; 
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 10px;
+    }
+
+    .info-block p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #ccc;
+        font-weight: 300;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(255,255,255,0.1);
+        border: none;
+        color: #fff;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 10;
+        transition: 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .close-btn:hover {
+        background: #ff0058;
+        transform: rotate(90deg);
+    }
+
+    @media (max-width: 768px) {
+        .modal-banner { display: flex; flex-direction: column; padding: 60px 20px 30px; height: auto; text-align: center; }
+        .modal-title-block { text-align: center; margin-bottom: 20px; }
+        .modal-logo-right { margin-left: 0; max-height: 120px; }
+        .modal-body { grid-template-columns: 1fr; padding: 30px; }
+        .modal-title-block h2 { font-size: 2.2rem; }
+    }
 
     .cta-section {
       text-align: center;
@@ -479,9 +716,7 @@
 
     @media (max-width: 768px) {
       .nav-container { padding: 15px 24px; flex-direction: row; }
-      
       .hamburger { display: flex; }
-
       .nav-menu {
         position: fixed;
         top: 0; right: -100%; width: 100%; height: 100vh;
@@ -489,17 +724,13 @@
         flex-direction: column; justify-content: center;
         transition: right 0.4s ease;
         z-index: 1000; padding: 60px;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
       }
       .nav-menu.active { right: 0; }
       .nav-menu li { margin: 15px 0; }
       .nav-menu a { font-size: 20px; }
-
       .hero-banner { height: 500px; margin-top: 80px; }
       .hero-title { font-size: 36px; }
-      .main-content { padding: 0 24px; }
-      
-      .services-grid, .why-grid, .projets-grid, .contact-grid { grid-template-columns: 1fr; }
+      .services-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; }
     }
 </style>
 
@@ -585,7 +816,7 @@
                 <p class="service-description">
                     Aisance sur Windows ainsi que sur les machines virtuelles. <br><br>Dactylographie experte<br><br>
                     Maîtrise avancée du Pack Office <br> (Word, Excel, PowerPoint) <br> pour la gestion documentaire et administrative.<br><br>
-                    Maîtrise des langages et logiciels :<br>HTML & CSS<br>pprentissage autodidacte : Js & Gsap & Php & Sql<br>SketchUp Make<br>FL Studio<br>
+                    Maîtrise des langages et logiciels :<br>HTML & CSS<br>SketchUp Make<br>FL Studio<br>
                 </p>
             </div>
             <div class="service-card reveal-on-scroll" style="transition-delay: 0.4s;">
@@ -622,22 +853,38 @@
     <section class="projets-section" id="mes-sites">
         <h2 class="section-title reveal-on-scroll">Mes Sites</h2>
         <div class="projets-grid">
-            <div class="projets-item reveal-on-scroll">
-                <h3 class="service-title" style="margin-bottom: 10px;">Agrimat</h3>
-                <p class="service-description" style="margin-bottom: 20px;">Ventes et Locations de matériel agricole.</p>
-                <a href="https://matheoangst.github.io/cv/comparaison.html" target="_blank" class="cta-button" style="padding: 12px 30px; font-size: 12px; text-decoration: none; border-width: 1px;">
-                    VOIR LE SITE
-                </a>
+            <div class="project-card reveal-on-scroll">
+                <b></b>
+                <img src="logo.png" alt="Agrimat">
+                <div class="content">
+                    <p class="title">AGRIMAT<br><span>Vente de Matériel Agricole</span></p>
+                    <ul class="sci">
+                        <li>
+                            <a href="/comparaison.html" target="_blank" title="Voir le site">
+                                ➜
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="openModal('modal-agrimat'); return false;" title="Plus d'infos">
+                                i
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
             
-            <div class="projets-item reveal-on-scroll" style="transition-delay: 0.2s;">
-                <h3 class="service-title" style="margin-bottom: 10px;">Prochainement</h3>
-                <p class="service-description">Site en construction...</p>
+            <div class="project-card reveal-on-scroll" style="transition-delay: 0.2s; opacity: 0.5;">
+                <b></b>
+                <div class="content" style="transform: scale(1); bottom: 100px;">
+                    <p class="title">Prochainement<br><span>Site en construction</span></p>
+                </div>
             </div>
 
-            <div class="projets-item reveal-on-scroll" style="transition-delay: 0.4s;">
-                <h3 class="service-title" style="margin-bottom: 10px;">Prochainement</h3>
-                <p class="service-description">Site en construction...</p>
+            <div class="project-card reveal-on-scroll" style="transition-delay: 0.4s; opacity: 0.5;">
+                <b></b>
+                <div class="content" style="transform: scale(1); bottom: 100px;">
+                    <p class="title">Prochainement<br><span>Site en construction</span></p>
+                </div>
             </div>
         </div>
     </section>
@@ -672,6 +919,31 @@
     <p class="footer-contact" id="footerEmail">© ANGST Mathéo</p>
 </footer>
 
+<dialog id="modal-agrimat">
+    <div class="modal-content-wrapper">
+        <button class="close-btn" onclick="this.closest('dialog').close()">I</button>
+        
+        <div class="modal-banner">
+            <div class="modal-title-block">
+                <h2>Le Site <br> Agrimat</h2>
+                <span class="subtitle">Vente de Matériel Agricole</span>
+            </div>
+            <img src="logo.png" alt="Logo Agrimat" class="modal-logo-right">
+        </div>
+
+        <div class="modal-body">
+            <div class="info-block">
+                <h3>L'Objectif</h3>
+                <p>J'ai recréé le site d'Agrimat pour m'entraîner à la création de sites web complets et interactifs.</p>
+            </div>
+            <div class="info-block">
+                <h3>La Technique</h3>
+                <p>Redéveloppé entièrement en utilisant les standards web : HTML5, CSS3 et JavaScript avec l'aide de l'IA. Le déploiement est automatisé via GitHub Pages pour assurer une disponibilité maximale 24/7 sans frais d'hébergement.</p>
+            </div>
+        </div>
+    </div>
+</dialog>
+
 <script>
     function toggleTheme() {
         document.body.classList.toggle('dark-mode');
@@ -688,6 +960,10 @@
     function closeMenu() {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
+    }
+
+    function openModal(modalId) {
+        document.getElementById(modalId).showModal();
     }
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -719,4 +995,3 @@
 
 </body>
 </html>
-
