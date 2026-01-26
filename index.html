@@ -519,7 +519,7 @@
       transform: translateY(-5px);
     }
 
-    /* --- MODALE ALIGNEMENT PARFAIT --- */
+    /* --- ROCKSTAR GAMES STYLE MODAL CORRIGÉE --- */
     dialog {
         padding: 0;
         border: none;
@@ -527,10 +527,11 @@
         color: #fff;
         max-width: 900px;
         width: 90%;
+        max-height: 90vh; /* Hauteur max pour mobile */
+        overflow-y: auto; /* Scroll si contenu trop long */
         margin: auto;
         border-radius: 4px;
         box-shadow: 0 0 50px rgba(0,0,0,0.8);
-        overflow: hidden;
     }
     
     dialog::backdrop {
@@ -553,13 +554,12 @@
         position: relative;
     }
 
-    /* BANNIERE AVEC GRILLE IDENTIQUE AU CORPS POUR ALIGNEMENT */
     .modal-banner {
         height: 280px;
         background: linear-gradient(rgba(0,0,0,0.4), #000), url('https://images.unsplash.com/photo-1625246333195-58197bd47d19?q=80&w=1000&auto=format&fit=crop') center/cover no-repeat;
         position: relative;
         display: grid;
-        grid-template-columns: 1fr 1fr; /* 2 colonnes égales comme le body */
+        grid-template-columns: 1fr 1fr; /* Force la structure en 2 colonnes égales */
         gap: 40px; /* Espace central identique au body */
         align-items: center; 
         padding: 0 50px; /* Padding identique au body (horizontal) */
@@ -860,7 +860,7 @@
                     <p class="title">AGRIMAT<br><span>Vente de Matériel Agricole</span></p>
                     <ul class="sci">
                         <li>
-                            <a href="comparaison.html" target="_blank" title="Voir le site">
+                            <a href="/comparaison.html" target="_blank" title="Voir le site">
                                 ➜
                             </a>
                         </li>
@@ -994,5 +994,4 @@
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a3fd2ccb19202bb',t:'MTc2NDA1OTgzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(a)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 
 </body>
-
 </html>
