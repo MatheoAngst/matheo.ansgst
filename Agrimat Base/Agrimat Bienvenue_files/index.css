@@ -1,0 +1,86 @@
+
+.block_bottom
+{
+  margin-top:35px;
+  width:920px;
+  height:170px;
+
+}
+
+.block_right
+{
+  width:430px;
+  height:150px;
+  margin-right: 20px;
+  margin-left: 10px;
+  margin-top:10px;
+  background: url(../Images/occasion.png) no-repeat scroll top left;
+  display:block;
+  position:relative;
+  float:right;
+  
+}
+.block_right a
+{
+  background: url(../Images/occasion.png) no-repeat scroll top left;;
+  display:block;
+  height:150px;
+  position:relative;
+}
+.block_right a.tract {
+width:430px;
+}
+}
+.block_right span {
+background:url(../Images/occasion.png) no-repeat scroll bottom left;
+display:block;
+position:absolute;
+top:0;
+left:0;
+height:100%;
+width:100%;
+z-index:100;
+}
+
+.block_right span {
+background-position:0px -150px;
+}
+
+.block_left
+{
+  width:430px;
+  height:150px;
+  margin-right: 20px;
+  margin-left: 10px;
+  margin-top:10px;
+  background: url(../Images/produit.png) no-repeat scroll top left;
+  display:block;
+  position:relative;
+  float:left;
+  
+}
+.block_left a
+{
+  background: url(../Images/produit.png) no-repeat scroll top left;;
+  display:block;
+  height:150px;
+  position:relative;
+}
+.block_right a.mois {
+width:430px;
+}
+.block_left span {
+background:url(../Images/produit.png) no-repeat scroll bottom left;
+display:block;
+position:absolute;
+top:0;
+left:0;
+height:100%;
+width:100%;
+z-index:100;
+}
+
+.block_left span {
+background-position:0px -150px;
+}
+

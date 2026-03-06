@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 • Page Introuvable</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+      --bg-body: linear-gradient(180deg, #ffffff 0%, #fef5fb 60%, #f8f9fe 70%, #ffffff 100%);
+      --text-main: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --nav-bg: rgba(255, 255, 255, 0.95);
+      --card-border: rgba(0, 0, 0, 0.04);
+      --cta-bg: #000000;
+      --cta-text: #ffffff;
+      --cta-hover-bg: #ffffff;
+      --cta-hover-text: #000000;
+    }
+
+    /* Support du mode sombre automatique pour la 404 */
+    @media (prefers-color-scheme: dark) {
+      body {
+        --bg-body: #121212;
+        --text-main: #ffffff;
+        --text-secondary: #d1d1d1;
+        --nav-bg: #121212;
+        --card-border: #333333;
+        --cta-bg: #ffffff;
+        --cta-text: #000000;
+        --cta-hover-bg: #333333;
+        --cta-hover-text: #ffffff;
+      }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-body);
+      background-attachment: fixed;
+      background-size: cover;
+      color: var(--text-main);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Style identique à votre LOGO */
+    .error-code {
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0.6;
+    }
+
+    .error-title {
+      font-size: 48px;
+      font-weight: 200;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+      line-height: 1.2;
+    }
+
+    .error-message {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin-bottom: 50px;
+      line-height: 1.7;
+    }
+
+    .back-button {
+      padding: 18px 45px;
+      background: var(--cta-bg);
+      color: var(--cta-text);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      border: 1px solid var(--cta-bg);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .back-button:hover {
+      background: var(--cta-hover-bg);
+      color: var(--cta-hover-text);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      border-color: var(--cta-hover-bg);
+    }
+
+    /* Animation d'apparition */
+    .reveal {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+<body>
+
+    <div class="error-code reveal">Erreur 404</div>
+    <h1 class="error-title reveal" style="animation-delay: 0.1s;">Page Introuvable</h1>
+    <p class="error-message reveal" style="animation-delay: 0.2s;">
+        Le contenu que vous recherchez semble avoir été déplacé ou n'existe plus.
+    </p>
+    
+    <a href="/cv/" class="back-button reveal" style="animation-delay: 0.3s;">
+        Retour au CV
+    </a>
+
+</body>
+</html>

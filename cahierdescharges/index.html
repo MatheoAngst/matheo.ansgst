@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cahier des Charges - Création de Site Web</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <style>
+        :root {
+            /* Thème sombre Premium / Apple Style */
+            --bg-1: #000000;
+            --bg-2: #0f0a1c;
+            --surface: #121214;
+            --surface-elevated: #1c1c1f;
+            --primary: #ffffff;
+            --accent: #8b5cf6; 
+            --accent-hover: #9f7aea;
+            --text-main: #e2e2e8;
+            --text-muted: #86868b;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-focus: rgba(139, 92, 246, 0.5);
+            --input-bg: rgba(255, 255, 255, 0.04);
+            --radius-box: 24px;
+            --radius-input: 12px;
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            --transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            background-color: var(--bg-1);
+            letter-spacing: -0.015em;
+        }
+
+        #particle-bg {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, var(--bg-2) 0%, var(--bg-1) 100%);
+        }
+
+        h1, h2, h3 { font-weight: 600; color: var(--primary); letter-spacing: -0.02em; }
+
+        .header { padding: 100px 20px 120px; text-align: center; position: relative; z-index: 2; }
+        .header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header p { color: var(--text-muted); font-size: 1.25rem; max-width: 600px; margin: 0 auto; font-weight: 400; }
+
+        .main-container {
+            max-width: 800px;
+            margin: -60px auto 100px;
+            background: var(--surface);
+            border-radius: var(--radius-box);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            padding: 60px;
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .form-section { margin-bottom: 60px; }
+        .form-section:last-child { margin-bottom: 0; }
+        .form-section h2 { font-size: 1.5rem; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; }
+
+        .section-intro { color: var(--text-muted); font-size: 1rem; margin-bottom: 24px; display: block; }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+        .form-group { margin-bottom: 24px; }
+
+        label { display: block; font-weight: 500; margin-bottom: 8px; font-size: 0.95rem; color: var(--text-main); }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-input);
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--primary);
+            transition: var(--transition);
+            color-scheme: dark;
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+        }
+
+        select option { background-color: var(--surface-elevated); color: var(--primary); }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--border-focus);
+            background-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+        }
+
+        .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 12px; }
+        
+        .option-card {
+            display: flex; align-items: flex-start; padding: 16px; border: 1px solid var(--border);
+            border-radius: var(--radius-input); cursor: pointer; transition: var(--transition);
+            background: var(--input-bg); font-weight: 500; color: var(--text-main);
+        }
+        .option-card:hover { border-color: var(--border-focus); background: rgba(255, 255, 255, 0.06); }
+        
+        .option-card input { margin-right: 12px; margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex-shrink: 0; cursor: pointer; }
+        .option-card input:disabled { opacity: 0.4; cursor: not-allowed; }
+        .option-card.disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .example-link { display: inline-block; font-size: 0.85rem; color: var(--accent); text-decoration: none; margin-top: 8px; margin-left: 4px; transition: var(--transition); }
+        .example-link:hover { color: var(--accent-hover); text-decoration: underline; }
+
+        .dynamic-block { background: var(--surface-elevated); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 20px; position: relative; }
+        .dynamic-block .form-grid { margin-bottom: 0; }
+
+        .btn-submit {
+            background: var(--primary); color: #000000; border: none; padding: 20px 40px; font-size: 1.1rem;
+            font-family: inherit; font-weight: 600; border-radius: 50px; cursor: pointer; width: 100%;
+            transition: var(--transition); margin-top: 30px;
+        }
+        .btn-submit:hover { transform: scale(1.02); background: #ffffff; box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2); }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05); color: var(--primary); border: 1px solid var(--border);
+            padding: 12px 24px; font-size: 0.95rem; font-weight: 500; border-radius: 50px; cursor: pointer;
+            transition: var(--transition); margin-top: 12px; display: inline-block;
+        }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--primary); }
+
+        .btn-remove {
+            background: rgba(239, 68, 68, 0.05); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 10px 16px; font-size: 0.9rem; font-weight: 500; border-radius: 8px; cursor: pointer;
+            transition: var(--transition); display: inline-block;
+        }
+        .btn-remove:hover { background: rgba(239, 68, 68, 0.15); border-color: #ef4444; }
+
+        #loading-overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); z-index: 9999; display: none; flex-direction: column;
+            justify-content: center; align-items: center; color: white;
+        }
+
+        .spinner {
+            width: 40px; height: 40px; border: 3px solid rgba(255, 255, 255, 0.1); border-radius: 50%;
+            border-top-color: var(--primary); animation: spin 1s linear infinite; margin-bottom: 24px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .main-container { padding: 40px 24px; width: 92%; }
+            .options-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particle-bg"></canvas>
+
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <h2 style="color: white; margin-bottom: 8px; font-weight: 500;">Génération en cours</h2>
+        <p style="color: var(--text-muted);">Création de votre document PDF propre...</p>
+    </div>
+
+    <header class="header">
+        <h1>Cahier des Charges</h1>
+        <p>Structurons ensemble votre projet digital.</p>
+    </header>
+
+    <div class="main-container">
+        <form id="myForm" onsubmit="handleFinalSubmit(event)">
+            
+            <div class="form-section">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Entreprise / Client</label>
+                        <input type="text" id="clientName" required placeholder="Nom de la société">
+                    </div>
+                    <div class="form-group">
+                        <label>Responsable du projet</label>
+                        <input type="text" id="responsableName" placeholder="Prénom et Nom">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Date de la demande</label>
+                    <input type="date" id="dateInput" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>1. Identité & Activité</h2>
+                <div class="form-group">
+                    <label>Nom exact de l'entreprise</label>
+                    <input type="text" id="nom_entreprise" required>
+                </div>
+                <div class="form-group">
+                    <label>Slogan (facultatif)</label>
+                    <input type="text" id="slogan">
+                </div>
+                <div class="form-group">
+                    <label>Activité principale</label>
+                    <input type="text" id="activite" required placeholder="Ex: Cabinet d'avocats, Artisan...">
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Cible principale</label>
+                        <input type="text" id="cible" placeholder="Ex: Particuliers, B2B...">
+                    </div>
+                    <div class="form-group">
+                        <label>Zone d'intervention</label>
+                        <input type="text" id="zone" placeholder="Ex: Internationale, Locale...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>2. Histoire & Valeurs</h2>
+                <div class="form-group">
+                    <label>Date de création</label>
+                    <input type="text" id="date_creation" placeholder="Année">
+                </div>
+                <div class="form-group">
+                    <label>Votre histoire</label>
+                    <textarea id="histoire" rows="3" placeholder="Racontez brièvement la genèse de l'entreprise..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Vos valeurs</label>
+                    <textarea id="valeurs" rows="3" placeholder="Quelles sont vos valeurs fondamentales ?"></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>3. Design & Visuel</h2>
+                <div class="form-group">
+                    <label>Logo de l'entreprise</label>
+                    <div class="options-grid">
+                        <label class="option-card" style="cursor: default;">
+                            <input type="radio" value="Fourni" checked onclick="return false;"> 
+                            Je fournis mon logo actuel (il vous sera demandé par email)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Code couleurs ou teintes souhaitées</label>
+                    <input type="text" id="couleurs_txt" placeholder="Ex: Minimaliste (Noir & Blanc), Couleurs chaudes...">
+                </div>
+                <div class="form-group">
+                    <label>Orientation du design</label>
+                    <div class="options-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                        <div>
+                            <label class="option-card" style="margin-bottom: 0;">
+                                <input type="radio" name="style" value="Epuré" checked> Épuré & Minimaliste
+                            </label>
+                            <a href="https://www.apple.com/fr/" target="_blank" class="example-link">Voir un exemple</a>
+                        </div>
+                        <div>
+                            <label class="option-card" style="margin-bottom: 0;">
+                                <input type="radio" name="style" value="Institutionnel"> Pro & Institutionnel
+                            </label>
+                            <a href="https://www.thalesgroup.com/fr" target="_blank" class="example-link">Voir un exemple</a>
+                        </div>
+                        <div>
+                            <label class="option-card" style="margin-bottom: 0;">
+                                <input type="radio" name="style" value="Creatif"> Dynamique & Créatif
+                            </label>
+                            <a href="https://cuberto.com/" target="_blank" class="example-link">Voir un exemple</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>4. Prestations</h2>
+                <div class="form-group">
+                    <label>Services ou produits à mettre en avant</label>
+                    <div id="services-container" style="display: flex; flex-direction: column; gap: 12px;">
+                        <div class="service-row" style="display: flex; gap: 12px; align-items: center;">
+                            <input type="text" class="service-input" placeholder="Prestation 1" style="flex: 1;">
+                            <button type="button" class="btn-remove" onclick="this.parentElement.remove()">Retirer</button>
+                        </div>
+                        <div class="service-row" style="display: flex; gap: 12px; align-items: center;">
+                            <input type="text" class="service-input" placeholder="Prestation 2" style="flex: 1;">
+                            <button type="button" class="btn-remove" onclick="this.parentElement.remove()">Retirer</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-secondary" onclick="addService()">+ Ajouter un service</button>
+                </div>
+                <div class="form-group" style="margin-top: 32px;">
+                    <label>Avantages concurrentiels (Pourquoi vous choisir ?)</label>
+                    <textarea id="points_forts" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>5. L'Équipe & Le Personnel</h2>
+                <div class="form-group">
+                    <label>Souhaitez-vous présenter des membres de votre équipe sur le site ? (Les photos vous seront demandées par email)</label>
+                    <div class="options-grid">
+                        <label class="option-card"><input type="radio" name="has_team" value="Oui" onchange="toggleTeam(true)"> Oui</label>
+                        <label class="option-card"><input type="radio" name="has_team" value="Non" onchange="toggleTeam(false)" checked> Non</label>
+                    </div>
+                </div>
+                
+                <div id="team-section" style="display: none; margin-top: 32px;">
+                    <label>Membres de l'équipe</label>
+                    <div id="team-container">
+                        <div class="dynamic-block team-block">
+                            <div class="form-group">
+                                <label>Nom complet</label>
+                                <input type="text" placeholder="Prénom et Nom" class="team-name team-input-required">
+                            </div>
+                            <div class="form-group">
+                                <label>Poste / Fonction (Obligatoire)</label>
+                                <input type="text" placeholder="Ex: Directeur Général" class="team-role team-input-required">
+                            </div>
+                            <div class="form-grid" style="margin-bottom: 0;">
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label>Email (Facultatif)</label>
+                                    <input type="email" class="team-email" placeholder="email@societe.com">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label>Téléphone (Facultatif)</label>
+                                    <input type="tel" class="team-phone" placeholder="06 XX XX XX XX">
+                                </div>
+                            </div>
+                            <button type="button" class="btn-remove" style="margin-top: 16px;" onclick="this.closest('.dynamic-block').remove()">Retirer ce membre</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-secondary" onclick="addTeamMember()">+ Ajouter un membre</button>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>6. Fonctionnalités Optionnelles</h2>
+                <p class="section-intro">Sélectionnez les modules complémentaires dont vous pourriez avoir besoin.</p>
+                <div class="options-grid" style="grid-template-columns: 1fr 1fr;">
+                    <label class="option-card">
+                        <input type="checkbox" id="feat_multi" onchange="toggleMultilingual(this)"> 
+                        Site Multilingue
+                    </label>
+                    <label class="option-card"><input type="checkbox" id="feat_resa"> Système de Réservation / RDV</label>
+                    <label class="option-card"><input type="checkbox" id="feat_blog"> Espace Blog / Actualités</label>
+                    <label class="option-card"><input type="checkbox" id="feat_social"> Intégration Réseaux Sociaux</label>
+                </div>
+
+                <div id="multilingual-options" class="dynamic-block" style="display: none; margin-top: 24px;">
+                    <label style="color: var(--accent); margin-bottom: 12px; display: block;">Sélectionnez les langues souhaitées (3 maximum, traduction automatique incluse)</label>
+                    <div id="languages-container" style="display: flex; flex-direction: column; gap: 16px;"></div>
+                    <button type="button" class="btn-secondary" style="margin-top: 16px;" onclick="addLanguage()">+ Ajouter une langue</button>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>7. Réseaux & Liens</h2>
+                <p class="section-intro">Renseignez les liens de l'entreprise (Site actuel, Facebook, Instagram, etc.).</p>
+                <div class="form-group">
+                    <div id="links-container" style="display: flex; flex-direction: column; gap: 24px;">
+                        <div class="link-row">
+                            <div class="form-grid" style="margin-bottom: 12px;">
+                                <input type="text" class="link-name" placeholder="Intitulé (ex: Facebook)">
+                                <input type="text" class="link-url" placeholder="Lien (ex: facebook.com/...)">
+                            </div>
+                            <button type="button" class="btn-remove" onclick="this.parentElement.remove()">Retirer ce lien</button>
+                        </div>
+                        <div class="link-row">
+                            <div class="form-grid" style="margin-bottom: 12px;">
+                                <input type="text" class="link-name" placeholder="Intitulé (ex: Instagram)">
+                                <input type="text" class="link-url" placeholder="Lien (ex: instagram.com/...)">
+                            </div>
+                            <button type="button" class="btn-remove" onclick="this.parentElement.remove()">Retirer ce lien</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-secondary" style="margin-top: 16px;" onclick="addLink()">+ Ajouter un lien</button>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>8. Besoins Spécifiques & Commentaires</h2>
+                <p class="section-intro">Précisez ici toute autre fonctionnalité, remarque ou besoin particulier pour votre projet.</p>
+                <div class="form-group">
+                    <textarea id="commentaires_libres" rows="5" placeholder="Ex: Je souhaite un espace membre privé, une animation spécifique, des formulaires de devis complexes, etc."></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>9. Page Contact</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Email de l'entreprise</label>
+                        <input type="email" id="clientEmail" required placeholder="contact@societe.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Téléphone principal</label>
+                        <input type="tel" id="telephone" placeholder="Numéro à afficher sur le site">
+                    </div>
+                </div>
+                
+                <div class="form-group" style="margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border);">
+                    <label style="display: flex; align-items: flex-start; cursor: pointer; font-weight: 400; font-size: 1rem;">
+                        <input type="checkbox" required style="width: 24px; height: 24px; margin-right: 16px; margin-top: 2px; accent-color: var(--primary);">
+                        Je confirme l'exactitude des informations renseignées et m'engage à vérifier le document PDF généré avant de vous le transmettre.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit">Générer le cahier des charges (PDF)</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const dateInput = document.getElementById("dateInput");
+            if (dateInput) {
+                const today = new Date().toISOString().split("T")[0];
+                dateInput.value = today;
+            }
+            
+            addLanguage();
+        });
+
+        function toggleMultilingual(checkbox) {
+            const panel = document.getElementById('multilingual-options');
+            if (checkbox.checked) {
+                panel.style.display = 'block';
+            } else {
+                panel.style.display = 'none';
+            }
+        }
+
+        let langCount = 0;
+        function addLanguage() {
+            const container = document.getElementById("languages-container");
+            
+            if (container.children.length >= 3) {
+                alert("Vous pouvez sélectionner jusqu'à 3 langues maximum.");
+                return;
+            }
+
+            langCount++;
+            
+            const languages = [
+                "Afrikaans", "Albanais", "Allemand", "Amharique", "Anglais", "Arabe", "Arménien", "Azéri", "Basque", "Bengali",
+                "Biélorusse", "Birman", "Bosniaque", "Bulgare", "Catalan", "Cebuano", "Chichewa", "Chinois (Cantonais)", "Chinois (Mandarin)",
+                "Cinghalais", "Coréen", "Corse", "Créole haïtien", "Croate", "Danois", "Espagnol", "Espéranto", "Estonien", "Finnois",
+                "Français", "Galicien", "Gallois", "Géorgien", "Grec", "Gujarati", "Haoussa", "Hawaïen", "Hébreu", "Hindi", "Hmong",
+                "Hongrois", "Igbo", "Indonésien", "Irlandais", "Islandais", "Italien", "Japonais", "Javanais", "Kannada", "Kazakh",
+                "Khmer", "Kirghize", "Kurde", "Lao", "Latin", "Letton", "Lituanien", "Macédonien", "Malaisien", "Malayalam", "Malgache",
+                "Maltais", "Maori", "Marathi", "Mongol", "Néerlandais", "Népalais", "Norvégien", "Ourdou", "Ouzbek", "Pachto", "Pendjabi",
+                "Persan", "Polonais", "Portugais", "Roumain", "Russe", "Samoan", "Serbe", "Shona", "Sindhi", "Slovaque", "Slovène",
+                "Somali", "Soudanais", "Suédois", "Swahili", "Tadjik", "Tagalog", "Tamoul", "Tchèque", "Telugu", "Thaï", "Turc",
+                "Ukrainien", "Vietnamien", "Xhosa", "Yiddish", "Yorouba", "Zoulou"
+            ];
+            
+            let optionsHTML = `<option value="" disabled selected>Choisir une langue...</option>`;
+            optionsHTML += `<option value="Autre">Autre (à préciser...)</option>`;
+            
+            languages.forEach(lang => {
+                optionsHTML += `<option value="${lang}">${lang}</option>`;
+            });
+
+            const htmlBlock = `
+                <div class="language-block" style="display: flex; flex-direction: column; gap: 8px;">
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <select class="lang-select" style="flex: 1;" required onchange="toggleOtherLanguage(this)">
+                            ${optionsHTML}
+                        </select>
+                        <button type="button" class="btn-remove" onclick="this.closest('.language-block').remove()">Retirer</button>
+                    </div>
+                    <input type="text" class="lang-other-input" placeholder="Précisez la langue souhaitée" style="display: none; width: 100%;">
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', htmlBlock);
+        }
+
+        function toggleOtherLanguage(selectElement) {
+            const otherInput = selectElement.parentElement.nextElementSibling;
+            if (selectElement.value === 'Autre') {
+                otherInput.style.display = 'block';
+                otherInput.required = true;
+            } else {
+                otherInput.style.display = 'none';
+                otherInput.required = false;
+                otherInput.value = '';
+            }
+        }
+
+        let serviceCount = 2;
+        function addService() {
+            serviceCount++;
+            const container = document.getElementById("services-container");
+            const htmlBlock = `
+                <div class="service-row" style="display: flex; gap: 12px; align-items: center;">
+                    <input type="text" class="service-input" placeholder="Prestation supplémentaire" style="flex: 1;">
+                    <button type="button" class="btn-remove" onclick="this.parentElement.remove()">Retirer</button>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', htmlBlock);
+        }
+
+        let linkCount = 2;
+        function addLink() {
+            linkCount++;
+            const container = document.getElementById("links-container");
+            const htmlBlock = `
+                <div class="link-row">
+                    <div class="form-grid" style="margin-bottom: 12px;">
+                        <input type="text" class="link-name" placeholder="Intitulé (ex: LinkedIn)">
+                        <input type="text" class="link-url" placeholder="Lien (ex: linkedin.com/...)">
+                    </div>
+                    <button type="button" class="btn-remove" onclick="this.parentElement.remove()">Retirer ce lien</button>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', htmlBlock);
+        }
+
+        function toggleTeam(show) {
+            const teamSection = document.getElementById("team-section");
+            const requiredInputs = teamSection.querySelectorAll('.team-input-required');
+            
+            if (show) {
+                teamSection.style.display = "block";
+                requiredInputs.forEach(input => input.required = true);
+            } else {
+                teamSection.style.display = "none";
+                requiredInputs.forEach(input => input.required = false);
+            }
+        }
+
+        function addTeamMember() {
+            const container = document.getElementById("team-container");
+            const htmlBlock = `
+                <div class="dynamic-block team-block" style="margin-top: 20px;">
+                    <div class="form-group">
+                        <label>Nom complet</label>
+                        <input type="text" placeholder="Prénom et Nom" class="team-name team-input-required" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Poste / Fonction (Obligatoire)</label>
+                        <input type="text" placeholder="Ex: Directeur Général" class="team-role team-input-required" required>
+                    </div>
+                    <div class="form-grid" style="margin-bottom: 0;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label>Email (Facultatif)</label>
+                            <input type="email" class="team-email" placeholder="email@societe.com">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label>Téléphone (Facultatif)</label>
+                            <input type="tel" class="team-phone" placeholder="06 XX XX XX XX">
+                        </div>
+                    </div>
+                    <button type="button" class="btn-remove" style="margin-top: 16px;" onclick="this.closest('.dynamic-block').remove()">Retirer ce membre</button>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', htmlBlock);
+        }
+
+        // --- PARTICULES ---
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const canvas = document.getElementById('particle-bg');
+        const ctx = canvas.getContext('2d');
+
+        function setCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        setCanvasSize();
+
+        const particlesArray = [];
+        const colors = ['#8b5cf6', '#a78bfa', '#4c1d95', '#ffffff'];
+        const particleCount = window.innerWidth < 768 ? 90 : 180;
+
+        class Particle {
+            constructor() { this.init(); }
+            init() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.5 + 0.5;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.alpha = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < particleCount; i++) particlesArray.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particlesArray.forEach(p => { p.update(); p.draw(); });
+            if (!reduceMotion) requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', () => {
+            setCanvasSize();
+            particlesArray.length = 0; 
+            initParticles();
+        });
+
+        initParticles();
+        if (!reduceMotion) animateParticles();
+
+        // --- SOUMISSION & PDF ---
+        const { jsPDF } = window.jspdf;
+        const SERVICE_ID = "service_559kgtw"; 
+        const TEMPLATE_ID = "template_zbi13aj";
+        const PUBLIC_KEY = "BeOkhtXz2pGYYY8bQ"; 
+
+        (function(){ emailjs.init(PUBLIC_KEY); })();
+
+        async function handleFinalSubmit(e) {
+            e.preventDefault();
+
+            // Message d'avertissement professionnel avant la génération
+            const confirmation = confirm("ÉTAPE IMPORTANTE :\n\n1. Un document PDF résumant votre demande va être généré et téléchargé sur votre appareil.\n2. Nous vous invitons à le vérifier attentivement.\n3. Pour valider votre projet, vous devrez RÉPONDRE à l'email de confirmation que vous allez recevoir dans quelques instants en y joignant ce PDF validé, ainsi que vos visuels (logo, photos de présentation).\n\nConfirmez-vous la création de votre cahier des charges ?");
+            if (!confirmation) return;
+
+            document.getElementById('loading-overlay').style.display = 'flex';
+
+            const doc = new jsPDF();
+            const client = document.getElementById('clientName').value;
+            const primaryColor = [139, 92, 246];
+            let y = 20;
+            const margin = 20;
+
+            const checkSpace = (h) => { if (y + h > 275) { doc.addPage(); y = 20; } };
+            const drawHLine = () => { doc.setDrawColor(230); doc.line(margin, y, 190, y); y += 10; };
+
+            doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+            doc.rect(0, 0, 210, 40, 'F');
+            doc.setTextColor(255);
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(22);
+            doc.text("CAHIER DES CHARGES WEB", margin, 26);
+            
+            y = 55;
+            doc.setTextColor(60);
+            doc.setFontSize(10);
+            doc.text(`ÉMIS POUR : ${client.toUpperCase()}`, margin, y);
+            doc.text(`DATE : ${document.getElementById('dateInput').value.split('-').reverse().join('/')}`, 150, y);
+            y += 10;
+            drawHLine();
+
+            const addSection = (title) => {
+                checkSpace(25);
+                y += 5;
+                doc.setFontSize(14);
+                doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+                doc.setFont("helvetica", "bold");
+                doc.text(title.toUpperCase(), margin, y);
+                y += 4;
+                doc.setDrawColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+                doc.setLineWidth(0.5);
+                doc.line(margin, y, margin + 20, y);
+                y += 10;
+            };
+
+            const addField = (label, value) => {
+                if (!value || value.trim() === "") return;
+                checkSpace(15);
+                doc.setFontSize(9);
+                doc.setTextColor(140);
+                doc.setFont("helvetica", "bold");
+                doc.text(label + " :", margin + 5, y);
+                y += 5;
+                doc.setFontSize(11);
+                doc.setTextColor(40);
+                doc.setFont("helvetica", "normal");
+                const splitText = doc.splitTextToSize(String(value), 160);
+                doc.text(splitText, margin + 5, y);
+                y += (splitText.length * 6) + 5;
+            };
+
+            addSection("1. Identité de l'Entreprise");
+            addField("Nom de la structure", document.getElementById('nom_entreprise').value);
+            addField("Slogan", document.getElementById('slogan').value);
+            addField("Activité", document.getElementById('activite').value);
+            addField("Cible", document.getElementById('cible').value);
+            addField("Zone", document.getElementById('zone').value);
+
+            addSection("2. Vision & Design");
+            addField("Date de création", document.getElementById('date_creation').value);
+            addField("Histoire", document.getElementById('histoire').value);
+            addField("Valeurs", document.getElementById('valeurs').value);
+            
+            const styleOpt = document.querySelector('input[name="style"]:checked');
+            if (styleOpt) addField("Style graphique", styleOpt.value);
+            
+            addField("Couleurs", document.getElementById('couleurs_txt').value);
+            addField("Logo", "Fourni par le client via email");
+
+            addSection("3. Prestations & Fonctionnalités");
+            const services = Array.from(document.querySelectorAll('.service-input')).map(i => i.value).filter(v => v);
+            if (services.length) addField("Services à mettre en avant", services.join(" | "));
+            addField("Avantages concurrentiels", document.getElementById('points_forts').value);
+            
+            let feats = [];
+            if(document.getElementById('feat_resa').checked) feats.push("Réservations");
+            if(document.getElementById('feat_blog').checked) feats.push("Espace Blog");
+            if(document.getElementById('feat_social').checked) feats.push("Intégration Réseaux Sociaux");
+            if(document.getElementById('feat_multi').checked) {
+                const langs = [];
+                document.querySelectorAll('.lang-select').forEach(sel => {
+                    if (sel.value === 'Autre') {
+                        const otherVal = sel.parentElement.nextElementSibling.value;
+                        if(otherVal) langs.push(otherVal);
+                    } else if (sel.value) {
+                        langs.push(sel.value);
+                    }
+                });
+                if(langs.length) feats.push(`Multilingue (${langs.join(', ')})`);
+            }
+            if (feats.length) addField("Modules activés", feats.join(" • "));
+
+            addSection("4. L'Équipe");
+            const hasTeam = document.querySelector('input[name="has_team"]:checked').value;
+            if (hasTeam === "Oui") {
+                const teamBlocks = document.querySelectorAll('.team-block');
+                teamBlocks.forEach((tb, index) => {
+                    const tName = tb.querySelector('.team-name').value;
+                    const tRole = tb.querySelector('.team-role').value;
+                    const tEmail = tb.querySelector('.team-email').value;
+                    const tPhone = tb.querySelector('.team-phone').value;
+                    
+                    let memberInfo = `${tName} - ${tRole}`;
+                    if (tEmail) memberInfo += ` | ${tEmail}`;
+                    if (tPhone) memberInfo += ` | ${tPhone}`;
+                    addField(`Membre ${index + 1}`, memberInfo);
+                });
+            } else {
+                addField("Présentation", "L'équipe ne sera pas présentée sur le site.");
+            }
+
+            addSection("5. Réseaux & Liens");
+            const linkRows = document.querySelectorAll('.link-row');
+            let linksArr = [];
+            linkRows.forEach(lr => {
+                const ln = lr.querySelector('.link-name').value;
+                const lu = lr.querySelector('.link-url').value;
+                if (ln && lu) linksArr.push(`${ln} : ${lu}`);
+            });
+            if(linksArr.length > 0) addField("Liens fournis", linksArr.join("\n"));
+
+            addSection("6. Notes & Contact");
+            addField("Commentaires spécifiques", document.getElementById('commentaires_libres').value);
+            addField("Email de contact du client", document.getElementById('clientEmail').value);
+            addField("Téléphone du client", document.getElementById('telephone').value);
+            addField("Responsable projet", document.getElementById('responsableName').value);
+
+            const pageCount = doc.internal.getNumberOfPages();
+            for(let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                doc.setFontSize(8);
+                doc.setTextColor(180);
+                doc.text(`Cahier des Charges - Page ${i}/${pageCount}`, 105, 290, {align: "center"});
+            }
+
+            try {
+                doc.save(`CDC_${client.replace(/\s+/g, '_')}.pdf`);
+                await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+                    nom_entreprise: client,
+                    to_email: document.getElementById('clientEmail').value,
+                    reply_to: "angstmatheo67@gmail.com"
+                });
+                
+                document.getElementById('loading-overlay').style.display = 'none';
+                
+                // Message final de rappel
+                alert("Génération terminée avec succès !\n\nMerci de prendre un instant pour vérifier le document PDF qui vient de se télécharger sur votre appareil.\n\nPour finaliser votre demande, veuillez RÉPONDRE à l'email que vous venez de recevoir en y attachant ce PDF validé ainsi que vos éléments graphiques.");
+                
+            } catch (err) {
+                document.getElementById('loading-overlay').style.display = 'none';
+                alert("Le fichier PDF a été généré, mais une erreur est survenue lors de l'envoi de l'email automatique.");
+                console.error(err);
+            }
+        }
+    </script>
+</body>
+</html>
