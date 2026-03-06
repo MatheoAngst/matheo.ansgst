@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Agrimat 67 - L'excellence du matériel agricole, viticole et espaces verts en Alsace depuis 1951.">
+    <title>AGRIMAT 67 | L'Excellence Agricole</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        agri: { red: '#cc0000', green: '#65a30d', dark: '#111111', gray: '#f4f4f4' }
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        heading: ['Oswald', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'bubble': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #f8f9fa; overflow-x: hidden; }
+
+        /* --- PARALLAX HERO --- */
+        .hero-section {
+            background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1472141521881-95d0e87e2e39?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+
+        /* --- ELEMENTS FLOTTANTS (Glassmorphism) --- */
+        .glass-bubble {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+        .glass-bubble:hover {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.1);
+        }
+
+        /* --- STYLE METALINK (Timeline Pro) --- */
+        .methode-timeline {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            padding: 2rem 0;
+            margin: 0 auto;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                rgba(20, 25, 35, 0.2) 10%, 
+                rgba(20, 25, 35, 0.3) 50%, 
+                rgba(20, 25, 35, 0.2) 90%, 
+                transparent 100%);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .timeline-arrow {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 48px;
+            height: 28px;
+            transform: translateX(-50%) translateY(-28px);
+            z-index: 4;
+            pointer-events: none;
+            will-change: top, transform;
+            transform-origin: center center;
+            filter: drop-shadow(0 0 20px rgba(204, 0, 0, 0.4));
+        }
+
+        .timeline-arrow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-top: 28px solid #cc0000;
+        }
+
+        .timeline-arrow::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 32px;
+            height: 32px;
+            background: radial-gradient(circle, rgba(204, 0, 0, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(8px);
+            z-index: -1;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(1); }
+            50% { opacity: 0.7; transform: translateX(-50%) scale(1.2); }
+        }
+
+        .timeline-step {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            z-index: 2;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+        
+        .timeline-step.active {
+            opacity: 1;
+        }
+
+        .timeline-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-step:nth-child(even) .timeline-content {
+            text-align: right;
+        }
+
+        .timeline-point {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 3px solid #e5e7eb;
+            flex-shrink: 0;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) scale(1);
+            z-index: 3;
+            box-shadow: 0 0 0 4px #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content {
+            flex: 1;
+            max-width: 380px;
+            text-align: left;
+            margin-left: 0;
+            margin-right: auto;
+            padding-right: 2rem;
+        }
+
+        .timeline-step:nth-child(even) .timeline-content {
+            margin-left: auto;
+            margin-right: 0;
+            padding-left: 2rem;
+            padding-right: 0;
+        }
+
+        .step-number {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #cc0000;
+            margin-bottom: 0.25rem;
+            line-height: 1;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111111;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-text {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* --- ANIMATION SCROLL PRO --- */
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(40px); 
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+        }
+        .reveal.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        /* --- MARQUEE INFINI --- */
+        .marquee-container { overflow: hidden; white-space: nowrap; position: relative; cursor: pointer; }
+        .marquee-track { display: inline-flex; animation: scroll 40s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+        .paused { animation-play-state: paused !important; }
+        .partner-item { margin: 0 40px; opacity: 0.7; transition: 0.3s; display: inline-flex; align-items: center; }
+        .partner-item:hover { opacity: 1; transform: scale(1.1); }
+        .partner-item img { height: 50px; width: auto; object-fit: contain; filter: grayscale(100%); transition: 0.3s; }
+        .partner-item:hover img { filter: grayscale(0%); }
+
+        /* --- UI COMPONENTS --- */
+        .nav-link { font-weight: 700; text-transform: uppercase; font-size: 0.9rem; position: relative; }
+        .nav-link:hover { color: #cc0000; }
+        .metalink-pill { position: relative; overflow: hidden; z-index: 1; }
+        .metalink-pill::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #65a30d; z-index: -1; transform: scaleX(0); transform-origin: right; transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
+        .metalink-pill:hover::before { transform: scaleX(1); transform-origin: left; }
+        .metalink-pill span { position: relative; z-index: 2; }
+    </style>
+</head>
+<body class="text-agri-dark antialiased">
+
+    <div class="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+        <nav class="glass-bubble shadow-bubble w-full max-w-7xl px-4 py-2 md:px-8 md:py-3 flex justify-between items-center">
+            <a href="index.html"><img src="logo.png" alt="Agrimat" class="h-10 md:h-14 w-auto"></a>
+            <div class="hidden lg:flex items-center space-x-8 text-gray-800">
+                <a href="index.html" class="nav-link text-agri-red">Accueil</a>
+                <a href="promotion.html" class="nav-link">Promotions</a>
+                <a href="Location.html" class="nav-link">Location</a>
+                
+                <div class="relative group">
+                    <button class="nav-link flex items-center py-2 cursor-pointer">
+                        Occasions <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                    </button>
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white shadow-xl rounded-lg w-56 hidden group-hover:block border border-gray-100 p-2 before:absolute before:-top-6 before:left-0 before:w-full before:h-6 before:bg-transparent before:content-['']">
+                        <a href="http://www.agriaffaires.com/pros/list/30129-0/1/agrimat.html" target="_blank" class="block px-4 py-3 hover:bg-gray-50 rounded text-sm font-bold"><i class="fas fa-tractor text-orange-500 mr-2"></i> Agriaffaires</a>
+                        <a href="https://www.leboncoin.fr/boutique/5608900/agrimat.htm" target="_blank" class="block px-4 py-3 hover:bg-gray-50 rounded text-sm font-bold border-t border-gray-100"><i class="fas fa-shopping-bag text-orange-500 mr-2"></i> Leboncoin</a>
+                    </div>
+                </div>
+
+                <div class="relative group">
+                    <button class="nav-link flex items-center py-2 cursor-pointer">
+                        Entreprise <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                    </button>
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white shadow-xl rounded-lg w-48 hidden group-hover:block border border-gray-100 p-2 before:absolute before:-top-6 before:left-0 before:w-full before:h-6 before:bg-transparent before:content-['']">
+                        <a href="#methode" class="block px-4 py-2 hover:bg-gray-50 rounded text-sm">Notre Approche</a>
+                        <a href="#histoire" class="block px-4 py-2 hover:bg-gray-50 rounded text-sm">Notre Histoire</a>
+                        <a href="#equipe" class="block px-4 py-2 hover:bg-gray-50 rounded text-sm">Notre Équipe</a>
+                    </div>
+                </div>
+                
+                <a href="#reseau" class="nav-link">Agences</a>
+                <a href="contact.html" class="metalink-pill bg-agri-red text-white px-6 py-2 rounded-full font-bold uppercase text-xs shadow-lg border-2 border-agri-red hover:border-agri-green"><span>Contact</span></a>
+            </div>
+            <button id="mobile-menu-btn" class="lg:hidden text-2xl"><i class="fas fa-bars"></i></button>
+        </nav>
+    </div>
+
+    <div class="fixed top-24 left-0 right-0 z-40 flex justify-center px-4 pointer-events-none">
+        <div class="glass-bubble shadow-bubble px-8 py-2 flex items-center justify-center gap-8 border border-white/40 pointer-events-auto bg-white/90 backdrop-blur-md scale-90 md:scale-100">
+            <a href="http://www.delta-force.com/" target="_blank" class="hover:scale-110 transition"><img src="deltaforce.jpg" alt="Delta Force" class="h-8 md:h-10 w-auto grayscale hover:grayscale-0 transition"></a>
+            <a href="http://www.honda-equipement.fr/" target="_blank" class="hover:scale-110 transition px-6 border-x border-gray-300"><img src="honda.jpg" alt="Honda" class="h-6 md:h-8 w-auto grayscale hover:grayscale-0 transition"></a>
+            <a href="http://www.amazone.fr/" target="_blank" class="hover:scale-110 transition"><img src="amazone.png" alt="Amazone" class="h-8 md:h-10 w-auto grayscale hover:grayscale-0 transition"></a>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="fixed top-24 left-4 right-4 z-40 hidden lg:hidden bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-gray-100 flex flex-col space-y-4 font-bold text-center uppercase">
+        <a href="index.html" class="text-agri-red">Accueil</a>
+        <a href="promotion.html">Promotions</a>
+        <a href="Location.html">Location</a>
+        <a href="#reseau">Agences</a>
+        <a href="contact.html" class="text-agri-red border-t pt-4">Contact</a>
+    </div>
+
+    <header class="hero-section flex items-center relative">
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#f8f9fa] to-transparent"></div>
+        <div class="container mx-auto px-6 relative z-10 pt-20"> 
+            <div class="max-w-4xl reveal active">
+                <div class="inline-flex items-center space-x-2 bg-black/40 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-6 border border-white/30 backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-agri-green"></span><span>Depuis 1951</span>
+                </div>
+                <h1 class="text-5xl md:text-8xl font-heading font-bold text-white leading-tight mb-8 drop-shadow-2xl">
+                    L'EMPREINTE DE <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-agri-red to-orange-500">VOS PROJETS</span>
+                </h1>
+                <p class="text-xl text-gray-100 mb-10 font-medium max-w-2xl leading-relaxed drop-shadow-lg">
+                    Spécialiste du matériel agricole, viticole et espaces verts. Une expertise technique reconnue partout en Alsace.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#produits" class="metalink-pill bg-white text-agri-dark px-10 py-4 rounded-full font-heading font-bold uppercase tracking-wider shadow-xl text-center border-2 border-white hover:border-agri-green"><span>Nos Gammes</span></a>
+                    <a href="tel:0388890929" class="bg-white/10 backdrop-blur-md border-2 border-white text-white px-10 py-4 rounded-full font-heading font-bold uppercase tracking-wider hover:bg-white hover:text-agri-dark transition text-center"><i class="fas fa-phone mr-2"></i> 03 88 89 09 29</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-white py-12 border-b border-gray-200 overflow-hidden">
+        <div class="container mx-auto px-6">
+            <p class="text-center text-gray-400 text-sm font-bold uppercase tracking-[0.2em] mb-10 reveal">NOS PARTENARIATS</p>
+            <div class="marquee-container reveal" id="marquee">
+                <div class="marquee-track">
+                    <a href="#" class="partner-item"><span class="text-4xl font-heading font-bold text-agri-red tracking-tighter">CASE IH</span></a>
+                    <a href="#" class="partner-item"><img src="amazone.png" alt="Amazone"></a>
+                    <a href="#" class="partner-item"><img src="agricole/LOGO lindner_0.png" alt="Lindner"></a>
+                    <a href="#" class="partner-item"><img src="honda.jpg" alt="Honda"></a>
+                    <a href="#" class="partner-item"><img src="agricole/LOGO OIP.jpg" alt="Husqvarna"></a>
+                    <a href="#" class="partner-item"><img src="deltaforce.jpg" alt="Delta Force"></a>
+                    <a href="#" class="partner-item"><img src="agricole/merlo.jpg" alt="Merlo"></a>
+                    <a href="#" class="partner-item"><img src="agricole/krone.jpg" alt="Krone"></a>
+                    <a href="#" class="partner-item"><img src="agricole/kverneland.jpg" alt="Kverneland"></a>
+                    <a href="#" class="partner-item"><img src="agricole/amr.jpg" alt="AMR"></a>
+                    <a href="#" class="partner-item"><span class="text-4xl font-heading font-bold text-agri-red tracking-tighter">CASE IH</span></a>
+                    <a href="#" class="partner-item"><img src="amazone.png" alt="Amazone"></a>
+                    <a href="#" class="partner-item"><img src="agricole/LOGO lindner_0.png" alt="Lindner"></a>
+                    <a href="#" class="partner-item"><img src="honda.jpg" alt="Honda"></a>
+                    <a href="#" class="partner-item"><img src="agricole/LOGO OIP.jpg" alt="Husqvarna"></a>
+                    <a href="#" class="partner-item"><img src="deltaforce.jpg" alt="Delta Force"></a>
+                    <a href="#" class="partner-item"><img src="agricole/merlo.jpg" alt="Merlo"></a>
+                    <a href="#" class="partner-item"><img src="agricole/krone.jpg" alt="Krone"></a>
+                    <a href="#" class="partner-item"><img src="agricole/kverneland.jpg" alt="Kverneland"></a>
+                    <a href="#" class="partner-item"><img src="agricole/amr.jpg" alt="AMR"></a>
+                </div>
+            </div>
+            <p class="text-center text-xs text-gray-300 mt-4 italic reveal">Cliquez pour mettre en pause</p>
+        </div>
+    </div>
+
+    <section id="produits" class="py-24 bg-agri-gray">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-agri-dark mb-4">NOS UNIVERS</h2>
+                <div class="w-20 h-1 bg-agri-red mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-3xl overflow-hidden shadow-xl reveal group cursor-pointer">
+                    <div class="h-64 bg-cover bg-center relative transition transform group-hover:scale-105 duration-700" style="background-image: url('https://images.unsplash.com/photo-1592982537447-6f2a6a0c7c18?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <i class="fas fa-tractor text-3xl mb-2 text-agri-red"></i>
+                            <h3 class="text-3xl font-heading font-bold">Agricole</h3>
+                        </div>
+                    </div>
+                    <div class="p-8 relative bg-white">
+                        <p class="text-gray-600 mb-6">Traction, récolte et travail du sol. La performance Case IH au service de votre rendement.</p>
+                        <a href="agricole.html" class="metalink-pill inline-flex items-center w-full justify-center bg-agri-red text-white py-3 rounded-full font-bold uppercase text-sm border border-agri-red hover:border-agri-green"><span>Découvrir</span></a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-3xl overflow-hidden shadow-xl reveal group cursor-pointer" style="transition-delay: 100ms;">
+                    <div class="h-64 bg-cover bg-center relative transition transform group-hover:scale-105 duration-700" style="background-image: url('https://images.unsplash.com/photo-1560493676-04071c5f467b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <i class="fas fa-wine-bottle text-3xl mb-2 text-agri-red"></i>
+                            <h3 class="text-3xl font-heading font-bold">Viticole</h3>
+                        </div>
+                    </div>
+                    <div class="p-8 relative bg-white">
+                        <p class="text-gray-600 mb-6">Des solutions étroites et maniables adaptées aux terroirs alsaciens.</p>
+                        <a href="viticole.html" class="metalink-pill inline-flex items-center w-full justify-center bg-agri-red text-white py-3 rounded-full font-bold uppercase text-sm border border-agri-red hover:border-agri-green"><span>Découvrir</span></a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-3xl overflow-hidden shadow-xl reveal group cursor-pointer" style="transition-delay: 200ms;">
+                    <div class="h-64 bg-cover bg-center relative transition transform group-hover:scale-105 duration-700" style="background-image: url('https://images.unsplash.com/photo-1558904541-efa843a96f01?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <i class="fas fa-tree text-3xl mb-2 text-agri-red"></i>
+                            <h3 class="text-3xl font-heading font-bold">Espaces Verts</h3>
+                        </div>
+                    </div>
+                    <div class="p-8 relative bg-white">
+                        <p class="text-gray-600 mb-6">Matériel pro pour les collectivités et paysagistes. Honda, Husqvarna, Stihl.</p>
+                        <a href="espacevert.html" class="metalink-pill inline-flex items-center w-full justify-center bg-agri-red text-white py-3 rounded-full font-bold uppercase text-sm border border-agri-red hover:border-agri-green"><span>Découvrir</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="methode" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-agri-dark mb-4">NOTRE APPROCHE</h2>
+                <div class="w-20 h-1 bg-agri-red mx-auto"></div>
+                <p class="mt-6 text-gray-600 max-w-2xl mx-auto text-lg">Une méthode de travail éprouvée pour garantir votre satisfaction.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto reveal" id="accordion-container">
+                <div class="accordion-item border-b border-gray-200 py-6">
+                    <button class="accordion-header w-full flex justify-between items-center text-left group">
+                        <span class="text-2xl font-heading font-bold text-agri-dark group-hover:text-agri-red transition-colors">1. Écoute & Conseil</span>
+                        <i class="fas fa-chevron-down text-agri-red transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                        <p class="pt-4 text-gray-600 leading-relaxed">Nous commençons toujours par une analyse approfondie de vos besoins.</p>
+                    </div>
+                </div>
+                <div class="accordion-item border-b border-gray-200 py-6">
+                    <button class="accordion-header w-full flex justify-between items-center text-left group">
+                        <span class="text-2xl font-heading font-bold text-agri-dark group-hover:text-agri-red transition-colors">2. Sélection & Préparation</span>
+                        <i class="fas fa-chevron-down text-agri-red transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                        <p class="pt-4 text-gray-600 leading-relaxed">Chaque machine est méticuleusement préparée et contrôlée dans nos ateliers.</p>
+                    </div>
+                </div>
+                <div class="accordion-item border-b border-gray-200 py-6">
+                    <button class="accordion-header w-full flex justify-between items-center text-left group">
+                        <span class="text-2xl font-heading font-bold text-agri-dark group-hover:text-agri-red transition-colors">3. Livraison & Mise en route</span>
+                        <i class="fas fa-chevron-down text-agri-red transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                        <p class="pt-4 text-gray-600 leading-relaxed">Nos spécialistes vous forment à l'utilisation optimale de votre nouvel équipement.</p>
+                    </div>
+                </div>
+                <div class="accordion-item border-b border-gray-200 py-6">
+                    <button class="accordion-header w-full flex justify-between items-center text-left group">
+                        <span class="text-2xl font-heading font-bold text-agri-dark group-hover:text-agri-red transition-colors">4. Suivi & Service Après-Vente</span>
+                        <i class="fas fa-chevron-down text-agri-red transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                        <p class="pt-4 text-gray-600 leading-relaxed">Notre engagement continue bien après la vente avec un SAV réactif.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="histoire" class="py-24 bg-agri-gray">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-agri-dark mb-4">NOTRE HISTOIRE</h2>
+                <div class="w-20 h-1 bg-agri-red mx-auto"></div>
+                <p class="mt-6 text-gray-600 max-w-2xl mx-auto text-lg">Plus de 70 ans d'engagement au service de l'agriculture alsacienne.</p>
+            </div>
+    
+            <div class="methode-timeline">
+                <div class="timeline-line"></div>
+                <div class="timeline-arrow"></div>
+                
+                <div class="timeline-step">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-content">
+                        <div class="step-number">1951</div>
+                        <h3 class="step-title">Création Machinisme</h3>
+                        <p class="step-text">Création de la partie machinisme suite à la construction des bâtiments actuels. Très vite la vente de moissonneuses batteuses grâce à New Holland prend de l’ampleur.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-step">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-content">
+                        <div class="step-number">1965</div>
+                        <h3 class="step-title">Partenariat Honda</h3>
+                        <p class="step-text">Début avec Honda de la motoculture de plaisance.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-step">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-content">
+                        <div class="step-number">1974</div>
+                        <h3 class="step-title">Expansion</h3>
+                        <p class="step-text">Le comptoir rachète l’union agricole de l’est son principal concurrent.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-step">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-content">
+                        <div class="step-number">1975</div>
+                        <h3 class="step-title">Nouvelles Marques</h3>
+                        <p class="step-text">La marque Ford remplace Deutz et Lamborghini complète la gamme tracteur. A cette période, l’entreprise compte 50 salariés dont 37 mécaniciens. L’activité est soutenue par la production de Houblon.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-step">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-content">
+                        <div class="step-number">1984</div>
+                        <h3 class="step-title">Ford & Deutz</h3>
+                        <p class="step-text">Ford et Deutz font la paire.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-step">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-content">
+                        <div class="step-number">1991</div>
+                        <h3 class="step-title">Filiale Agrimat</h3>
+                        <p class="step-text">Création de la filiale Agrimat au sein du comptoir agricole.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-content">
+                        <div class="step-number">1994</div>
+                        <h3 class="step-title">Case IH & Deutz</h3>
+                        <p class="step-text">Case IH devient le tractoriste principale avec Deutz suite à la création de New Holland et du transfert de la carte à Niess Agriculture.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-content">
+                        <div class="step-number">2002</div>
+                        <h3 class="step-title">Rachat par Niess</h3>
+                        <p class="step-text">Rachat de la filiale par Niess et arrêt de la marque Deutz.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-step">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-content">
+                        <div class="step-number">Aujourd'hui</div>
+                        <h3 class="step-title">Innovation</h3>
+                        <p class="step-text">Agrimat continue d'innover en restant fidèle à ses valeurs de proximité.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="equipe" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-agri-dark mb-4">NOTRE ÉQUIPE</h2>
+                <div class="w-20 h-1 bg-agri-red mx-auto"></div>
+            </div>
+            
+            <div class="mb-16 reveal">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl font-heading font-bold text-agri-dark uppercase tracking-widest mb-2 border-b-4 border-agri-green pb-4 inline-block" style="width: auto; border-bottom-width: 3px;">Service Commercial</h3>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/jacob.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Eric Jacob">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50 transition-transform duration-300">
+                            <h4 class="font-bold text-xl text-agri-dark">Eric Jacob</h4>
+                            <p class="text-xs text-agri-red font-bold uppercase tracking-widest mb-3">Responsable</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0614183091" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 06 14 18 30 91</a>
+                                <a href="mailto:e.jacob@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/angst.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Jacky Angst">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50 transition-transform duration-300">
+                            <h4 class="font-bold text-xl text-agri-dark">Jacky Angst</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Commercial</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0612171746" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 06 12 17 17 46</a>
+                                <a href="mailto:jacky@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/helmstetter.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Victor Helmstetter">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50 transition-transform duration-300">
+                            <h4 class="font-bold text-xl text-agri-dark">Victor Helmstetter</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Commercial</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0679982500" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 06 79 98 25 00</a>
+                                <a href="mailto:v.helmstetter@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/horrenberger.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Mike Horrenberger">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50 transition-transform duration-300">
+                            <h4 class="font-bold text-xl text-agri-dark">Mike Horrenberger</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Commercial</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0787257830" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 07 87 25 78 30</a>
+                                <a href="mailto:m.horrenberger@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/claus.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Romain Claus">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50 transition-transform duration-300">
+                            <h4 class="font-bold text-xl text-agri-dark">Romain Claus</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Commercial</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0629984456" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 06 29 98 44 56</a>
+                                <a href="mailto:r.claus@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="mb-16 reveal">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl font-heading font-bold text-agri-dark uppercase tracking-widest mb-2 border-b-4 border-agri-green pb-4 inline-block" style="width: auto; border-bottom-width: 3px;">Direction & Magasin</h3>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/stehli.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Denis Stehli">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Denis Stehli</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Directeur Général</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0388890932" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 03 88 89 09 32</a>
+                                <a href="mailto:agrimat@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/gebhardt.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Steve Gebhardt">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Steve Gebhardt</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Magasin</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0388890930" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 03 88 89 09 30</a>
+                                <a href="mailto:magasin.agrimat@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/muhlheim.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Michel Muhlheim">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Michel Muhlheim</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Magasin</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0388890930" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 03 88 89 09 30</a>
+                                <a href="mailto:m.muhlheim@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/baltzer.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Didier Baltzer">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Didier Baltzer</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Magasin</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0388890930" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 03 88 89 09 30</a>
+                                <a href="mailto:d.baltzer@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/stephan.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Mathieu Stephan">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Mathieu Stephan</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Magasin</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0388890930" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 03 88 89 09 30</a>
+                                <a href="mailto:m.stephan@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/steiner.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Donovan Steiner">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Donovan Steiner</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Magasin</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0388890930" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 03 88 89 09 30</a>
+                                <a href="mailto:d.steiner@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mb-16 reveal">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl font-heading font-bold text-agri-dark uppercase tracking-widest mb-2 border-b-4 border-agri-green pb-4 inline-block" style="width: auto; border-bottom-width: 3px;">Équipe Atelier</h3>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/fischer.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Jeremy Fischer">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Jeremy Fischer</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Chef d'Atelier</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0388890931" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 03 88 89 09 31</a>
+                                <a href="mailto:atelier.agrimat@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/fischer.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Mathieu Fischer">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Mathieu Fischer</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Technicien</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0388890931" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 03 88 89 09 31</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/hammann.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Mickaël Hammann">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Mickaël Hammann</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-1">Contrôle Pulvé</p>
+                            <p class="text-xs text-agri-red italic mb-2">Dépannage mobile</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0388890931" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 03 88 89 09 31</a>
+                                <a href="mailto:controlepulve@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/loth.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Fabrice Loth">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Fabrice Loth</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Technicien</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0388890931" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 03 88 89 09 31</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/rampin.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Christian Rampin">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Christian Rampin</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Technicien</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0388890931" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 03 88 89 09 31</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/weber.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Christophe Weber">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Christophe Weber</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Technicien</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0388890931" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 03 88 89 09 31</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/weisslocker.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Arthur Weisslocker">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Arthur Weisslocker</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Technicien</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0388890931" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 03 88 89 09 31</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px]">
+                        <img src="equipe/lux.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Michel Lux">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Michel Lux</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Technicien</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="mailto:m.lux@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="reveal">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl font-heading font-bold text-agri-dark uppercase tracking-widest mb-2 border-b-4 border-agri-green pb-4 inline-block" style="width: auto; border-bottom-width: 3px;">Comptabilité</h3>
+                </div>
+
+                <div class="flex justify-center">
+                    <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[450px] w-full max-w-xs">
+                        <img src="equipe/wiss.JPG" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" alt="Sandra Wiss">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl text-center border border-white/50">
+                            <h4 class="font-bold text-xl text-agri-dark">Sandra Wiss</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-3">Comptable</p>
+                            <div class="flex flex-col space-y-1 text-sm border-t border-gray-200 pt-3">
+                                <a href="tel:0388890930" class="font-bold hover:text-agri-red"><i class="fas fa-phone mr-2"></i> 03 88 89 09 30</a>
+                                <a href="mailto:magasin.agrimat@agrimat67.com" class="hover:text-agri-red"><i class="fas fa-envelope mr-2"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="reseau" class="py-24 bg-agri-gray relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row gap-16">
+                <div class="lg:w-1/2 reveal">
+                    <h2 class="text-4xl font-heading font-bold text-agri-dark mb-6">UN RÉSEAU DE PROXIMITÉ</h2>
+                    <p class="text-gray-600 text-lg mb-10">Agrimat et les établissements Niess unissent leurs forces pour vous garantir un service après-vente réactif partout en Alsace et Moselle.</p>
+                    <div class="bg-gray-50 p-8 rounded-3xl border border-gray-100">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-agri-red text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">A</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-agri-dark">AGRIMAT Hochfelden</h4>
+                                <a href="tel:0388890929" class="text-agri-red font-bold hover:underline">03 88 89 09 29</a>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-white rounded-xl shadow-sm"><h5 class="font-bold">Niess Hoffen</h5><p class="text-sm text-gray-500">03 88 05 68 00</p></div>
+                            <div class="p-4 bg-white rounded-xl shadow-sm"><h5 class="font-bold">Niess Wahl</h5><p class="text-sm text-gray-500">03 87 07 03 74</p></div>
+                            <div class="p-4 bg-white rounded-xl shadow-sm"><h5 class="font-bold">Niess Dambach</h5><p class="text-sm text-gray-500">03 88 85 09 23</p></div>
+                            <div class="p-4 bg-white rounded-xl shadow-sm"><h5 class="font-bold">Niess Marlenheim</h5><p class="text-sm text-gray-500">03 88 04 78 70</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 h-[500px] reveal delay-200">
+                    <div class="w-full h-full rounded-3xl overflow-hidden shadow-2xl relative border-4 border-white">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d42086.444537955416!2d7.586512!3d48.755104!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4796bd1f3caec437%3A0x208f848ed7121e8c!2sAgrimat-HONDA%20-HUSQVARNA!5e0!3m2!1sfr!2sus!4v1768820484413!5m2!1sfr!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white border-t border-gray-100 reveal">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-heading font-bold text-agri-dark mb-10">RETROUVEZ-NOUS EN LIGNE</h2>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="https://www.facebook.com/agrimat67" target="_blank" class="social-card group bg-white border border-gray-200 rounded-xl p-6 w-40 hover:shadow-lg transition-all duration-300">
+                    <div class="icon-box w-12 h-12 mx-auto rounded-full border-2 border-gray-100 flex items-center justify-center text-blue-600 mb-3 transition-colors duration-300 group-hover:border-blue-600 group-hover:bg-blue-600 group-hover:text-white">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </div>
+                    <span class="font-bold text-gray-700 group-hover:text-blue-600">Facebook</span>
+                </a>
+
+                <a href="https://www.leboncoin.fr/boutique/5608900/agrimat.htm" target="_blank" class="social-card group bg-white border border-gray-200 rounded-xl p-6 w-40 hover:shadow-lg transition-all duration-300">
+                    <div class="icon-box w-12 h-12 mx-auto rounded-full border-2 border-gray-100 flex items-center justify-center text-orange-500 mb-3 transition-colors duration-300 group-hover:border-orange-500 group-hover:bg-orange-500 group-hover:text-white">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                    </div>
+                    <span class="font-bold text-gray-700 group-hover:text-orange-500">Leboncoin</span>
+                </a>
+
+                <a href="http://www.agriaffaires.com/pros/list/30129-0/1/agrimat.html" target="_blank" class="social-card group bg-white border border-gray-200 rounded-xl p-6 w-40 hover:shadow-lg transition-all duration-300">
+                    <div class="icon-box w-12 h-12 mx-auto rounded-full border-2 border-gray-100 flex items-center justify-center text-agri-red mb-3 transition-colors duration-300 group-hover:border-agri-red group-hover:bg-agri-red group-hover:text-white">
+                        <i class="fas fa-tractor text-xl"></i>
+                    </div>
+                    <span class="font-bold text-gray-700 group-hover:text-agri-red">Agriaffaires</span>
+                </a>
+
+                <a href="https://www.youtube.com/results?search_query=agrimat+67" target="_blank" class="social-card group bg-white border border-gray-200 rounded-xl p-6 w-40 hover:shadow-lg transition-all duration-300">
+                    <div class="icon-box w-12 h-12 mx-auto rounded-full border-2 border-gray-100 flex items-center justify-center text-red-600 mb-3 transition-colors duration-300 group-hover:border-red-600 group-hover:bg-red-600 group-hover:text-white">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </div>
+                    <span class="font-bold text-gray-700 group-hover:text-red-600">YouTube</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#111] text-white pt-20 pb-10 border-t-4 border-agri-red reveal">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+                <div>
+                    <img src="logo.png" class="h-12 mx-auto md:mx-0 mb-4 bg-white p-2 rounded">
+                    <p class="text-gray-400">Expert depuis 1951.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 uppercase">Contact</h4>
+                    <p class="text-gray-400">35 route de Strasbourg<br>67270 HOCHFELDEN</p>
+                    <a href="tel:0388890929" class="text-white font-bold block mt-2 text-xl">03 88 89 09 29</a>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 uppercase">Suivez-nous</h4>
+                    <div class="flex justify-center md:justify-start gap-4">
+                        <a href="https://www.facebook.com/agrimat67" target="_blank" class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center hover:scale-110 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/results?search_query=agrimat+67" target="_blank" class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center hover:scale-110 transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-600 text-sm">
+                © 2026 Agrimat 67. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // 1. REVEAL ANIMATION (PRO - DOUBLE SENS)
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    } else {
+                        // Remonte l'animation si on scrolle vers le haut
+                        if(entry.boundingClientRect.top > 0) { 
+                            entry.target.classList.remove('active');
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // 2. TIMELINE ARROW LOGIC (CORRIGÉE : CENTRE PARFAIT)
+            const timelineContainer = document.querySelector('.methode-timeline');
+            const timelineItems = document.querySelectorAll('.timeline-step');
+            const arrow = document.querySelector('.timeline-arrow');
+
+            if(timelineContainer && timelineItems.length > 0 && arrow) {
+                ScrollTrigger.create({
+                    trigger: timelineContainer,
+                    start: "top 60%",
+                    end: "bottom 40%",
+                    scrub: 1, // Fluidité
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        const height = timelineContainer.offsetHeight;
+                        const arrowHeight = 28;
+                        
+                        // Déplacement de la flèche
+                        const newTop = progress * (height - arrowHeight);
+                        gsap.set(arrow, { top: newTop + "px" });
+
+                        // Activation des étapes
+                        timelineItems.forEach((step) => {
+                            const point = step.querySelector('.timeline-point');
+                            const stepTop = step.offsetTop;
+                            const pointCenter = stepTop + 8; // + demi-hauteur point (16/2)
+
+                            // Si la flèche dépasse le point
+                            if (newTop >= pointCenter - 20) {
+                                point.classList.add('completed'); // Devient vert
+                                step.classList.add('active'); // Texte s'allume
+                            } else {
+                                point.classList.remove('completed');
+                                step.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            }
+
+            // 3. MARQUEE PAUSE
+            const marquee = document.getElementById('marquee');
+            if(marquee) {
+                marquee.addEventListener('click', () => {
+                    const track = marquee.querySelector('.marquee-track');
+                    track.classList.add('paused');
+                    setTimeout(() => track.classList.remove('paused'), 3000);
+                });
+            }
+
+            // 4. MOBILE MENU & ACCORDION
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            if(btn) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const icon = header.querySelector('i');
+                if(header && content) {
+                    header.addEventListener('click', () => {
+                        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+                        accordionItems.forEach(other => {
+                            other.querySelector('.accordion-content').style.maxHeight = '0px';
+                            other.querySelector('.accordion-header i').classList.remove('rotate-180');
+                        });
+                        if (!isOpen) {
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                            icon.classList.add('rotate-180');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

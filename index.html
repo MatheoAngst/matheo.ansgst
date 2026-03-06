@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mathéo ANGST • CV</title>
+  <meta name="description" content="Découvrez le CV de Mathéo ANGST, étudiant en BTS SIO spécialité SISR. Recherche d'alternance en informatique et réseaux.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;800&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/src/index.css">
+</head>
+
+<body>
+
+  <nav class="navigation">
+    <div class="nav-container">
+      <div class="nav-logo" id="navLogo">MATHEO ANGST</div>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="#pourquoi-moi" id="navServices" onclick="closeMenu()">Mon Profil</a></li>
+        <li><a href="#Competences" id="navAccueil" onclick="closeMenu()">Compétences</a></li>
+        <li><a href="#mes-sites" id="navSites" onclick="closeMenu()">Mes Sites</a></li>
+        <li><a href="#contact-info" id="navFormulaire" onclick="closeMenu()">Contact</a></li>
+        <li><button class="theme-toggle" onclick="toggleTheme()" title="Changer le thème">Sombre/Clair</button></li>
+        <li>
+          <button class="nav-cta" onclick="window.open('mon_cv.pdf', '_blank')" id="navCta">
+            Télécharger le CV (PDF)
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero-banner" id="accueil">
+    <div class="hero-content">
+      <h1 class="hero-title reveal-on-scroll" id="heroTitle"> Mathéo ANGST • CV </h1>
+      <p class="hero-subtitle reveal-on-scroll" id="heroSubtitle" style="transition-delay: 0.2s;">À la recherche d'une alternance pour ma 2ème année en BTS SIO (Services Informatiques aux Organisations) <br> spécialité SISR (Solutions d'infrastructure, systèmes et réseaux).</p>
+    </div>
+  </section>
+
+  <main class="main-content">
+    <section class="intro-section">
+      <p class="intro-text reveal-on-scroll" id="introText">Ce format numérique interactif (site) permet une exploration rapide de mes réalisations, tandis que la version téléchargeable (PDF) garantit une documentation structurée pour toute étude approfondie.</p>
+    </section>
+
+    <section class="manifesto-section reveal-on-scroll">
+      <p class="manifesto-text" id="manifestoText">Je m'appelle Mathéo ANGST, j'ai 18 ans, actuellement en BTS SIO (Services Informatiques aux Organisations) • À la recherche d'une alternance pour ma 2ème année, spécialité SISR (Solutions d'infrastructure, systèmes et réseaux).</p>
+    </section>
+
+    <section class="why-section" id="pourquoi-moi">
+      <h2 class="section-title reveal-on-scroll">Pourquoi Moi</h2>
+      <div class="why-grid">
+        <div class="why-item reveal-on-scroll">
+          <h3 class="why-title">Hybride</h3>
+          <p class="why-description">Ma formation et mes expériences m'ont doté d'une polyvalence concrète, allant de la gestion documentaire structurée à l'installation de machines virtuelles.</p>
+        </div>
+        <div class="why-item reveal-on-scroll" style="transition-delay: 0.2s;">
+          <h3 class="why-title">Maîtrise des Flux d'Information</h3>
+          <p class="why-description">Ma formation AGOrA me permet de comprendre comment l'information circule au sein d'une structure. Je garantis une gestion documentaire fiable et la structuration des données.</p>
+        </div>
+        <div class="why-item reveal-on-scroll" style="transition-delay: 0.4s;">
+          <h3 class="why-title">Atout RSE</h3>
+          <p class="why-description">Bénéficiaire de l'obligation d'emploi (RQTH). Une opportunité pour votre entreprise de concilier responsabilité sociétale et optimisation de la contribution AGEFIPH.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section" id="Competences">
+      <h2 class="section-title reveal-on-scroll">Compétences Informatiques</h2>
+      <div class="services-grid">
+        <div class="service-card reveal-on-scroll">
+          <h3 class="service-title">Sur Téléphone</h3>
+          <p class="service-description"> Maîtrise complète des environnements iOS. <br><br>Création et mise en place de bots Discord <br><br>Maîtrise de la création de raccourcis via l'application Raccourcis d'iOS.</p>
+        </div>
+        <div class="service-card reveal-on-scroll" style="transition-delay: 0.2s;">
+          <h3 class="service-title">Sur Ordinateur</h3>
+          <p class="service-description">Aisance sur Windows ainsi que sur les machines virtuelles. <br><br>Dactylographie experte<br><br>Maîtrise avancée du Pack Office <br><br>Maîtrise des langages et logiciels :<br>HTML & CSS<br>SketchUp Make<br>FL Studio</p>
+        </div>
+        <div class="service-card reveal-on-scroll" style="transition-delay: 0.4s;">
+          <h3 class="service-title">Autres</h3>
+          <p class="service-description">Maintenance matérielle et dépannage : Je possède des connaissances solides de l'architecture interne d'un ordinateur. Je suis capable de réaliser le montage, le câblage et les diagnostics de panne de premier niveau.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section" id="Expérience">
+      <h2 class="section-title reveal-on-scroll">Expérience</h2>
+      
+      <div style="text-align: center; margin-bottom: 60px;">
+        <a href="chrono.html" class="nav-cta" style="text-decoration: none; padding: 18px 35px; font-size: 15px; display: inline-block;">
+          DECOUVRIR MA CHRONOLOGIE EN 3D
+        </a>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card En informatique art reveal-on-scroll">
+          <h3 class="service-title">Mes stages en informatique</h3>
+          <p class="service-description">Janvier 2022 <br> Stage de découverte d'une semaine au service informatique <br>du garage Louis Grasser à Haguenau.</p>
+        </div>
+        <div class="service-card immo reveal-on-scroll" style="transition-delay: 0.2s;">
+          <h3 class="service-title">Mes stages en gestion et administration</h3>
+          <p class="service-description">De 2023 à 2025 :<br>3 semaines au E.Leclerc<br><br>1 mois chez l'huissier de justice Da Costa.<br><br>1 mois au Collège Albert-Camus.</p>
+        </div>
+        <div class="service-card affaires reveal-on-scroll" style="transition-delay: 0.4s;">
+          <h3 class="service-title">Mes diplômes</h3>
+          <p class="service-description">Bac Pro AGOrA :<br>Assistance à la gestion des organisations et de leurs activités<br><br>Brevet des collèges<br> avec mention assez bien<br><br>Certification PIX niveau terminale</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="projets-section" id="mes-sites">
+      <h2 class="section-title reveal-on-scroll">Mes sites</h2>
+      <div class="projets-grid">
+        <div class="project-card reveal-on-scroll">
+          <b></b>
+          <img src="logo.png" alt="Agrimat">
+          <div class="content">
+            <p class="title">AGRIMAT<br><span>Vente de Matériel Agricole</span></p>
+            <ul class="sci">
+              <li><a href="comparaison.html" target="_blank" title="Voir le site">➜</a></li>
+              <li><a href="#" onclick="openModal('modal-agrimat'); return false;" title="Plus d'infos">i</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="project-card reveal-on-scroll" style="transition-delay: 0.2s; opacity: 0.5;">
+          <b></b>
+          <div class="content" style="transform: scale(1); bottom: 100px;">
+            <p class="title">Prochainement<br><span>Site en construction</span></p>
+          </div>
+        </div>
+
+        <div class="project-card reveal-on-scroll" style="transition-delay: 0.4s; opacity: 0.5;">
+          <b></b>
+          <div class="content" style="transform: scale(1); bottom: 100px;">
+            <p class="title">Prochainement<br><span>Site en construction</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section" id="contact-info">
+      <h2 class="section-title reveal-on-scroll">Contact</h2>
+      <div class="contact-grid">
+        <div class="service-card reveal-on-scroll">
+          <h3 class="service-title">Téléphone</h3>
+          <p class="service-description">07 67 99 34 33</p>
+        </div>
+        <div class="service-card reveal-on-scroll" style="transition-delay: 0.2s;">
+          <h3 class="service-title">Email</h3>
+          <p class="service-description">
+            <a href="mailto:angstmatheo67@gmail.com" style="color: inherit; text-decoration: none;">angstmatheo67@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="cta-section" id="formulaire">
+    <h2 class="cta-title reveal-on-scroll" id="ctaTitle">Téléchargez une version du CV complet disponible au format PDF.</h2>
+    <button class="cta-button reveal-on-scroll" onclick="window.open('mon_cv.pdf', '_blank')">Télécharger le CV</button>
+  </section>
+
+  <footer class="footer">
+    <p class="footer-contact" id="footerEmail">© ANGST Mathéo</p>
+  </footer>
+
+  <dialog id="modal-agrimat">
+    <div class="modal-content-wrapper">
+      <button class="close-btn" onclick="this.closest('dialog').close()">X</button>
+      <div class="modal-banner">
+        <div class="modal-title-block">
+          <h2>Le Site <br> Agrimat</h2>
+          <span class="subtitle">Vente de Matériel Agricole</span>
+        </div>
+        <img src="logo.png" alt="Logo Agrimat" class="modal-logo-right">
+      </div>
+      <div class="modal-body">
+        <div class="info-block">
+          <h3>L'Objectif</h3>
+          <p>J'ai recréé le site d'Agrimat pour m'entraîner à la création de sites web complets et interactifs.</p>
+        </div>
+        <div class="info-block">
+          <h3>La Technique</h3>
+          <p>Redéveloppé entièrement en utilisant les standards web : HTML5, CSS3 et JavaScript. Le déploiement est automatisé via GitHub Pages.</p>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    function closeMenu() {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+    }
+
+    function openModal(modalId) {
+      document.getElementById(modalId).showModal();
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      const elements = document.querySelectorAll('.reveal-on-scroll');
+      elements.forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>

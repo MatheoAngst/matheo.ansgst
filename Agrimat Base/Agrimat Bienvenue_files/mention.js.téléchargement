@@ -1,0 +1,24 @@
+
+                  		
+
+
+                       $(document).ready(function() {
+
+                       $
+
+                          $('#mention').click(function(){
+                              //$('.mention').css("display","block");
+                              $('.mention').toggle();
+
+                          });
+
+                          $(".close").click(function(){
+
+                              $('.mention').toggle();
+
+                          });
+
+                          
+                        });
+                  
+      
