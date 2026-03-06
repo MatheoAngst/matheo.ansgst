@@ -1,5 +1,5 @@
 import React, { useRef, useMemo, Suspense, useEffect } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Stars, ScrollControls, useScroll, Text } from '@react-three/drei'
 import * as THREE from 'three'
 
@@ -71,6 +71,8 @@ function DynamicPath() {
 }
 
 function Experiences() {
+  const isMobile = window.innerWidth < 768
+
   return (
     <group>
       {experiencesData.map((item, index) => {
@@ -80,18 +82,18 @@ function Experiences() {
 
         return (
           <group key={index} position={[pos.x, pos.y + 3.5, pos.z]}>
-            <Text font={FONT_TEKTUR} color="white" fontSize={isTitle ? 1.4 : isSubtitle ? 0.9 : 0.7} textAlign="center" maxWidth={14}>
+            <Text font={FONT_TEKTUR} color="white" fontSize={isTitle ? (isMobile ? 0.8 : 1.4) : isSubtitle ? (isMobile ? 0.6 : 0.9) : (isMobile ? 0.4 : 0.7)} textAlign="center" maxWidth={isMobile ? 8 : 14}>
               {item.title}
             </Text>
             {item.type === 'item' && (
               <>
-                <Text font={FONT_TEKTUR} color="#00ffff" fontSize={0.4} position={[0, -0.8, 0]}>{item.date}</Text>
-                <Text font={FONT_TEKTUR} color="#ccc" fontSize={0.3} position={[0, -1.4, 0]} maxWidth={10} textAlign="center">{item.desc}</Text>
+                <Text font={FONT_TEKTUR} color="#00ffff" fontSize={isMobile ? 0.24 : 0.4} position={[0, -0.8, 0]}>{item.date}</Text>
+                <Text font={FONT_TEKTUR} color="#ccc" fontSize={isMobile ? 0.18 : 0.3} position={[0, -1.4, 0]} maxWidth={isMobile ? 8 : 10} textAlign="center">{item.desc}</Text>
               </>
             )}
             {!isTitle && (
               <mesh onClick={() => item.url && window.open(item.url, '_blank')} onPointerOver={() => (document.body.style.cursor = 'pointer')} onPointerOut={() => (document.body.style.cursor = 'auto')}>
-                <planeGeometry args={[14, 4]} />
+                <planeGeometry args={[isMobile ? 8 : 14, 4]} />
                 <meshBasicMaterial transparent opacity={0} />
               </mesh>
             )}
@@ -114,7 +116,6 @@ function CameraRig() {
   return null
 }
 
-// NOUVELLE FONCTION : Surveille la fin du scroll
 function RedirectAtEnd() {
   const scroll = useScroll()
   const hasRedirected = useRef(false)
@@ -122,10 +123,16 @@ function RedirectAtEnd() {
   useFrame(() => {
     if (!scroll || hasRedirected.current) return
     
-    // Si l'utilisateur arrive à 99.5% de la page
-    if (scroll.offset > 0.995) {
-      hasRedirected.current = true // Empêche de relancer la commande plusieurs fois
-      window.location.href = 'index.html' // Redirige vers le CV
+    // Si l'utilisateur arrive tout à la fin du scroll
+    if (scroll.offset > 0.99) {
+      hasRedirected.current = true
+      // Animation de fondu au noir
+      document.body.style.opacity = 0
+      document.body.style.transition = "opacity 0.8s ease"
+      // Redirection après l'animation
+      setTimeout(() => {
+        window.location.href = 'index.html'
+      }, 800)
     }
   })
   return null
@@ -133,7 +140,7 @@ function RedirectAtEnd() {
 
 export default function App() {
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
+    <div style={{ position: 'relative', width: '100%', height: '100vh', backgroundColor: '#050505' }}>
       
       <a href="index.html" style={{
         position: 'absolute', top: '25px', left: '25px', zIndex: 100,
@@ -156,7 +163,6 @@ export default function App() {
             <CameraRig />
             <DynamicPath />
             <Experiences />
-            {/* INCLUSION DU COMPOSANT DE REDIRECTION ICI */}
             <RedirectAtEnd />
           </ScrollControls>
         </Suspense>

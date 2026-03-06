@@ -140,6 +140,57 @@ canvas {
 .footer { border-top: 1px solid var(--card-border); padding: 60px 60px 80px; text-align: center; background: var(--nav-bg); }
 .footer-contact { font-size: 15px; color: var(--text-secondary); }
 
+/* --- BOUTON ET TITRES BRILLANTS --- */
+.btn-fond-gris {
+  display: inline-block;
+  background-color: #2a2a2a;
+  padding: 12px 32px;
+  border-radius: 8px;
+  border: 1px solid #3a3a3a;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-fond-gris:hover {
+  background-color: #333333;
+}
+
+/* Application de l'effet gris/blanc brillant à tous les éléments demandés */
+.btn-shine,
+.hero-title, 
+.section-title, 
+.cta-title,
+.why-title,
+.service-title,
+.modal-title-block h2 {
+  background: linear-gradient(120deg, #9f9f9f 0%, #9f9f9f 40%, #ffffff 50%, #9f9f9f 60%, #9f9f9f 100%);
+  background-size: 200% auto;
+  color: #fff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine-continu 3s linear infinite; /* Animation infinie et fluide */
+}
+
+/* Paramètres spécifiques au texte du bouton pour ne pas casser sa forme */
+.btn-shine {
+  font-weight: 600;
+  font-size: 16px;
+  white-space: nowrap;
+  font-family: "Inter", sans-serif;
+}
+
+/* L'animation corrigée : elle tourne en boucle sans aucune pause */
+@keyframes shine-continu {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+/* ---------------------------------- */
+
 dialog { padding: 0; border: none; background: #000; color: #fff; max-width: 900px; width: 90%; max-height: 90vh; overflow-y: auto; margin: auto; border-radius: 4px; box-shadow: 0 0 50px rgba(0,0,0,0.8); }
 dialog::backdrop { background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); }
 dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
@@ -249,8 +300,8 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
       <h2 class="section-title reveal-on-scroll">Expérience</h2>
       
       <div style="text-align: center; margin-bottom: 60px;">
-        <a href="chrono.html" class="nav-cta" style="text-decoration: none; padding: 18px 35px; font-size: 15px; display: inline-block;">
-          DECOUVRIR MA CHRONOLOGIE EN 3D
+        <a href="chrono.html" class="btn-fond-gris">
+          <span class="btn-shine">DÉCOUVRIR MA CHRONOLOGIE EN 3D</span>
         </a>
       </div>
 
@@ -393,4 +444,4 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
     });
   </script>
 </body>
-
+</html>
