@@ -3,7 +3,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Stars, ScrollControls, useScroll, Text } from '@react-three/drei'
 import * as THREE from 'three'
 
-const TOTAL_DEPTH = 320 
+const TOTAL_DEPTH = 320
 const POINTS_COUNT = 1500
 const FONT_TEKTUR = import.meta.env.BASE_URL + "Tektur.ttf"
 
@@ -72,6 +72,7 @@ function DynamicPath() {
 
 function Experiences() {
   const isMobile = window.innerWidth < 768
+  const isLandscape = window.innerHeight < window.innerWidth
 
   return (
     <group>
@@ -80,20 +81,49 @@ function Experiences() {
         const isTitle = item.type === 'title'
         const isSubtitle = item.type === 'subtitle'
 
+        // Adapter les tailles pour landscape
+        const getTitleSize = () => {
+          if (!isMobile) return 1.4
+          return isLandscape ? 0.5 : 0.8
+        }
+
+        const getSubtitleSize = () => {
+          if (!isMobile) return 0.9
+          return isLandscape ? 0.35 : 0.6
+        }
+
+        const getItemSize = () => {
+          if (!isMobile) return 0.7
+          return isLandscape ? 0.25 : 0.4
+        }
+
+        const getDateSize = () => {
+          return isLandscape ? 0.15 : (isMobile ? 0.24 : 0.4)
+        }
+
+        const getDescSize = () => {
+          return isLandscape ? 0.12 : (isMobile ? 0.18 : 0.3)
+        }
+
+        const getMaxWidth = () => {
+          if (!isMobile) return 14
+          return isLandscape ? 6 : 8
+        }
+
         return (
-          <group key={index} position={[pos.x, pos.y + 3.5, pos.z]}>
-            <Text font={FONT_TEKTUR} color="white" fontSize={isTitle ? (isMobile ? 0.8 : 1.4) : isSubtitle ? (isMobile ? 0.6 : 0.9) : (isMobile ? 0.4 : 0.7)} textAlign="center" maxWidth={isMobile ? 8 : 14}>
+          <group key={index} position={[pos.x, pos.y + (isLandscape ? 2 : 3.5), pos.z]}>
+            <Text font={FONT_TEKTUR} color="white" fontSize={isTitle ? getTitleSize() : isSubtitle ? getSubtitleSize() : getItemSize()} textAlign="center" maxWidth={getMaxWidth()}>
               {item.title}
             </Text>
             {item.type === 'item' && (
               <>
-                <Text font={FONT_TEKTUR} color="#00ffff" fontSize={isMobile ? 0.24 : 0.4} position={[0, -0.8, 0]}>{item.date}</Text>
-                <Text font={FONT_TEKTUR} color="#ccc" fontSize={isMobile ? 0.18 : 0.3} position={[0, -1.4, 0]} maxWidth={isMobile ? 8 : 10} textAlign="center">{item.desc}</Text>
+                <Text font={FONT_TEKTUR} color="#00ffff" fontSize={getDateSize()} position={[0, -0.6, 0]}>{item.date}</Text>
+                <Text font={FONT_TEKTUR} color="#ccc" fontSize={getDescSize()} position={[0, -1, 0]} maxWidth={getMaxWidth()} textAlign="center">{item.desc}</Text>
               </>
             )}
             {!isTitle && (
               <mesh onClick={() => item.url && window.open(item.url, '_blank')} onPointerOver={() => (document.body.style.cursor = 'pointer')} onPointerOut={() => (document.body.style.cursor = 'auto')}>
-                <planeGeometry args={[isMobile ? 8 : 14, 4]} />
+                <planeGeometry args={[getMaxWidth(), 3]} />
                 <meshBasicMaterial transparent opacity={0} />
               </mesh>
             )}
@@ -106,11 +136,15 @@ function Experiences() {
 
 function CameraRig() {
   const scroll = useScroll()
+  const isLandscape = window.innerHeight < window.innerWidth
+
   useFrame((state) => {
     if (!scroll) return
     const z = scroll.offset * TOTAL_DEPTH
     const pos = getPath(z)
-    state.camera.position.lerp(new THREE.Vector3(pos.x, pos.y + 2.5, pos.z + 18), 0.1)
+    // En paysage, réduire l'offset Z pour un meilleur angle
+    const zOffset = isLandscape ? 12 : 18
+    state.camera.position.lerp(new THREE.Vector3(pos.x, pos.y + 2.5, pos.z + zOffset), 0.1)
     state.camera.lookAt(pos.x, pos.y + 1, pos.z - 10)
   })
   return null
@@ -118,6 +152,7 @@ function CameraRig() {
 
 function ScrollIndicator() {
   const [isVisible, setIsVisible] = useState(true)
+  const [isLandscape, setIsLandscape] = useState(window.innerHeight < window.innerWidth)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -127,11 +162,23 @@ function ScrollIndicator() {
       }
     }
 
+    const handleOrientationChange = () => {
+      setIsLandscape(window.innerHeight < window.innerWidth)
+    }
+
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('orientationchange', handleOrientationChange)
+    window.addEventListener('resize', handleOrientationChange)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('orientationchange', handleOrientationChange)
+      window.removeEventListener('resize', handleOrientationChange)
+    }
   }, [isVisible])
 
-  if (!isVisible) return null
+  // Masquer en mode paysage (évite de perdre de l'espace d'affichage)
+  if (!isVisible || isLandscape) return null
 
   return (
     <div style={{
@@ -180,7 +227,7 @@ function RedirectAtEnd() {
 
   useFrame(() => {
     if (!scroll || hasRedirected.current) return
-    
+
     // Si l'utilisateur arrive tout à la fin du scroll
     if (scroll.offset > 0.99) {
       hasRedirected.current = true
