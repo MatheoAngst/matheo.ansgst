@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, Suspense, useEffect } from 'react'
+import React, { useRef, useMemo, Suspense, useEffect, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Stars, ScrollControls, useScroll, Text } from '@react-three/drei'
 import * as THREE from 'three'
@@ -116,6 +116,64 @@ function CameraRig() {
   return null
 }
 
+function ScrollIndicator() {
+  const [isVisible, setIsVisible] = useState(true)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Cacher l'indicateur dès que l'utilisateur scrolle
+      if (window.scrollY > 10) {
+        setIsVisible(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [isVisible])
+
+  if (!isVisible) return null
+
+  return (
+    <div style={{
+      position: 'fixed',
+      bottom: '40px',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      zIndex: 50,
+      pointerEvents: 'none',
+      textAlign: 'center',
+      animation: 'float 2s ease-in-out infinite'
+    }}>
+      <style>{`
+        @keyframes float {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.6; }
+        }
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(8px); }
+        }
+      `}</style>
+      <div style={{
+        color: 'rgba(255, 255, 255, 0.6)',
+        fontSize: '12px',
+        letterSpacing: '1px',
+        marginBottom: '12px',
+        fontFamily: 'Inter, sans-serif',
+        textTransform: 'uppercase'
+      }}>
+        Faites défiler pour explorer
+      </div>
+      <div style={{
+        fontSize: '24px',
+        animation: 'bounce 2s ease-in-out infinite'
+      }}>
+        ↓
+      </div>
+    </div>
+  )
+}
+
 function RedirectAtEnd() {
   const scroll = useScroll()
   const hasRedirected = useRef(false)
@@ -141,7 +199,9 @@ function RedirectAtEnd() {
 export default function App() {
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh', backgroundColor: '#050505' }}>
-      
+
+      <ScrollIndicator />
+
       <a href="index.html" style={{
         position: 'absolute', top: '25px', left: '25px', zIndex: 100,
         color: 'white', textDecoration: 'none', fontFamily: 'Inter, sans-serif',
@@ -156,8 +216,8 @@ export default function App() {
         <color attach="background" args={['#050505']} />
         <fog attach="fog" args={['#050505', 20, 100]} />
         <ambientLight intensity={2.5} />
-        <Stars radius={250} depth={200} count={12000} factor={4} fade speed={1.2} position={[0, 0, -150]} />
-        
+        <Stars radius={250} depth={200} count={12000} factor={7} fade speed={1.2} position={[0, 0, -150]} />
+
         <Suspense fallback={null}>
           <ScrollControls pages={12} damping={0.25}>
             <CameraRig />
