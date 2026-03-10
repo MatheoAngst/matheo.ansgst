@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Mathéo ANGST • CV</title>
-  <meta name="description" content="Découvrez le CV de Mathéo ANGST, 
-  étudiant en BTS SIO spécialité SISR. Recherche d'alternance en informatique et réseaux.">
+  <meta name="description" content="Découvrez le CV de Mathéo ANGST, étudiant en BTS SIO spécialité SISR. Recherche d'alternance en informatique et réseaux.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +16,9 @@
   --bg-body: #ffffff;
   --text-main: #000000;
   --text-secondary: #666666;
-  --nav-bg: rgba(255, 255, 255, 0.95);
+  --nav-bg: rgba(255, 255, 255, 0.7);
+  --nav-border: rgba(0, 0, 0, 0.08);
+  --nav-shadow: rgba(0, 0, 0, 0.05);
   --mobile-menu-bg: #f9f9f9;
   
   --card-bg: rgba(0, 0, 0, 0.03);
@@ -34,7 +35,9 @@
   --bg-body: #050505;
   --text-main: #ffffff;
   --text-secondary: #b3b3b3;
-  --nav-bg: rgba(5, 5, 5, 0.95);
+  --nav-bg: rgba(15, 15, 15, 0.7);
+  --nav-border: rgba(255, 255, 255, 0.1);
+  --nav-shadow: rgba(0, 0, 0, 0.5);
   --mobile-menu-bg: #0f0f0f;
   
   --card-bg: rgba(255, 255, 255, 0.03);
@@ -72,7 +75,7 @@ body, button, input, textarea, select {
   align-items: center;
   text-align: center;
   border-bottom: 1px solid var(--card-border);
-  background: radial-gradient(circle at center, var(--bg-body) 0%, var(--nav-bg) 100%);
+  background: radial-gradient(circle at center, var(--bg-body) 0%, transparent 100%);
 }
 
 canvas {
@@ -82,8 +85,31 @@ canvas {
 
 .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
 .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
-.navigation { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--nav-bg); border-bottom: 1px solid var(--card-border); }
-.nav-container { max-width: 1400px; margin: 0 auto; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; }
+
+/* --- NAVIGATION BULLE STYLE APPLE --- */
+.navigation { 
+  position: fixed; 
+  top: 20px; 
+  left: 50%; 
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 1200px;
+  z-index: 1000; 
+  background: var(--nav-bg); 
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--nav-border);
+  border-radius: 50px;
+  box-shadow: 0 10px 30px var(--nav-shadow);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.nav-container { 
+  width: 100%; 
+  padding: 12px 30px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
 .nav-logo { font-size: 16px; font-weight: 400; letter-spacing: 5px; text-transform: uppercase; z-index: 1001; }
 .hamburger { display: none; cursor: pointer; background: none; border: none; flex-direction: column; gap: 6px; z-index: 1002; padding: 10px; }
 .hamburger span { display: block; width: 25px; height: 2px; background-color: var(--text-main); transition: all 0.3s ease; }
@@ -95,8 +121,9 @@ canvas {
 .nav-menu a:hover { color: #c89bd4; }
 .theme-toggle { background: none; border: 1px solid var(--text-secondary); color: var(--text-main); padding: 8px 12px; border-radius: 20px; cursor: pointer; font-size: 14px; }
 .theme-toggle:hover { background: var(--text-secondary); color: var(--bg-body); }
-.nav-cta { padding: 12px 28px; background: var(--cta-bg); color: var(--cta-text); border-radius: 4px; font-size: 12px; text-transform: uppercase; border: 1px solid var(--cta-bg); cursor: pointer; }
+.nav-cta { padding: 12px 28px; background: var(--cta-bg); color: var(--cta-text); border-radius: 30px; font-size: 12px; text-transform: uppercase; border: 1px solid var(--cta-bg); cursor: pointer; }
 .nav-cta:hover { background: var(--cta-hover-bg); color: var(--cta-hover-text); transform: translateY(-2px); }
+
 .hero-title { font-size: 56px; font-weight: 200; letter-spacing: 2px; margin-bottom: 20px; line-height: 1.3; }
 .hero-subtitle { font-size: 18px; font-weight: 300; color: var(--text-secondary); }
 .main-content { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
@@ -138,7 +165,7 @@ canvas {
 .cta-title { font-size: 32px; font-weight: 300; margin-bottom: 40px; }
 .cta-button { padding: 20px 60px; background: var(--cta-bg); color: var(--cta-text); font-size: 14px; text-transform: uppercase; border-radius: 4px; border: 1px solid var(--cta-bg); cursor: pointer; transition: all 0.3s; }
 .cta-button:hover { background: var(--cta-hover-bg); color: var(--cta-hover-text); transform: translateY(-4px); }
-.footer { border-top: 1px solid var(--card-border); padding: 60px 60px 80px; text-align: center; background: var(--nav-bg); }
+.footer { border-top: 1px solid var(--card-border); padding: 60px 60px 80px; text-align: center; background: var(--bg-body); }
 .footer-contact { font-size: 15px; color: var(--text-secondary); }
 
 /* --- BOUTON ET TITRES BRILLANTS --- */
@@ -157,7 +184,6 @@ canvas {
   background-color: #333333;
 }
 
-/* Application de l'effet gris/blanc brillant à tous les éléments demandés */
 .btn-shine,
 .hero-title, 
 .section-title, 
@@ -170,10 +196,9 @@ canvas {
   color: #fff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shine-continu 3s linear infinite; /* Animation infinie et fluide */
+  animation: shine-continu 3s linear infinite;
 }
 
-/* Paramètres spécifiques au texte du bouton pour ne pas casser sa forme */
 .btn-shine {
   font-weight: 600;
   font-size: 16px;
@@ -181,7 +206,6 @@ canvas {
   font-family: "Inter", sans-serif;
 }
 
-/* L'animation corrigée : elle tourne en boucle sans aucune pause */
 @keyframes shine-continu {
   0% {
     background-position: 200% center;
@@ -190,7 +214,6 @@ canvas {
     background-position: -200% center;
   }
 }
-/* ---------------------------------- */
 
 dialog { padding: 0; border: none; background: #000; color: #fff; max-width: 900px; width: 90%; max-height: 90vh; overflow-y: auto; margin: auto; border-radius: 4px; box-shadow: 0 0 50px rgba(0,0,0,0.8); }
 dialog::backdrop { background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); }
@@ -207,39 +230,100 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
 .close-btn { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: none; color: #fff; width: 40px; height: 40px; border-radius: 50%; font-size: 24px; cursor: pointer; z-index: 10; transition: 0.3s; }
 .close-btn:hover { background: #ff0058; transform: rotate(90deg); }
 
-/* --- NOUVELLES RÈGLES POUR LE PDF EN PLEIN ÉCRAN --- */
-.cv-preview {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  display: block;
-}
-.cv-preview iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-}
-/* ---------------------------------------------------- */
+/* Section Aperçu CV */
+.cv-preview-section { padding: 80px 60px 120px; background: var(--card-bg); }
+.cv-preview-container { width: 100%; max-width: 1000px; margin: 50px auto; aspect-ratio: 8.5 / 11; }
+.cv-preview-container iframe { width: 100%; height: 100%; border: 1px solid var(--card-border); border-radius: 12px; }
 
-@media (max-width: 768px) {
-  .nav-container { padding: 15px 24px; flex-direction: row; }
-  .hamburger { display: flex; }
-  .nav-menu { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: var(--mobile-menu-bg); flex-direction: column; justify-content: center; transition: right 0.4s; z-index: 1000; padding: 60px; }
-  .nav-menu.active { right: 0; }
-  .hero-banner { height: 500px; margin-top: 80px; }
-  .hero-title { font-size: 36px; }
-  .services-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; }
-  .modal-banner { display: flex; flex-direction: column; padding: 60px 20px 30px; height: auto; text-align: center; }
-  .modal-body { grid-template-columns: 1fr; padding: 30px; }
-  
-  /* --- OPTIMISATION DES BOUTONS POUR MOBILE --- */
-  .nav-cta { width: 100%; text-align: center; }
-  .btn-fond-gris { width: 100%; box-sizing: border-box; }
-  .btn-shine { white-space: normal; display: block; }
-  .cta-button { width: 100%; padding: 15px 20px; }
+/* ===================== MARQUEE (TEXTE DEFILANT) ===================== */
+.marquee-wrap {
+  overflow: hidden;
+  padding: 20px 0;
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+  background: var(--card-bg);
+  margin-top: 60px;
 }
+.marquee {
+  display: flex;
+  gap: 0;
+  white-space: nowrap;
+  animation: marquee 25s linear infinite;
+}
+.marquee:hover {
+  animation-play-state: paused;
+}
+.mq-item {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  letter-spacing: .06em;
+  color: var(--text-secondary);
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: color .2s;
+}
+.mq-item:hover {
+  color: var(--text-main);
+}
+.mq-item::after {
+  content: '◆';
+  color: #03a9f4;
+  font-size: .5rem;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%) }
+}
+
+/* Petits phones (< 480px) */
+@media (max-width: 480px) {
+  html { font-size: 14px; }
+  .nav-container { padding: 10px 15px; }
+  .navigation { top: 10px; width: 95%; border-radius: 30px; }
+  .main-content { padding: 0 20px; }
+  .hero-banner { height: 400px; margin-top: 70px; }
+  .hero-title { font-size: 28px; }
+  .section-title { font-size: 18px; margin-bottom: 60px; }
+  .intro-text { font-size: 18px; }
+  .services-section, .why-section, .projets-section { padding: 60px 0 80px; }
+  .cv-preview-section { padding: 60px 20px 80px; }
+}
+
+/* Mode landscape (tous les breakpoints) */
+@media (orientation: landscape) and (max-height: 700px) {
+  .hero-banner { height: auto; min-height: 50vh; max-height: 60vh; }
+  .nav-container { padding: 10px 30px; }
+  .hero-title { font-size: 48px; margin-bottom: 10px; }
+  .hero-subtitle { font-size: 14px; }
+  .intro-section { padding: 50px 0; }
+  .intro-text { font-size: 16px; }
+  .services-section, .why-section { padding: 50px 0 60px; }
+  .cta-section { padding: 60px 30px; }
+  .section-title { margin-bottom: 50px; font-size: 20px; }
+  .manifesto-section { padding: 50px 30px; }
+}
+
+/* Amélioration tablette (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .main-content { padding: 0 40px; }
+  .nav-container { padding: 18px 40px; }
+  .services-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-title { font-size: 42px; }
+  .cta-section { padding: 80px 40px; }
+  .cv-preview-section { padding: 80px 40px 100px; }
+}
+
+/* Adaptation landscape pour petit mobile (< 768px en hauteur) */
+@media (orientation: landscape) and (max-width: 768px) {
+  .hero-banner { height: auto; min-height: 45vh; }
+  .nav-menu { padding: 40px; }
+  .services-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; }
+  .manifesto-section { padding: 40px 30px; margin: 0 auto 60px; }
+  .cta-section { padding: 50px 30px; }
+  .cv-preview-section { display: none; }
+}
+
   </style>
 </head>
 
@@ -254,7 +338,7 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
 
       <ul class="nav-menu">
         <li><a href="#pourquoi-moi" id="navServices" onclick="closeMenu()">Mon Profil</a></li>
-        <li><a href="#Competences" id="navAccueil" onclick="closeMenu()">Compétences</a></li>
+        <li><a href="#competences-grid" id="navAccueil" onclick="closeMenu()">Compétences</a></li>
         <li><a href="#mes-sites" id="navSites" onclick="closeMenu()">Mes Sites</a></li>
         <li><a href="#contact-info" id="navFormulaire" onclick="closeMenu()">Contact</a></li>
         <li><button class="theme-toggle" onclick="toggleTheme()" title="Changer le thème">Sombre/Clair</button></li>
@@ -270,7 +354,7 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
   <section class="hero-banner" id="accueil">
     <div class="hero-content">
       <h1 class="hero-title reveal-on-scroll" id="heroTitle"> Mathéo ANGST • CV </h1>
-      <p class="hero-subtitle reveal-on-scroll" id="heroSubtitle" style="transition-delay: 0.2s;">À la recherche d'une alternance pour ma 2ème année en <br>BTS SIO (Services Informatiques aux Organisations) <br> spécialité SISR (Solutions d'infrastructure, systèmes et réseaux).</p>
+      <p class="hero-subtitle reveal-on-scroll" id="heroSubtitle" style="transition-delay: 0.2s;">À la recherche d'une alternance pour ma 2ème année en BTS SIO (Services Informatiques aux Organisations) <br> spécialité SISR (Solutions d'infrastructure, systèmes et réseaux).</p>
     </div>
   </section>
 
@@ -303,7 +387,7 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
 
     <section class="services-section" id="Competences">
       <h2 class="section-title reveal-on-scroll">Compétences Informatiques</h2>
-      <div class="services-grid">
+      <div class="services-grid" id="competences-grid">
         <div class="service-card reveal-on-scroll">
           <h3 class="service-title">Sur Téléphone</h3>
           <p class="service-description"> Maîtrise complète des environnements iOS. <br><br>Création et mise en place de bots Discord <br><br>Maîtrise de la création de raccourcis via l'application Raccourcis d'iOS.</p>
@@ -317,6 +401,14 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
           <p class="service-description">Maintenance matérielle et dépannage : Je possède des connaissances solides de l'architecture interne d'un ordinateur. Je suis capable de réaliser le montage, le câblage et les diagnostics de panne de premier niveau.</p>
         </div>
       </div>
+
+      <div class="marquee-wrap reveal-on-scroll">
+        <div class="marquee">
+          <div class="mq-item">BTS SIO SISR</div><div class="mq-item">Maintenance PC</div><div class="mq-item">Windows & VM</div><div class="mq-item">HTML & CSS</div><div class="mq-item">Bots Discord</div><div class="mq-item">Pack Office</div><div class="mq-item">iOS & Raccourcis</div><div class="mq-item">FL Studio</div><div class="mq-item">Réseaux</div>
+          <div class="mq-item">BTS SIO SISR</div><div class="mq-item">Maintenance PC</div><div class="mq-item">Windows & VM</div><div class="mq-item">HTML & CSS</div><div class="mq-item">Bots Discord</div><div class="mq-item">Pack Office</div><div class="mq-item">iOS & Raccourcis</div><div class="mq-item">FL Studio</div><div class="mq-item">Réseaux</div>
+        </div>
+      </div>
+
     </section>
 
     <section class="services-section" id="Expérience">
@@ -395,10 +487,17 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
   <section class="cta-section" id="formulaire">
     <h2 class="cta-title reveal-on-scroll" id="ctaTitle">Téléchargez une version du CV complet disponible au format PDF.</h2>
     <button class="cta-button reveal-on-scroll" onclick="window.open('mon_cv.pdf', '_blank')">Télécharger le CV</button>
-  </section>    
-  <div class="cv-preview">
+  </section>
+
+  <section class="cv-preview-section reveal-on-scroll">
+    <h2 class="section-title">Aperçu du CV Complet</h2>
+    <div class="cv-preview-container">
       <iframe src="mon_cv.pdf" title="CV ANGST Mathéo - Aperçu du CV"></iframe>
     </div>
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="mon_cv.pdf" download class="cta-button">Télécharger le PDF</a>
+    </div>
+  </section>
 
   <footer class="footer">
     <p class="footer-contact" id="footerEmail">© ANGST Mathéo</p>
