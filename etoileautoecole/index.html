@@ -11,7 +11,6 @@
             --text-muted: #555555;
             --border-color: #e5e5e5;
             --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            --spacing-unit: 1rem;
         }
 
         * {
@@ -226,6 +225,69 @@
             color: #cccccc;
         }
 
+        .accordion-wrapper {
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .accordion-btn {
+            width: 100%;
+            background: transparent;
+            color: var(--text-color);
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+            font-size: 1.5rem;
+            font-weight: 400;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-main);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .accordion-btn:focus {
+            outline: none;
+        }
+
+        .accordion-btn span {
+            font-size: 2rem;
+            font-weight: 300;
+            line-height: 1;
+            transition: transform 0.4s ease;
+        }
+
+        .accordion-btn.active span {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.5s ease;
+        }
+
+        .accordion-content.active {
+            grid-template-rows: 1fr;
+        }
+
+        .accordion-inner {
+            overflow: hidden;
+            padding-top: 0;
+            padding-bottom: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease, padding 0.5s ease;
+        }
+
+        .accordion-content.active .accordion-inner {
+            opacity: 1;
+            padding-top: 3rem;
+            padding-bottom: 4rem;
+        }
+
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -233,7 +295,7 @@
         }
 
         .tarif-block {
-            margin-bottom: 3rem;
+            margin-bottom: 0;
         }
 
         .tarif-header {
@@ -343,6 +405,9 @@
             section {
                 padding: 4rem 0;
             }
+            .accordion-btn {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -355,9 +420,7 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="#permis-b">Permis B</a></li>
-                    <li><a href="#aac-cs">AAC & CS</a></li>
-                    <li><a href="#forfaits">Forfaits & Details</a></li>
+                    <li><a href="#tarifs">Tarifs & Formules</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -368,7 +431,7 @@
         <div class="container">
             <h1>L'essentiel de la conduite. Rien de superflu.</h1>
             <p>Etoile Auto-ecole vous propose des formations transparentes, structurees et adaptees a votre rythme. Consultez l'integralite de nos tarifs ci-dessous.</p>
-            <a href="#permis-b" class="btn">Voir les tarifs</a>
+            <a href="#tarifs" class="btn">Voir les tarifs</a>
 
             <div class="images-showcase">
                 <div class="crazy-image-container">
@@ -393,150 +456,156 @@
         </div>
     </section>
 
-    <section id="permis-b">
+    <section id="tarifs">
         <div class="container">
-            <h2>Permis B (Traditionnel)</h2>
-            <div class="grid-2">
+            <h2>Nos Formules & Tarifs</h2>
+            
+            <div class="accordion-wrapper">
                 
-                <div class="tarif-block">
-                    <div class="tarif-header">
-                        <div class="tarif-title">Boite Manuelle (20h)</div>
-                        <div class="tarif-price">1238 EUR</div>
+                <button class="accordion-btn">
+                    Formules Permis B
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <div class="grid-2">
+                            <div class="tarif-block">
+                                <div class="tarif-header">
+                                    <div class="tarif-title">Boite Manuelle (20h)</div>
+                                    <div class="tarif-price">1238 EUR</div>
+                                </div>
+                                <p class="muted">Tarif avec code de la route inclus. Tarif sans code : 1118 EUR.</p>
+                                <div class="tarif-details">
+                                    <span>20h de conduite (45 EUR x 20)</span> <span>900 EUR</span>
+                                    <span>Frais d'inscription</span> <span>90 EUR</span>
+                                    <span>Fourniture pedagogique</span> <span>80 EUR</span>
+                                    <span>Forfait code</span> <span>120 EUR</span>
+                                    <span>Accompagnement examen</span> <span>48 EUR</span>
+                                </div>
+                                <div class="tarif-note">Modalite de paiement : Payable en 3 fois (Inscription 380 EUR).</div>
+                            </div>
+                            <div class="tarif-block">
+                                <div class="tarif-header">
+                                    <div class="tarif-title">Boite Automatique (13h)</div>
+                                    <div class="tarif-price">901 EUR</div>
+                                </div>
+                                <p class="muted">Tarif avec code de la route inclus. Tarif sans code : 781 EUR.</p>
+                                <div class="tarif-details">
+                                    <span>13h de conduite (47 EUR x 13)</span> <span>611 EUR</span>
+                                    <span>Frais d'inscription</span> <span>90 EUR</span>
+                                    <span>Fourniture pedagogique</span> <span>80 EUR</span>
+                                    <span>Forfait code</span> <span>120 EUR</span>
+                                    <span>Accompagnement examen</span> <span>47 EUR</span>
+                                </div>
+                                <div class="tarif-note">Modalite de paiement : Payable en 3 fois (Inscription 280 EUR, entre 8h et 12h: 250.5 EUR, entre 13h et 20h: 250.5 EUR). Reduction -30 EUR si paiement en une seule fois.</div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="muted">Tarif avec code de la route inclus. Tarif sans code : 1118 EUR.</p>
-                    <div class="tarif-details">
-                        <span>20h de conduite (45 EUR x 20)</span> <span>900 EUR</span>
-                        <span>Frais d'inscription</span> <span>90 EUR</span>
-                        <span>Fourniture pedagogique</span> <span>80 EUR</span>
-                        <span>Forfait code</span> <span>120 EUR</span>
-                        <span>Accompagnement examen</span> <span>48 EUR</span>
-                    </div>
-                    <div class="tarif-note">Modalite de paiement : Payable en 3 fois (Inscription 380 EUR).</div>
                 </div>
 
-                <div class="tarif-block">
-                    <div class="tarif-header">
-                        <div class="tarif-title">Boite Automatique (13h)</div>
-                        <div class="tarif-price">901 EUR</div>
+                <button class="accordion-btn">
+                    Conduite Accompagnee & Supervisee
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <div class="grid-2">
+                            <div class="tarif-block">
+                                <div class="tarif-header">
+                                    <div class="tarif-title">Permis AAC (Des 15 ans)</div>
+                                    <div class="tarif-price">1518 EUR</div>
+                                </div>
+                                <p class="muted">Formation initiale de 20h + suivi pedagogique.</p>
+                                <div class="tarif-details">
+                                    <span>20h de conduite (48 EUR x 20)</span> <span>960 EUR</span>
+                                    <span>Frais d'inscription</span> <span>90 EUR</span>
+                                    <span>Fourniture pedagogique</span> <span>80 EUR</span>
+                                    <span>Forfait code</span> <span>120 EUR</span>
+                                    <span>Heure accomp. examen conduite</span> <span>48 EUR</span>
+                                    <span>Total formation initiale</span> <span>1298 EUR</span>
+                                    <span>1er R.D.V Pedagogique (1000km / 1h de conduite)</span> <span>100 EUR</span>
+                                    <span>2eme R.D.V Pedagogique (3000km / 3h de conduite)</span> <span>120 EUR</span>
+                                    <span>Total suivi pedagogique</span> <span>220 EUR</span>
+                                </div>
+                                <div class="tarif-note">Modalite de paiement : Payable en 3 fois (Inscription 506 EUR, entre 8h et 12h: 506 EUR, entre 13h et 20h: 506 EUR). NB : obligation d'effectuer 5h de conduite avant examen.</div>
+                            </div>
+                            <div class="tarif-block">
+                                <div class="tarif-header">
+                                    <div class="tarif-title">Permis CS</div>
+                                </div>
+                                <p class="muted">Conduite Supervisee - Condition : avoir +18 ans et l'accord de l'assureur du vehicule.</p>
+                                <h3 style="margin-top: 1rem;">Boite Manuelle - 1467 EUR</h3>
+                                <div class="tarif-details">
+                                    <span>Heures de conduite (47 EUR x 20)</span> <span>940 EUR</span>
+                                    <span>Frais d'inscription</span> <span>90 EUR</span>
+                                    <span>Fourniture pedagogique</span> <span>80 EUR</span>
+                                    <span>Code illimite 6 mois</span> <span>120 EUR</span>
+                                    <span>Heure accomp. examen</span> <span>47 EUR</span>
+                                    <span>Total formation initiale</span> <span>1277 EUR</span>
+                                    <span>1er R.D.V Pedagogique (1000km / 1h)</span> <span>100 EUR</span>
+                                    <span>Rendez-vous entre accompagnateur et formateur</span> <span>90 EUR</span>
+                                    <span>Total suivi pedagogique</span> <span>190 EUR</span>
+                                </div>
+                                <div class="tarif-note" style="margin-bottom: 2rem;">Payable en 3 fois (Inscription 489 EUR).</div>
+                                <h3>Boite Automatique - 1138 EUR</h3>
+                                <div class="tarif-details">
+                                    <span>Heures de conduite (47 EUR x 13)</span> <span>611 EUR</span>
+                                    <span>Frais d'inscription</span> <span>80 EUR</span>
+                                    <span>Fourniture pedagogique</span> <span>80 EUR</span>
+                                    <span>Code illimite 6 mois</span> <span>120 EUR</span>
+                                    <span>Heure accomp. examen</span> <span>47 EUR</span>
+                                    <span>Total formation initiale</span> <span>948 EUR</span>
+                                    <span>1er R.D.V Pedagogique (1000km / 1h)</span> <span>100 EUR</span>
+                                    <span>Rendez-vous entre accompagnateur et formateur</span> <span>90 EUR</span>
+                                    <span>Total suivi pedagogique</span> <span>190 EUR</span>
+                                </div>
+                                <div class="tarif-note">Payable en 3 fois (Inscription 400 EUR).</div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="muted">Tarif avec code de la route inclus. Tarif sans code : 781 EUR.</p>
-                    <div class="tarif-details">
-                        <span>13h de conduite (47 EUR x 13)</span> <span>611 EUR</span>
-                        <span>Frais d'inscription</span> <span>90 EUR</span>
-                        <span>Fourniture pedagogique</span> <span>80 EUR</span>
-                        <span>Forfait code</span> <span>120 EUR</span>
-                        <span>Accompagnement examen</span> <span>47 EUR</span>
-                    </div>
-                    <div class="tarif-note">Modalite de paiement : Payable en 3 fois (Inscription 280 EUR, entre 8h et 12h: 250.5 EUR, entre 13h et 20h: 250.5 EUR). Reduction -30 EUR si paiement en une seule fois.</div>
                 </div>
 
-            </div>
-        </div>
-    </section>
-
-    <section id="aac-cs">
-        <div class="container">
-            <h2>Conduite Accompagnee & Supervisee</h2>
-            <div class="grid-2">
-                
-                <div class="tarif-block">
-                    <div class="tarif-header">
-                        <div class="tarif-title">Permis AAC (Des 15 ans)</div>
-                        <div class="tarif-price">1518 EUR</div>
+                <button class="accordion-btn">
+                    Forfaits Specifiques & Tarifs a l'unite
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <div class="grid-2">
+                            <div>
+                                <h3>Forfaits Speciaux</h3>
+                                <ul class="list-simple">
+                                    <li>
+                                        <span><strong>Forfait Permis B (Annulation ou 20h/13h deja effectuees)</strong><br><span class="muted">Boite manuelle ou automatique. Forfait de 10h maximum. Le jour de l'examen si l'eleve n'a pas effectue les 10h, les heures non effectuees ne seront pas remboursees. L'heure d'accompagnement a l'examen n'est pas comprise. Payable en 2 fois (350 EUR des l'inscription, 350 EUR avant l'examen).</span></span>
+                                        <span>700 EUR</span>
+                                    </li>
+                                    <li>
+                                        <span><strong>Forfait Permis B (A partir du 2eme passage)</strong><br><span class="muted">Boite manuelle ou automatique en une seule fois. 6h de conduite (288 EUR), heure accompagnement examen (48 EUR), frais de dossier (59 EUR). Inscription 335 EUR pour boite auto, 380 EUR pour manuelle.</span></span>
+                                        <span>395 EUR</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3>Prestations Code & Dossier</h3>
+                                <ul class="list-simple">
+                                    <li><span>Code (Illimite pendant 6 mois)</span> <span>120 EUR</span></li>
+                                    <li><span>Examen du code (Facultatif)</span> <span>40 EUR</span></li>
+                                    <li><span>Application code (Facultatif)</span> <span>35 EUR</span></li>
+                                    <li><span>Frais de dossier (A partir du 2eme passage)</span> <span>70 EUR</span></li>
+                                    <li><span>Accompagnement examen conduite (Unite)</span> <span>48 EUR</span></li>
+                                </ul>
+                                <h3 style="margin-top: 2rem;">Heures de conduite a l'unite</h3>
+                                <p class="muted" style="font-size: 0.85rem; margin-bottom: 0.5rem;">L'heure se decompose : 45 mn de conduite + 15 mn de pedagogie (bilan + briefing). La documentation est disponible dans l'etablissement. L'eleve est recupere devant l'auto-ecole.</p>
+                                <ul class="list-simple">
+                                    <li><span>Forfait Permis B (Heure boite manuelle)</span> <span>45 EUR</span></li>
+                                    <li><span>Forfait Permis B (Heure boite automatique)</span> <span>47 EUR</span></li>
+                                    <li><span>Au dela des heures du forfait (Heure manuelle)</span> <span>48 EUR</span></li>
+                                    <li><span>Au dela des heures du forfait (Heure automatique)</span> <span>50 EUR</span></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <p class="muted">Formation initiale de 20h + suivi pedagogique.</p>
-                    <div class="tarif-details">
-                        <span>20h de conduite (48 EUR x 20)</span> <span>960 EUR</span>
-                        <span>Frais d'inscription</span> <span>90 EUR</span>
-                        <span>Fourniture pedagogique</span> <span>80 EUR</span>
-                        <span>Forfait code</span> <span>120 EUR</span>
-                        <span>Heure accomp. examen conduite</span> <span>48 EUR</span>
-                        <span>Total formation initiale</span> <span>1298 EUR</span>
-                        <span>1er R.D.V Pedagogique (1000km / 1h de conduite)</span> <span>100 EUR</span>
-                        <span>2eme R.D.V Pedagogique (3000km / 3h de conduite)</span> <span>120 EUR</span>
-                        <span>Total suivi pedagogique</span> <span>220 EUR</span>
-                    </div>
-                    <div class="tarif-note">Modalite de paiement : Payable en 3 fois (Inscription 506 EUR, entre 8h et 12h: 506 EUR, entre 13h et 20h: 506 EUR). NB : obligation d'effectuer 5h de conduite avant examen.</div>
                 </div>
-
-                <div class="tarif-block">
-                    <div class="tarif-header">
-                        <div class="tarif-title">Permis CS</div>
-                    </div>
-                    <p class="muted">Conduite Supervisee - Condition : avoir +18 ans et l'accord de l'assureur du vehicule.</p>
-                    
-                    <h3>Boite Manuelle - 1467 EUR</h3>
-                    <div class="tarif-details">
-                        <span>Heures de conduite (47 EUR x 20)</span> <span>940 EUR</span>
-                        <span>Frais d'inscription</span> <span>90 EUR</span>
-                        <span>Fourniture pedagogique</span> <span>80 EUR</span>
-                        <span>Code illimite 6 mois</span> <span>120 EUR</span>
-                        <span>Heure accomp. examen</span> <span>47 EUR</span>
-                        <span>Total formation initiale</span> <span>1277 EUR</span>
-                        <span>1er R.D.V Pedagogique (1000km / 1h)</span> <span>100 EUR</span>
-                        <span>Rendez-vous entre accompagnateur et formateur</span> <span>90 EUR</span>
-                        <span>Total suivi pedagogique</span> <span>190 EUR</span>
-                    </div>
-                    <div class="tarif-note">Payable en 3 fois (Inscription 489 EUR).</div>
-
-                    <h3 style="margin-top: 1.5rem;">Boite Automatique - 1138 EUR</h3>
-                    <div class="tarif-details">
-                        <span>Heures de conduite (47 EUR x 13)</span> <span>611 EUR</span>
-                        <span>Frais d'inscription</span> <span>80 EUR</span>
-                        <span>Fourniture pedagogique</span> <span>80 EUR</span>
-                        <span>Code illimite 6 mois</span> <span>120 EUR</span>
-                        <span>Heure accomp. examen</span> <span>47 EUR</span>
-                        <span>Total formation initiale</span> <span>948 EUR</span>
-                        <span>1er R.D.V Pedagogique (1000km / 1h)</span> <span>100 EUR</span>
-                        <span>Rendez-vous entre accompagnateur et formateur</span> <span>90 EUR</span>
-                        <span>Total suivi pedagogique</span> <span>190 EUR</span>
-                    </div>
-                    <div class="tarif-note">Payable en 3 fois (Inscription 400 EUR).</div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="forfaits">
-        <div class="container">
-            <h2>Forfaits Specifiques & Tarifs a l'unite</h2>
-            <div class="grid-2">
-
-                <div>
-                    <h3>Forfaits Speciaux</h3>
-                    <ul class="list-simple">
-                        <li>
-                            <span><strong>Forfait Permis B (Annulation ou 20h/13h deja effectuees)</strong><br><span class="muted">Boite manuelle ou automatique. Forfait de 10h maximum. Le jour de l'examen si l'eleve n'a pas effectue les 10h, les heures non effectuees ne seront pas remboursees. L'heure d'accompagnement a l'examen n'est pas comprise. Payable en 2 fois (350 EUR des l'inscription, 350 EUR avant l'examen).</span></span>
-                            <span>700 EUR</span>
-                        </li>
-                        <li>
-                            <span><strong>Forfait Permis B (A partir du 2eme passage)</strong><br><span class="muted">Boite manuelle ou automatique en une seule fois. 6h de conduite (288 EUR), heure accompagnement examen (48 EUR), frais de dossier (59 EUR). Inscription 335 EUR pour boite auto, 380 EUR pour manuelle.</span></span>
-                            <span>395 EUR</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3>Prestations Code & Dossier</h3>
-                    <ul class="list-simple">
-                        <li><span>Code (Illimite pendant 6 mois)</span> <span>120 EUR</span></li>
-                        <li><span>Examen du code (Facultatif)</span> <span>40 EUR</span></li>
-                        <li><span>Application code (Facultatif)</span> <span>35 EUR</span></li>
-                        <li><span>Frais de dossier (A partir du 2eme passage)</span> <span>70 EUR</span></li>
-                        <li><span>Accompagnement examen conduite (Unite)</span> <span>48 EUR</span></li>
-                    </ul>
-                    
-                    <h3 style="margin-top: 2rem;">Heures de conduite a l'unite</h3>
-                    <p class="muted" style="font-size: 0.85rem; margin-bottom: 0.5rem;">L'heure se decompose : 45 mn de conduite + 15 mn de pedagogie (bilan + briefing). La documentation est disponible dans l'etablissement. L'eleve est recupere devant l'auto-ecole.</p>
-                    <ul class="list-simple">
-                        <li><span>Forfait Permis B (Heure boite manuelle)</span> <span>45 EUR</span></li>
-                        <li><span>Forfait Permis B (Heure boite automatique)</span> <span>47 EUR</span></li>
-                        <li><span>Au dela des heures du forfait (Heure manuelle)</span> <span>48 EUR</span></li>
-                        <li><span>Au dela des heures du forfait (Heure automatique)</span> <span>50 EUR</span></li>
-                    </ul>
-                </div>
-
             </div>
         </div>
     </section>
@@ -572,6 +641,8 @@
                 <div>
                     <strong style="color: var(--text-color);">Etoile Auto-ecole</strong>
                     <br><br>
+                    2 Rue Charles Adolphe Wurtz<br>
+                    67202 WOLFISHEIM<br>
                     Tel : 07 81 84 87 84
                 </div>
                 <div>
@@ -594,5 +665,14 @@
         </div>
     </footer>
 
+    <script>
+        document.querySelectorAll('.accordion-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('active');
+                const content = btn.nextElementSibling;
+                content.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>
