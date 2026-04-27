@@ -10,6 +10,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;800&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
   <style>
 :root {
@@ -118,7 +121,7 @@ canvas {
 .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 .nav-menu { display: flex; gap: 35px; list-style: none; align-items: center; }
 .nav-menu a { font-size: 13px; font-weight: 300; letter-spacing: 0.5px; color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
-.nav-menu a:hover { color: #c89bd4; }
+.nav-menu a:hover { color: #03a9f4; }
 .theme-toggle { background: none; border: 1px solid var(--text-secondary); color: var(--text-main); padding: 8px 12px; border-radius: 20px; cursor: pointer; font-size: 14px; }
 .theme-toggle:hover { background: var(--text-secondary); color: var(--bg-body); }
 .nav-cta { padding: 12px 28px; background: var(--cta-bg); color: var(--cta-text); border-radius: 30px; font-size: 12px; text-transform: uppercase; border: 1px solid var(--cta-bg); cursor: pointer; }
@@ -160,34 +163,25 @@ canvas {
 .content .sci { display: flex; gap: 15px; padding: 0; list-style: none; }
 .sci li a { color: rgba(255, 255, 255, 0.7); background: rgba(255, 255, 255, 0.1); width: 45px; height: 45px; display: flex; justify-content: center; align-items: center; border-radius: 8px; transition: 0.5s; border: 1px solid rgba(255,255,255,0.2); text-decoration: none;}
 .sci li a:hover { background: #fff; color: #000; transform: translateY(-5px); }
-.contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 900px; margin: 0 auto; }
-.cta-section { text-align: center; padding: 120px 60px; max-width: 800px; margin: 0 auto; }
-.cta-title { font-size: 32px; font-weight: 300; margin-bottom: 40px; }
-.cta-button { padding: 20px 60px; background: var(--cta-bg); color: var(--cta-text); font-size: 14px; text-transform: uppercase; border-radius: 4px; border: 1px solid var(--cta-bg); cursor: pointer; transition: all 0.3s; }
-.cta-button:hover { background: var(--cta-hover-bg); color: var(--cta-hover-text); transform: translateY(-4px); }
+
+/* Formulaire de Contact */
+.contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1000px; margin: 0 auto; align-items: start; }
+.contact-info-block { display: flex; flex-direction: column; gap: 30px; }
+.contact-form { display: flex; flex-direction: column; gap: 20px; background: var(--card-bg); padding: 40px; border-radius: 16px; border: 1px solid var(--card-border); }
+.contact-form input, .contact-form textarea { width: 100%; padding: 15px; border: 1px solid var(--card-border); border-radius: 8px; background: transparent; color: var(--text-main); font-family: 'Inter', sans-serif; font-size: 15px; transition: border-color 0.3s; }
+.contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: #03a9f4; }
+.contact-form textarea { resize: vertical; min-height: 150px; }
+.btn-submit { background: #03a9f4; color: #fff; border: none; padding: 15px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+.btn-submit:hover { background: #0288d1; }
+.linkedin-btn { display: inline-block; background: #0077b5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 10px; transition: background 0.3s; }
+.linkedin-btn:hover { background: #005582; }
+
 .footer { border-top: 1px solid var(--card-border); padding: 60px 60px 80px; text-align: center; background: var(--bg-body); }
 .footer-contact { font-size: 15px; color: var(--text-secondary); }
 
-/* --- BOUTON ET TITRES BRILLANTS --- */
-.btn-fond-gris {
-  display: inline-block;
-  background-color: #2a2a2a;
-  padding: 12px 32px;
-  border-radius: 8px;
-  border: 1px solid #3a3a3a;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-
-.btn-fond-gris:hover {
-  background-color: #333333;
-}
-
-.btn-shine,
+/* --- TITRES BRILLANTS --- */
 .hero-title, 
 .section-title, 
-.cta-title,
 .why-title,
 .service-title,
 .modal-title-block h2 {
@@ -199,20 +193,9 @@ canvas {
   animation: shine-continu 3s linear infinite;
 }
 
-.btn-shine {
-  font-weight: 600;
-  font-size: 16px;
-  white-space: nowrap;
-  font-family: "Inter", sans-serif;
-}
-
 @keyframes shine-continu {
-  0% {
-    background-position: 200% center;
-  }
-  100% {
-    background-position: -200% center;
-  }
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
 }
 
 dialog { padding: 0; border: none; background: #000; color: #fff; max-width: 900px; width: 90%; max-height: 90vh; overflow-y: auto; margin: auto; border-radius: 4px; box-shadow: 0 0 50px rgba(0,0,0,0.8); }
@@ -229,11 +212,6 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
 .info-block p { font-size: 1rem; color: #ccc; font-weight: 300; }
 .close-btn { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: none; color: #fff; width: 40px; height: 40px; border-radius: 50%; font-size: 24px; cursor: pointer; z-index: 10; transition: 0.3s; }
 .close-btn:hover { background: #ff0058; transform: rotate(90deg); }
-
-/* Section Aperçu CV */
-.cv-preview-section { padding: 80px 60px 120px; background: var(--card-bg); }
-.cv-preview-container { width: 100%; max-width: 1000px; margin: 50px auto; aspect-ratio: 8.5 / 11; }
-.cv-preview-container iframe { width: 100%; height: 100%; border: 1px solid var(--card-border); border-radius: 12px; }
 
 /* ===================== MARQUEE (TEXTE DEFILANT) ===================== */
 .marquee-wrap {
@@ -276,6 +254,159 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
   to { transform: translateX(-50%) }
 }
 
+/* ===================== TIMELINE STYLE AGRIMAT ===================== */
+.methode-timeline {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 2rem 0;
+  margin: 0 auto;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, 
+      transparent 0%, 
+      var(--card-border) 10%, 
+      var(--card-border) 90%, 
+      transparent 100%);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.timeline-arrow {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 48px;
+  height: 28px;
+  transform: translateX(-50%) translateY(-28px);
+  z-index: 4;
+  pointer-events: none;
+  will-change: top, transform;
+  transform-origin: center center;
+  filter: drop-shadow(0 0 20px rgba(3, 169, 244, 0.4));
+}
+
+.timeline-arrow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-top: 28px solid #03a9f4;
+}
+
+.timeline-arrow::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 32px;
+  background: radial-gradient(circle, rgba(3, 169, 244, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(8px);
+  z-index: -1;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.7; transform: translateX(-50%) scale(1.2); }
+}
+
+.timeline-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  z-index: 2;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.timeline-step.active {
+  opacity: 1;
+}
+
+.timeline-step:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-step:nth-child(even) .timeline-content {
+  text-align: right;
+}
+
+.timeline-point {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg-body);
+  border: 3px solid var(--text-secondary);
+  flex-shrink: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  z-index: 3;
+  box-shadow: 0 0 0 4px var(--bg-body);
+  transition: all 0.3s ease;
+}
+
+.timeline-content {
+  flex: 1;
+  max-width: 380px;
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
+  padding-right: 2rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.timeline-step:nth-child(even) .timeline-content {
+  margin-left: auto;
+  margin-right: 0;
+  padding-left: 2rem;
+  padding-right: 0;
+}
+
+.step-number {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #03a9f4;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.step-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.step-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
 /* Petits phones (< 480px) */
 @media (max-width: 480px) {
   html { font-size: 14px; }
@@ -287,21 +418,10 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
   .section-title { font-size: 18px; margin-bottom: 60px; }
   .intro-text { font-size: 18px; }
   .services-section, .why-section, .projets-section { padding: 60px 0 80px; }
-  .cv-preview-section { padding: 60px 20px 80px; }
-}
-
-/* Mode landscape (tous les breakpoints) */
-@media (orientation: landscape) and (max-height: 700px) {
-  .hero-banner { height: auto; min-height: 50vh; max-height: 60vh; }
-  .nav-container { padding: 10px 30px; }
-  .hero-title { font-size: 48px; margin-bottom: 10px; }
-  .hero-subtitle { font-size: 14px; }
-  .intro-section { padding: 50px 0; }
-  .intro-text { font-size: 16px; }
-  .services-section, .why-section { padding: 50px 0 60px; }
-  .cta-section { padding: 60px 30px; }
-  .section-title { margin-bottom: 50px; font-size: 20px; }
-  .manifesto-section { padding: 50px 30px; }
+  .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+  .timeline-line, .timeline-arrow, .timeline-point { left: 20px; }
+  .timeline-step, .timeline-step:nth-child(even) { flex-direction: column; align-items: flex-start; gap: 1rem; padding-left: 50px; }
+  .timeline-content, .timeline-step:nth-child(even) .timeline-content { max-width: 100%; text-align: left; padding: 20px; }
 }
 
 /* Amélioration tablette (768px - 1024px) */
@@ -310,18 +430,20 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
   .nav-container { padding: 18px 40px; }
   .services-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-title { font-size: 42px; }
-  .cta-section { padding: 80px 40px; }
-  .cv-preview-section { padding: 80px 40px 100px; }
+  .contact-wrapper { grid-template-columns: 1fr; }
 }
 
-/* Adaptation landscape pour petit mobile (< 768px en hauteur) */
-@media (orientation: landscape) and (max-width: 768px) {
-  .hero-banner { height: auto; min-height: 45vh; }
-  .nav-menu { padding: 40px; }
-  .services-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; }
-  .manifesto-section { padding: 40px 30px; margin: 0 auto 60px; }
-  .cta-section { padding: 50px 30px; }
-  .cv-preview-section { display: none; }
+@media (max-width: 768px) {
+  .nav-container { padding: 15px 24px; flex-direction: row; }
+  .hamburger { display: flex; }
+  .nav-menu { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: var(--mobile-menu-bg); flex-direction: column; justify-content: center; transition: right 0.4s; z-index: 1000; padding: 60px; }
+  .nav-menu.active { right: 0; }
+  .contact-wrapper { grid-template-columns: 1fr; }
+  .timeline-line { left: 30px; }
+  .timeline-arrow { left: 30px; }
+  .timeline-point { left: 30px; }
+  .timeline-step { flex-direction: row !important; padding-left: 60px; }
+  .timeline-content { text-align: left !important; margin: 0 !important; max-width: 100% !important; }
 }
 
   </style>
@@ -339,6 +461,7 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
       <ul class="nav-menu">
         <li><a href="#pourquoi-moi" id="navServices" onclick="closeMenu()">Mon Profil</a></li>
         <li><a href="#competences-grid" id="navAccueil" onclick="closeMenu()">Compétences</a></li>
+        <li><a href="#Expérience" id="navExp" onclick="closeMenu()">Expérience</a></li>
         <li><a href="#mes-sites" id="navSites" onclick="closeMenu()">Mes Sites</a></li>
         <li><a href="#contact-info" id="navFormulaire" onclick="closeMenu()">Contact</a></li>
         <li><button class="theme-toggle" onclick="toggleTheme()" title="Changer le thème">Sombre/Clair</button></li>
@@ -360,7 +483,7 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
 
   <main class="main-content">
     <section class="intro-section">
-      <p class="intro-text reveal-on-scroll" id="introText">Ce format numérique interactif (site) permet une exploration rapide de mes réalisations, tandis que la version téléchargeable (PDF) garantit une documentation structurée pour toute étude approfondie.</p>
+      <p class="intro-text reveal-on-scroll" id="introText">Ce format numérique interactif permet une exploration rapide de mes réalisations, tandis que la version téléchargeable (PDF) garantit une documentation structurée pour toute étude approfondie.</p>
     </section>
 
     <section class="manifesto-section reveal-on-scroll">
@@ -385,9 +508,9 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
       </div>
     </section>
 
-    <section class="services-section" id="Competences">
+    <section class="services-section" id="competences-grid">
       <h2 class="section-title reveal-on-scroll">Compétences Informatiques</h2>
-      <div class="services-grid" id="competences-grid">
+      <div class="services-grid">
         <div class="service-card reveal-on-scroll">
           <h3 class="service-title">Sur Téléphone</h3>
           <p class="service-description"> Maîtrise complète des environnements iOS. <br><br>Création et mise en place de bots Discord <br><br>Maîtrise de la création de raccourcis via l'application Raccourcis d'iOS.</p>
@@ -412,26 +535,55 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
     </section>
 
     <section class="services-section" id="Expérience">
-      <h2 class="section-title reveal-on-scroll">Expérience</h2>
+      <h2 class="section-title reveal-on-scroll">Mon Parcours</h2>
       
-      <div style="text-align: center; margin-bottom: 60px;">
-        <a href="chrono.html" class="btn-fond-gris">
-          <span class="btn-shine">DÉCOUVRIR MA CHRONOLOGIE EN 3D</span>
-        </a>
-      </div>
-
-      <div class="services-grid">
-        <div class="service-card En informatique art reveal-on-scroll">
-          <h3 class="service-title">Mes stages en informatique</h3>
-          <p class="service-description">Janvier 2022 <br> Stage de découverte d'une semaine au service informatique <br>du garage Louis Grasser à Haguenau.</p>
+      <div class="methode-timeline">
+        <div class="timeline-line"></div>
+        <div class="timeline-arrow"></div>
+        
+        <div class="timeline-step reveal-on-scroll">
+            <div class="timeline-point"></div>
+            <div class="timeline-content">
+                <div class="step-number">Janvier 2022</div>
+                <h3 class="step-title">Garage Louis Grasser</h3>
+                <p class="step-text">Stage de découverte d'une semaine au service informatique à Haguenau.</p>
+            </div>
         </div>
-        <div class="service-card immo reveal-on-scroll" style="transition-delay: 0.2s;">
-          <h3 class="service-title">Mes stages en gestion et administration</h3>
-          <p class="service-description">De 2023 à 2025 :<br>3 semaines au E.Leclerc<br><br>1 mois chez l'huissier de justice Da Costa.<br><br>1 mois au Collège Albert-Camus.</p>
+        
+        <div class="timeline-step reveal-on-scroll">
+            <div class="timeline-point"></div>
+            <div class="timeline-content">
+                <div class="step-number">2023 - 2025</div>
+                <h3 class="step-title">E.Leclerc</h3>
+                <p class="step-text">Stage en gestion et administration d'une durée de 3 semaines.</p>
+            </div>
         </div>
-        <div class="service-card affaires reveal-on-scroll" style="transition-delay: 0.4s;">
-          <h3 class="service-title">Mes diplômes</h3>
-          <p class="service-description">Bac Pro AGOrA :<br>Assistance à la gestion des organisations et de leurs activités<br><br>Brevet des collèges<br> avec mention assez bien<br><br>Certification PIX niveau terminale</p>
+        
+        <div class="timeline-step reveal-on-scroll">
+            <div class="timeline-point"></div>
+            <div class="timeline-content">
+                <div class="step-number">2023 - 2025</div>
+                <h3 class="step-title">Huissier de justice Da Costa</h3>
+                <p class="step-text">Stage en gestion et administration d'une durée d'un mois.</p>
+            </div>
+        </div>
+        
+        <div class="timeline-step reveal-on-scroll">
+            <div class="timeline-point"></div>
+            <div class="timeline-content">
+                <div class="step-number">2023 - 2025</div>
+                <h3 class="step-title">Collège Albert-Camus</h3>
+                <p class="step-text">Stage en gestion et administration d'une durée d'un mois.</p>
+            </div>
+        </div>
+        
+        <div class="timeline-step reveal-on-scroll">
+            <div class="timeline-point"></div>
+            <div class="timeline-content">
+                <div class="step-number">Diplômes</div>
+                <h3 class="step-title">Formations & Certifications</h3>
+                <p class="step-text">Bac Pro AGOrA (Assistance à la gestion des organisations et de leurs activités).<br>Brevet des collèges avec mention assez bien.<br>Certification PIX niveau terminale.</p>
+            </div>
         </div>
       </div>
     </section>
@@ -445,16 +597,20 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
           <div class="content">
             <p class="title">AGRIMAT<br><span>Vente de Matériel Agricole</span></p>
             <ul class="sci">
-              <li><a href="comparaison.html" target="_blank" title="Voir le site">➜</a></li>
+              <li><a href="agrimat.html" target="_blank" title="Voir le site">➜</a></li>
               <li><a href="#" onclick="openModal('modal-agrimat'); return false;" title="Plus d'infos">i</a></li>
             </ul>
           </div>
         </div>
         
-        <div class="project-card reveal-on-scroll" style="transition-delay: 0.2s; opacity: 0.5;">
+        <div class="project-card reveal-on-scroll" style="transition-delay: 0.2s;">
           <b></b>
-          <div class="content" style="transform: scale(1); bottom: 100px;">
-            <p class="title">Prochainement<br><span>Site en construction</span></p>
+          <img src="IMG_3072.jpg" alt="Etoile Auto Ecole" style="opacity: 0.7; filter: grayscale(50%);">
+          <div class="content">
+            <p class="title">Etoile Auto-école<br><span>Site vitrine auto-école</span></p>
+            <ul class="sci">
+              <li><a href="etoile auto ecole.html" target="_blank" title="Voir le site">➜</a></li>
+            </ul>
           </div>
         </div>
 
@@ -468,39 +624,34 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
     </section>
 
     <section class="services-section" id="contact-info">
-      <h2 class="section-title reveal-on-scroll">Contact</h2>
-      <div class="contact-grid">
-        <div class="service-card reveal-on-scroll">
-          <h3 class="service-title">Téléphone</h3>
-          <p class="service-description">07 67 99 34 33</p>
+      <h2 class="section-title reveal-on-scroll">Contactez-moi</h2>
+      
+      <div class="contact-wrapper">
+        <div class="contact-info-block reveal-on-scroll">
+            <div class="service-card">
+              <h3 class="service-title">Mes Coordonnées</h3>
+              <p class="service-description" style="font-size: 18px; margin-bottom: 20px;">
+                <strong>Téléphone :</strong> 07 67 99 34 33<br><br>
+                <strong>Email :</strong> <a href="mailto:angstmatheo67@gmail.com" style="color: inherit; text-decoration: none;">angstmatheo67@gmail.com</a>
+              </p>
+              <a href="https://www.linkedin.com/in/matheo-angst/" target="_blank" class="linkedin-btn">Mon Profil LinkedIn</a>
+            </div>
         </div>
-        <div class="service-card reveal-on-scroll" style="transition-delay: 0.2s;">
-          <h3 class="service-title">Email</h3>
-          <p class="service-description">
-            <a href="mailto:angstmatheo67@gmail.com" style="color: inherit; text-decoration: none;">angstmatheo67@gmail.com</a>
-          </p>
-        </div>
+
+        <form class="contact-form reveal-on-scroll" id="discordForm" style="transition-delay: 0.2s;">
+            <h3 class="service-title" style="margin-bottom: 10px;">M'envoyer un message</h3>
+            <input type="text" id="contactNom" placeholder="Votre Nom" required>
+            <input type="email" id="contactEmail" placeholder="Votre Email" required>
+            <textarea id="contactMessage" placeholder="Votre Message" required></textarea>
+            <button type="submit" class="btn-submit">Envoyer</button>
+            <p id="formStatus" style="display:none; text-align:center; margin-top:10px; font-weight:bold; color:#03a9f4;"></p>
+        </form>
       </div>
     </section>
   </main>
 
-  <section class="cta-section" id="formulaire">
-    <h2 class="cta-title reveal-on-scroll" id="ctaTitle">Téléchargez une version du CV complet disponible au format PDF.</h2>
-    <button class="cta-button reveal-on-scroll" onclick="window.open('mon_cv.pdf', '_blank')">Télécharger le CV</button>
-  </section>
-
-  <section class="cv-preview-section reveal-on-scroll">
-    <h2 class="section-title">Aperçu du CV Complet</h2>
-    <div class="cv-preview-container">
-      <iframe src="mon_cv.pdf" title="CV ANGST Mathéo - Aperçu du CV"></iframe>
-    </div>
-    <div style="text-align: center; margin-top: 40px;">
-      <a href="mon_cv.pdf" download class="cta-button">Télécharger le PDF</a>
-    </div>
-  </section>
-
   <footer class="footer">
-    <p class="footer-contact" id="footerEmail">© ANGST Mathéo</p>
+    <p class="footer-contact" id="footerEmail">BTS SIO SISR · Portfolio 2025-2026</p>
   </footer>
 
   <dialog id="modal-agrimat">
@@ -549,6 +700,7 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
     }
 
     document.addEventListener("DOMContentLoaded", function() {
+      // Animation au scroll classique
       const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -566,6 +718,83 @@ dialog[open] { animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
 
       const elements = document.querySelectorAll('.reveal-on-scroll');
       elements.forEach(el => observer.observe(el));
+
+      // Logique pour la timeline (Flèche animée GSAP)
+      const timelineContainer = document.querySelector('.methode-timeline');
+      const timelineItems = document.querySelectorAll('.timeline-step');
+      const arrow = document.querySelector('.timeline-arrow');
+
+      if(timelineContainer && timelineItems.length > 0 && arrow) {
+          ScrollTrigger.create({
+              trigger: timelineContainer,
+              start: "top 60%",
+              end: "bottom 40%",
+              scrub: 1,
+              onUpdate: (self) => {
+                  const progress = self.progress;
+                  const height = timelineContainer.offsetHeight;
+                  const arrowHeight = 28;
+                  
+                  const newTop = progress * (height - arrowHeight);
+                  gsap.set(arrow, { top: newTop + "px" });
+
+                  timelineItems.forEach((step) => {
+                      const point = step.querySelector('.timeline-point');
+                      const stepTop = step.offsetTop;
+                      const pointCenter = stepTop + 8;
+
+                      if (newTop >= pointCenter - 20) {
+                          point.style.background = '#03a9f4';
+                          point.style.borderColor = '#03a9f4';
+                          step.classList.add('active');
+                      } else {
+                          point.style.background = 'var(--bg-body)';
+                          point.style.borderColor = 'var(--text-secondary)';
+                          step.classList.remove('active');
+                      }
+                  });
+              }
+          });
+      }
+
+      // Logique pour le Webhook Discord
+      const form = document.getElementById('discordForm');
+      const statusText = document.getElementById('formStatus');
+
+      form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const nom = document.getElementById('contactNom').value;
+          const email = document.getElementById('contactEmail').value;
+          const message = document.getElementById('contactMessage').value;
+          
+          const webhookUrl = "https://discord.com/api/webhooks/1498269781290258566/CatJfLDYg4pZHz2ZHQHMO3Eb_NVMIP1lGe6TVFMVFjtkUZz9Iu8BwuTQv9ovBnCRkLW_";
+          
+          const payload = {
+              content: `**NOUVEAU MESSAGE PORTFOLIO**\n**Nom :** ${nom}\n**Email :** ${email}\n**Message :**\n${message}`
+          };
+
+          fetch(webhookUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+          }).then(response => {
+              if(response.ok) {
+                  statusText.innerText = "Message envoyé avec succès !";
+                  statusText.style.display = "block";
+                  form.reset();
+                  setTimeout(() => { statusText.style.display = "none"; }, 5000);
+              } else {
+                  statusText.innerText = "Erreur lors de l'envoi.";
+                  statusText.style.color = "red";
+                  statusText.style.display = "block";
+              }
+          }).catch(error => {
+              statusText.innerText = "Erreur réseau.";
+              statusText.style.color = "red";
+              statusText.style.display = "block";
+          });
+      });
     });
   </script>
 </body>
